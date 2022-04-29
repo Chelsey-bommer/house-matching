@@ -1,0 +1,19 @@
+{
+  "name": "rooms",
+  "version": "1.0.0",
+  "description": "This is an app to find your perfect room!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Chelsey Bommer",
+  "license": "MIT",
+  "dependencies": {
+    "camelcase": "^6.3.0",
+    "express": "^4.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
