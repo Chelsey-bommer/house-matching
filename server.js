@@ -8,9 +8,19 @@ app.use(express.static('static'));
 
 
 
-/* '/' is de home van je server. */
+/* de home van de server. */
 app.get('/', (req,res) => {
     res.send("Hello world")
+})
+
+/* filter route */
+app.get('/filter', (req,res) => {
+    res.send("Hello filter!")
+})
+
+/* Resultaten route */
+app.get('/resultaten', (req,res) =>{
+    res.send("Hello resultaten")
 })
 
 /* Hier console log je met de variable port van hierboven */
