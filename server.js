@@ -23,6 +23,12 @@ app.get('/resultaten', (req,res) =>{
     res.send("Hello resultaten")
 })
 
+/* 404 route */
+app.use(function(req, res){
+    res.status(404).send("Error 404: file not found");
+});
+
+
 /* Hier console log je met de variable port van hierboven */
 app.listen(port, () => {
     console.log(`Webserver running on port localhost:${port}`);
