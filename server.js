@@ -3,8 +3,12 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-/* '/' is de home van je server. */
+/* Static file */
+app.use(express.static('static'));
 
+
+
+/* '/' is de home van je server. */
 app.get('/', (req,res) => {
     res.send("Hello world")
 })
