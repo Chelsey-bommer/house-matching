@@ -5,9 +5,9 @@ De voornaamste reden dat deze app over een huis/kamer zoeken gemaakt wordt, is d
 
 ## Table of contents
 * [Using the (web)app](##Using)
-* Makers
-* Contact
-* License
+* [Makers](##Makers)
+* [Contact](##Contact)
+* [License](##License)
 
 
 ## Using
