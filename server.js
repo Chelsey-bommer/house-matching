@@ -10,10 +10,21 @@ app.use(express.static('static'));
 app.set('view engine', 'ejs');
 
 
+const user = {
+    firstName: 'Chelsey',
+    lastName: 'Bommer',
+}
+
+const houses = {
+    housePrice: 500,
+    houseRoom: 3
+}
+
+
 
 /* de home van de server. */
 app.get('/', (req, res) => {
-    res.render('pages/index')
+    res.render('pages/index', {user:user}) 
 })
 
 /* filter route */
@@ -22,8 +33,8 @@ app.get('/filter', (req,res) => {
 })
 
 /* Resultaten route */
-app.get('/resultaten', (req,res) =>{
-    res.send("Hello resultaten")
+app.get('/results', (req,res) => {
+    res.render('pages/results');
 })
 
 /* 404 route */
