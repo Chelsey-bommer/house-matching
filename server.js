@@ -6,16 +6,19 @@ const port = 3000;
 /* Static file */
 app.use(express.static('static'));
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
 
 
 /* de home van de server. */
-app.get('/', (req,res) => {
-    res.send("Hello world")
+app.get('/', (req, res) => {
+    res.render('pages/index')
 })
 
 /* filter route */
 app.get('/filter', (req,res) => {
-    res.send("Hello filter!")
+    res.render('pages/filter');
 })
 
 /* Resultaten route */
