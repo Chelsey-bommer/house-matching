@@ -5,6 +5,8 @@ const port = 3000;
 
 /* Static file */
 app.use(express.static('static'));
+app.use('/css', express.static(__dirname + 'static/css'))
+app.use('/img', express.static(__dirname + 'static/img'))
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -15,21 +17,12 @@ const user = {
     lastName: 'Bommer',
 }
 
-const houses = {
-    housePrice: 500,
-    houseRoom: 3
-}
 
 
-
-/* de home van de server. */
-app.get('/', (req, res) => {
-    res.render('pages/index', {user:user}) 
-})
 
 /* filter route */
-app.get('/filter', (req,res) => {
-    res.render('pages/filter');
+app.get('/', (req, res) => {
+    res.render('pages/filter', {user:user}) 
 })
 
 /* Resultaten route */
