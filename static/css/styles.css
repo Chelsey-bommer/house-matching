@@ -56,29 +56,16 @@ header h1{
 **** MAIN ****
 *************/
 
-main h2{
-    display:flex;
-    justify-content: center;
-
-    margin-top:3em;
-    margin-left:30%;
-    margin-bottom: 0;
-
-    padding:1em;
-    width:30%;
-
-
+main {
     background-color: var(--main-color);
-}
 
-
-form{
     display:flex;
+    flex-direction: column;
     justify-content: flex-start;
 
     margin-left:30%;
-    padding:1.5em;
-
-    width: 30%;
-    background-color: var(--main-color);
+    margin-top:3em;
+    padding:1em;
+    
+    width:30%;
 }
