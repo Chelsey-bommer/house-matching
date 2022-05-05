@@ -1,0 +1,1 @@
+document.getElementById("form1").style.display = "none"; 

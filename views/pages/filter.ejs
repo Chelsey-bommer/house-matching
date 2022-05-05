@@ -21,9 +21,11 @@
       <h2>Stel uw voorkeuren in</h2>
       <h3>Wat is uw budget?</h3>
 
-      <form>
+      <form id="form1">
          <input type="text">
-      </form>
+      </form> 
+
+      <input class="slider"type="range" min="0" max="1000" >
 
       <h3>Hoeveel kamers wilt u?</h3>
 
@@ -40,6 +42,8 @@
   <footer>
      <%- include('../partials/footer') %>
   </footer>
+
+  <script src="/static/script.js"></script>
     
 </body>
 </html>

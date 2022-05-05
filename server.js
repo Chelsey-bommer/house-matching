@@ -32,7 +32,7 @@ app.get('/results', (req,res) => {
 
 /* 404 route */
 app.use(function(req, res){
-    res.status(404).send("Error 404: file not found");
+    res.status(404).render('pages/error');
 });
 
 
