@@ -1,9 +1,10 @@
+/* variables */
 const express = require("express");
-
 const app = express();
 const port = 3000;
 
-/* Static file */
+
+/* Static files */
 app.use("/static", express.static('./static/'));
 app.use('/css', express.static('./static/css'));
 app.use('/img', express.static('./static/img'));
@@ -14,6 +15,8 @@ app.use('/js', express.static('./static/js'));
 app.set('view engine', 'ejs');
 
 
+
+/* test variable */
 const user = {
     firstName: 'Chelsey',
     lastName: 'Bommer',
