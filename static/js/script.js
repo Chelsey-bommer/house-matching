@@ -7,3 +7,5 @@ window.addEventListener('load', () => {
     /* Voegt de slider toe */
     document.getElementById("slider").style.visibility = "visible";
   });
+
+  
