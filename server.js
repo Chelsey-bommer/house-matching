@@ -6,9 +6,6 @@ const port = 3000;
 
 /* Static files */
 app.use("/static", express.static('./static/'));
-app.use('/css', express.static('./static/css'));
-app.use('/img', express.static('./static/img'));
-app.use('/js', express.static('./static/js'));
 
 
 // set the view engine to ejs
