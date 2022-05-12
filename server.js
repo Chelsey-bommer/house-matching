@@ -4,27 +4,45 @@ const app = express();
 const port = 3000;
 
 
+
 /* Static files */
-app.use("/static", express.static('./static/'));
+app.use("/static", express.static('./static'));
+app.use('/css', express.static('./static/css'));
+app.use('/img', express.static('./static/img'));
+app.use('/js', express.static('./static/js'));
 
-
-// set the view engine to ejs
+/* set the view engine to ejs */
 app.set('view engine', 'ejs');
 
 
 
-/* test variable */
-const user = {
-    firstName: 'Chelsey',
-    lastName: 'Bommer',
-}
 
+const gebruikerArray = [
+    {
+        "huis1": 1,
+        "prijs": 500,
+        "plaats": "Amsterdam"
+
+    },
+    {
+        "huis2": 2,
+        "prijs": 600,
+        "plaats": "Alkmaar"
+
+    },
+    {
+        "huis3": 3,
+        "prijs": 650,
+        "plaats": "Rotterdam"
+
+    }
+]
 
 
 
 /* filter route */
 app.get('/', (req, res) => {
-    res.render('pages/filter', {user:user}) 
+    res.render('pages/filter') 
 })
 
 /* Resultaten route */
