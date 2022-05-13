@@ -22,19 +22,32 @@
       <h2>Stel uw voorkeuren in</h2>
 
       <h3>In welke stad wilt u wonen?</h3>
-      <form>
+      <form id="form1">
          <input type="text">
 
       </form>
 
+      <form id= "dropdown" action="/">
+         <input list="huizen">
+         <datalist id="huizen">
+           <option value="stad1">
+           <option value="stad2">
+           <option value="stad3">
+           <option value="stad4">
+           <option value="stad5">
+         </datalist>
+       </form>
+
    
 
       <h3>Wat is uw budget?</h3>
-      <form id="form1">
+      <form id="form2">
          <input type="text">
-         <input id="slider" class="slider"type="range" min="0" max="1000" > 
          
       </form> 
+      <input id="slider" class="slider"type="range" min="0" max="1000" > 
+
+
       <button>Sla voorkeuren op</button>
 
       
