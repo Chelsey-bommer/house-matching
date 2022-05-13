@@ -19,23 +19,11 @@ app.set('view engine', 'ejs');
 
 const gebruikerArray = [
     {
-        "huis1": 1,
-        "prijs": 500,
-        "plaats": "Amsterdam"
-
-    },
-    {
-        "huis2": 2,
-        "prijs": 600,
-        "plaats": "Alkmaar"
-
-    },
-    {
-        "huis3": 3,
-        "prijs": 650,
-        "plaats": "Rotterdam"
-
+        "naam": "Chelsey",
+       
+        preferencesArray:[]
     }
+    
 ]
 
 
@@ -44,6 +32,7 @@ const gebruikerArray = [
 app.get('/', (req, res) => {
     res.render('pages/filter') 
 })
+
 
 /* Resultaten route */
 app.get('/results', (req,res) => {
