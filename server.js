@@ -2,6 +2,8 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+var Comb = require('csscomb');
+var comb = new Comb('zen');
 
 
 
@@ -10,6 +12,8 @@ app.use("/static", express.static('./static'));
 app.use('/css', express.static('./static/css'));
 app.use('/img', express.static('./static/img'));
 app.use('/js', express.static('./static/js'));
+
+comb.processPath('.static/css');
 
 /* set the view engine to ejs */
 app.set('view engine', 'ejs');
