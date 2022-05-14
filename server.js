@@ -25,7 +25,6 @@ app.use(express.urlencoded({extended:true}));
 
 
 
-
 const gebruikerArray = [
     {
         "naam": "Chelsey",
@@ -35,28 +34,33 @@ const gebruikerArray = [
     
 ]
 
+
+
+
 const data = [
     {
         stad: 'Amsterdam',
         budget: '550'
     }
-]
+];
 
 
 
 /* filter route */
 app.get('/', (req, res) => {
     res.render('pages/filter') 
-})
+}) 
 
 /* filter route POST */
 app.post('/', (req, res) => {
     console.log(req.body);
 
-    data.push({
+   data.push({
         stad: req.body.stad,
         budget: req.body.budget
     })
+    
+    res.render('pages/filter', {data:data}); 
 })
 
 

@@ -22,7 +22,7 @@
       <h2>Stel uw voorkeuren in</h2>
 
       <h3>In welke stad wilt u wonen?</h3>
-      <form id="form" action="/" method="post">
+      <form id="form" action='/' method="post">
          <input id="text1" type="text" name="textfield1">
       
          <input id= "huizen1" list="huizen" name="stad">
@@ -42,7 +42,18 @@
        <input id="submit" type="submit" value="Sla voorkeuren op">
          
       </form> 
-      
+
+      <article>
+         <% for (var index=0; index < data.length; index++) { %>
+            <h2>
+               <%= data[index].stad %>
+            </h2>
+            <p>
+               <%= data[index].budget %>
+            </p>
+
+         <% } %>
+      </article>
 
    </main>
   

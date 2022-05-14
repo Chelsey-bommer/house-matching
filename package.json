@@ -18,6 +18,7 @@
   "devDependencies": {
     "csscomb": "^4.3.0",
     "nodemon": "^2.0.16",
+    "prettier": "2.6.2",
     "sass": "^1.51.0",
     "standard": "^17.0.0"
   }
