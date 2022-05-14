@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 
 /* express body parser */
 app.use(express.json());
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended:true}));
 
 
 
@@ -37,8 +37,8 @@ const gebruikerArray = [
 
 const data = [
     {
-        title: 'redemption',
-        story: 'a fantastic movie'
+        stad: 'Amsterdam',
+        budget: '550'
     }
 ]
 
@@ -52,6 +52,11 @@ app.get('/', (req, res) => {
 /* filter route POST */
 app.post('/', (req, res) => {
     console.log(req.body);
+
+    data.push({
+        stad: req.body.stad,
+        budget: req.body.budget
+    })
 })
 
 

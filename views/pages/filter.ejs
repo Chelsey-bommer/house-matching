@@ -23,9 +23,9 @@
 
       <h3>In welke stad wilt u wonen?</h3>
       <form id="form" action="/" method="post">
-         <input id="text1" type="text">
+         <input id="text1" type="text" name="textfield1">
       
-         <input id= "huizen1" list="huizen">
+         <input id= "huizen1" list="huizen" name="stad">
          <datalist id="huizen">
            <option value="stad1">
            <option value="stad2">
@@ -36,10 +36,10 @@
        
        <h3>Wat is uw budget?</h3>
       
-       <input id="text2" type="text">
-       <input id="slider" class="slider" type="range" min="200" max="1500" oninput="this.nextElementSibling.value = this.value"> 
-       <output></output>
-       <input id="submit" type="submit" value="add">
+       <input id="text2" type="text" name="textfield2">
+         <input id="slider" name="budget" class="slider" value="201" type="range" min="200" max="1500" oninput="this.nextElementSibling.value = this.value"> 
+         <output></output>
+       <input id="submit" type="submit" value="Sla voorkeuren op">
          
       </form> 
       
