@@ -2,17 +2,16 @@
 window.addEventListener('load', () => { 
     
    /* Haalt de textfield weg */
-   document.getElementById("form1").style.display = "none";
+   document.getElementById("text1").style.display = "none";
 
    /* Voegt de dropdown toe */
-   document.getElementById("dropdown").style.display = "block";
+   document.getElementById("huizen1").style.display = "block";
    
     /* Haalt de textfield weg */
-    document.getElementById("form2").style.display = "none";
+    document.getElementById("text2").style.display = "none";
 
     /* Voegt de slider toe */
     document.getElementById("slider").style.display = "block";
-
-    
+   
   });
 

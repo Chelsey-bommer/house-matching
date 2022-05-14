@@ -18,6 +18,11 @@ comb.processPath('.static/css');
 /* set the view engine to ejs */
 app.set('view engine', 'ejs');
 
+/* express body parser */
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+
+
 
 
 
@@ -30,11 +35,23 @@ const gebruikerArray = [
     
 ]
 
+const data = [
+    {
+        title: 'redemption',
+        story: 'a fantastic movie'
+    }
+]
+
 
 
 /* filter route */
 app.get('/', (req, res) => {
     res.render('pages/filter') 
+})
+
+/* filter route POST */
+app.post('/', (req, res) => {
+    console.log(req.body);
 })
 
 
