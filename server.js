@@ -39,8 +39,7 @@ const gebruikerArray = [
 
 const data = [
     {
-        stad: 'Amsterdam',
-        budget: '550'
+      
     }
 ];
 
