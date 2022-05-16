@@ -5,9 +5,6 @@ const app = express();
 
 
 
-
-
-
 /* Static files */
 app.use("/static", express.static('./static'));
 app.use('/css', express.static('./static/css'));
@@ -50,12 +47,12 @@ const gebruikerArray = [
 
 
 
-const data = [
-    {
-        stad: 'Amsterdam',
-        budget: 550
-    }
-];
+// const data = [
+//     {
+//         stad: 'Amsterdam',
+//         budget: 550
+//     }
+// ];
 
 
 
@@ -65,15 +62,16 @@ app.get('/', (req, res) => {
 }) 
 
 /* filter route POST */
-app.post('/', (req, res) => {
-    console.log(req.body);
-
-   data.push({
-        stad: req.body.stad,
-        budget: req.body.budget
-    })
+app.post('/resultaten', (req, res) => {
+    console.log(req.body.stad);
+    console.log(req.body.budget);
+   
     
-    res.render('pages/filter', {data:data}); 
+    
+   res.render('pages/results', {
+       stad: req.body.stad,
+       budget: req.body.budget
+   }); 
 })
 
 
