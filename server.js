@@ -2,8 +2,7 @@
 require('dotenv').config()
 const express = require("express");
 const app = express();
-const Comb = require('csscomb');
-const comb = new Comb('zen');
+
 
 
 
@@ -15,7 +14,7 @@ app.use('/css', express.static('./static/css'));
 app.use('/img', express.static('./static/img'));
 app.use('/js', express.static('./static/js'));
 
-comb.processPath('.static/css');
+
 
 /* set the view engine to ejs */
 app.set('view engine', 'ejs');
