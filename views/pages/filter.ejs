@@ -11,6 +11,7 @@
 
 <body>
 
+
    <header>
       <%- include('../partials/header') %>
    </header>
@@ -41,20 +42,15 @@
        <input id="submit" type="submit" value="Sla voorkeuren op">
          
       </form> 
+      
+      
 
+      <button id = "find-me">Show my location</button><br/>
+      <p id = "status"></p>
+      <a id = "map-link" target="_blank"></a>
 
-      <!-- Tijdelijke plaats voor form info-->
-      <article>
-         <% for (var index=0; index < data.length; index++) { %>
-            <h2>
-               <%= data[index].stad %>
-            </h2>
-            <p>
-               <%= data[index].budget %>
-            </p>
+     
 
-         <% } %>
-      </article>
 
    </main>
   
@@ -65,6 +61,7 @@
 
  <!-- Link javascript -->
   <script src="/static/js/script.js"></script>
+  <script src="../../server.js"></script>
    
 
 </body>

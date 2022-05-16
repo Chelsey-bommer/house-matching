@@ -1,9 +1,11 @@
 /* variables */
+require('dotenv').config()
 const express = require("express");
 const app = express();
-const port = 3000;
-var Comb = require('csscomb');
-var comb = new Comb('zen');
+const Comb = require('csscomb');
+const comb = new Comb('zen');
+
+
 
 
 
@@ -25,6 +27,18 @@ app.use(express.urlencoded({extended:true}));
 
 
 
+/* connect database */
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASS + '@' + process.env.DB_HOST + '/' + process.env.DB_NAME + '?retryWrites=true&w=majority';
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+
+
 const gebruikerArray = [
     {
         "naam": "Chelsey",
@@ -39,7 +53,8 @@ const gebruikerArray = [
 
 const data = [
     {
-      
+        stad: 'Amsterdam',
+        budget: 550
     }
 ];
 
@@ -47,7 +62,7 @@ const data = [
 
 /* filter route */
 app.get('/', (req, res) => {
-    res.render('pages/filter') 
+    res.render('pages/filter',) 
 }) 
 
 /* filter route POST */
@@ -75,6 +90,6 @@ app.use(function(req, res){
 
 
 /* Hier console log je met de variable port van hierboven */
-app.listen(port, () => {
-    console.log(`Webserver running on port localhost:${port}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Webserver running on port localhost:${process.env.PORT}}`);
 })

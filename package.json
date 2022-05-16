@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "standard && node server.js"
+    "start": "node server.js"
   },
   "author": "Chelsey Bommer",
   "license": "MIT",
@@ -14,7 +14,8 @@
     "camelcase": "^6.3.0",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.7",
-    "express": "^4.18.0"
+    "express": "^4.18.0",
+    "mongodb": "^4.6.0"
   },
   "devDependencies": {
     "csscomb": "^4.3.0",
