@@ -77,7 +77,7 @@ const options = {
 	}
 };
 
-fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/locations/` + ${latitude} + ${longitude} + `/nearbyCities?radius=100&minPopulation=50000&distanceUnit=km`, options)
+fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}+${longitude} /nearbyCities?radius=100&minPopulation=50000&distanceUnit=km`, options)
 	.then(response => response.json())
 	.then(response => console.log(response))
 	.catch(err => console.error(err));
