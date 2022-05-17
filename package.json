@@ -15,7 +15,8 @@
     "dotenv": "^16.0.1",
     "ejs": "^3.1.7",
     "express": "^4.18.0",
-    "mongodb": "^4.6.0"
+    "mongodb": "^4.6.0",
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
     "csscomb": "^4.3.0",

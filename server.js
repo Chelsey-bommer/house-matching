@@ -2,6 +2,8 @@
 require('dotenv').config()
 const express = require("express");
 const app = express();
+const fetch = require("node-fetch");
+
 
 
 
@@ -10,8 +12,6 @@ app.use("/static", express.static('./static'));
 app.use('/css', express.static('./static/css'));
 app.use('/img', express.static('./static/img'));
 app.use('/js', express.static('./static/js'));
-
-
 
 /* set the view engine to ejs */
 app.set('view engine', 'ejs');
@@ -23,7 +23,7 @@ app.use(express.urlencoded({extended:true}));
 
 
 
-/* connect database */
+/* Connect met database */
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASS + '@' + process.env.DB_HOST + '/' + process.env.DB_NAME + '?retryWrites=true&w=majority';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
@@ -34,32 +34,61 @@ client.connect(err => {
 });
 
 
+function geoFindMe() {
 
-const gebruikerArray = [
-    {
-        "naam": "Chelsey",
-       
-        preferencesArray:[]
+    const status = document.querySelector('#status');
+    const mapLink = document.querySelector('#map-link');
+  
+    mapLink.href = '';
+    mapLink.textContent = '';
+  
+    function success(position) {
+      const latitude  = position.coords.latitude;
+      const longitude = position.coords.longitude;
+  
+      status.textContent = '';
+      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+      mapLink.textContent = `Latitude: °, Longitude: ${longitude} °`;
     }
-    
-]
+
+  
+    function error() {
+      status.textContent = 'Unable to retrieve your location';
+    }
+  
+    if(!navigator.geolocation) {
+      status.textContent = 'Geolocation is not supported by your browser';
+    } else {
+      status.textContent = 'Locating…';
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+  
+}
+  
 
 
 
+/* Lijst van steden dichtbij API */
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Host': process.env.API_HOST,
+		'X-RapidAPI-Key': process.env.API_KEY 
+	}
+};
 
-// const data = [
-//     {
-//         stad: 'Amsterdam',
-//         budget: 550
-//     }
-// ];
+fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/locations/` + ${latitude} + ${longitude} + `/nearbyCities?radius=100&minPopulation=50000&distanceUnit=km`, options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
 
 
 
 /* filter route */
-app.get('/', (req, res) => {
+app.get('/filter', (req, res) => {
     res.render('pages/filter',) 
 }) 
+
 
 /* filter route POST */
 app.post('/resultaten', (req, res) => {
