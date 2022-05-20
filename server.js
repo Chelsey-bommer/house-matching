@@ -7,6 +7,7 @@ const fetch = require("node-fetch");
 
 
 
+
 /* Static files */
 app.use("/static", express.static('./static'));
 app.use('/css', express.static('./static/css'));
@@ -37,27 +38,21 @@ client.connect(err => {
   
 
 
+const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}+${longitude}/nearbyCities?radius=100?minPopulation=20000`;
 
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Host':'wft-geo-db.p.rapidapi.com',
+        'X-RapidAPI-Key': `873fdd2e2fmsh81540b4d55e8862p18db48jsnd50b25f4c0ca`
+      }
+    };
 
-const url = 'https://wft-geo-db.p.rapidapi.com/v1/geo/locations/33.832213-118.387099/nearbyCities?radius=100';
-
-const options = {
-  method: 'GET',
-  headers: {
-    'X-RapidAPI-Host': process.env.API_HOST,
-    'X-RapidAPI-Key': process.env.API_KEY
-  }
-};
-
-fetch(url, options)
-	.then(res => res.json())
-	.then(json => console.log(json))
-	.catch(err => console.error('error:' + err));
-
-
-
-
-
+    fetch(url, options)
+	  .then(res => res.json())
+	  .then(json => console.log(json))
+   	.catch(err => console.error('error:' + err));
+       
 
 
 /* filter route */

@@ -1,7 +1,5 @@
 
 /* functie gebeurd wanneer alles geladen is */
-
-
 window.addEventListener('load', () => {
 
   /* Haalt de textfield weg */
@@ -19,6 +17,8 @@ window.addEventListener('load', () => {
 });
 
 
+
+
 globalThis.latitude
 globalThis.longitude
 
@@ -31,16 +31,35 @@ function geoFindMe() {
   mapLink.href = '';
   mapLink.textContent = '';
 
-  function success(position) {
-    latitude  = position.coords.latitude;
-    longitude = position.coords.longitude;
+ function success(position) {
+    latitude  =   position.coords.latitude;
+    longitude =   position.coords.longitude;
 
-    console.log(latitude, longitude);
+    
+    const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}+${longitude}/nearbyCities?radius=100?minPopulation=20000`;
+
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Host':'wft-geo-db.p.rapidapi.com',
+        'X-RapidAPI-Key': `873fdd2e2fmsh81540b4d55e8862p18db48jsnd50b25f4c0ca`
+      }
+    };
+
+    fetch(url, options)
+	  .then(res => res.json())
+	  .then(json => console.log(json))
+   	.catch(err => console.error('error:' + err));
+    
+
+    console.log(url);
 
     status.textContent = '';
-    mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+    // mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
     mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
   }
+
+  
 
   function error() {
     status.textContent = 'Unable to retrieve your location';
@@ -53,12 +72,12 @@ function geoFindMe() {
     navigator.geolocation.getCurrentPosition(success, error);
   }
 
+  
 }
 
 
+
 document.querySelector('#find-me').addEventListener('click', geoFindMe);
-
-
 
 
 

@@ -10,13 +10,10 @@
 
 
 <body>
-
-
-   <header>
-      <%- include('../partials/header') %>
-   </header>
+  
+  <%- include('../partials/header') %>
    
-
+   
    <main>
 
       <h2>Stel uw voorkeuren in</h2>
@@ -27,16 +24,14 @@
       
          <input id= "huizen1" list="huizen" name="stad">
          <datalist id="huizen">
-           <option id="huis1" value= "aaaa" >
-           <option value="stad2">
-           <option value="stad3">
-           <option value="stad4">
-           <option value="stad5">
+           <option id="huis1" value= "Amsterdam" >
+           <option value="Alkmaar">
+           <option value="Haarlem">
+           <option value="Zaandam">
+           <option value="Utrecht">
          </datalist>
 
 
-         <p id="cit">  </p>
-       
        <h3>Wat is uw budget?</h3>
       
        <input id="text2" type="text" name="textfield2">
@@ -45,6 +40,7 @@
        <input id="submit" type="submit" value="Sla voorkeuren op">
          
       </form> 
+      
 
       <button id = "find-me">Show my location</button><br/>
       <p id = "status"></p>
@@ -64,9 +60,9 @@
    </main>
   
 
-  <footer>
-     <%- include('../partials/footer') %>
-  </footer>
+ 
+   <%- include('../partials/footer') %>
+
 
  <!-- Link javascript -->
   <script src="/static/js/script.js"></script>
