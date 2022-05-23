@@ -38,10 +38,20 @@ client.connect((err) => {
   client.close();
 });
 
+
+const data = [
+    {
+        title: 'redemption',
+        story: 'a fantastic movie'
+        
+    }
+]
+
 /* filter route */
 app.get("/filter", (req, res) => {
   res.render("pages/filter");
 });
+
 
 /* filter route POST */
 app.post("/resultaten", (req, res) => {
