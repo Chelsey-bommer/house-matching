@@ -24,7 +24,7 @@ function findLocation() {
     console.log(latitude, longitude);
     
 
-    const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}+${longitude}/nearbyCities?radius=100&minPopulation=20000`;
+    const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}+${longitude}/nearbyCities?radius=100&minPopulation=25000`;
 
     const options = {
       method: "GET",
@@ -42,31 +42,31 @@ function findLocation() {
      .then (() => console.log(obj.data))
 
      .then (() => {
-      const objec = JSON.stringify(obj.data[4].city);
+      const objec = String(obj.data[4].city);
       const kop = document.getElementById('stad5');
       kop.innerHTML= objec
       document.getElementById('stad5').value = objec; })
 
      .then (() => {
-      const objec = JSON.stringify(obj.data[3].city);
+      const objec = String(obj.data[3].city);
       const kop = document.getElementById('stad4');
       kop.innerHTML= objec
       document.getElementById('stad4').value = objec; })
 
      .then (() => {
-      const objec = JSON.stringify(obj.data[2].city);
+      const objec = String(obj.data[2].city);
       const kop = document.getElementById('stad3');
       kop.innerHTML= objec; 
       document.getElementById('stad3').value = objec;})
 
      .then (() => {
-      const objec = JSON.stringify(obj.data[1].city);
+      const objec = String(obj.data[1].city);
       const kop = document.getElementById('stad2');
       kop.innerHTML= objec; 
       document.getElementById('stad2').value = objec;})
 
      .finally (() => {
-      const objec = JSON.stringify(obj.data[0].city);
+      const objec = String(obj.data[0].city);
       const kop = document.getElementById('stad1');
       kop.innerHTML= objec
       document.getElementById('stad1').value = objec;})

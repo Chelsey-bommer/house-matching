@@ -1,23 +1,28 @@
-/* variables */
+/*** variables ***/
+/*****************/
 require("dotenv").config();
 const express = require("express");
 const app = express();
 const fetch = require("node-fetch");
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const { ObjectId } = require("mongodb");
+let db= null;
 
-/* Middleware */
-app.use("/static", express.static("./static"));
-app.use("/css", express.static("./static/css"));
-app.use("/img", express.static("./static/img"));
-app.use("/js", express.static("./static/js"));
 
+/*** Middleware ***/
+/*****************/
+app.use("/static", express.static('./static'));
+app.use('/css', express.static('./static/css'));
+app.use('/img', express.static('./static/img'));
+app.use('/js', express.static('./static/js'));
 app.set("view engine", "ejs");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /* Connect met database */
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri =
+async function connectDB(){
+  const uri =
   "mongodb+srv://" +
   process.env.DB_USERNAME +
   ":" +
@@ -27,42 +32,47 @@ const uri =
   "/" +
   process.env.DB_NAME +
   "?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
+
+ const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverApi: ServerApiVersion.v1,
-});
-client.connect((err) => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+ });
+
+ try {
+     await client.connect();
+     db = client.db(process.env.DB_NAME);
+ }
+   catch (error) {
+     throw error;
+ }
+}
 
 
-const data = [
-    {
-        stad: 'amsterdam',
-        budget: 1000
-        
-    }
-]
 
-/* filter route */
+
+
 app.get("/filter", (req, res) => {
-  res.render("pages/filter");
+    
+    res.render("pages/filter");
 });
 
 
 /* filter route POST */
-app.post("/resultaten", (req, res) => {
-  console.log(req.body.stad);
-  console.log(req.body.budget);
-
+app.post("/resultaten", async (req, res) => {
+    const query = {stad: "Amsterdam"};
+    const dbHouses = await db.collection('huizen').find({query}, {});
+    const houses = await JSON.stringify(dbHouses);
+    console.log(houses);
+  
   res.render("pages/results", {
     stad: req.body.stad,
     budget: req.body.budget,
+    houses
+   
   });
 });
+
 
 /* Resultaten route */
 app.get("/results", (req, res) => {
@@ -76,5 +86,7 @@ app.use(function (req, res) {
 
 /* Hier console log je met de variable port van hierboven */
 app.listen(process.env.PORT, () => {
-  console.log(`Webserver running on port localhost:${process.env.PORT}}`);
+  console.log(`Webserver running on port localhost:${process.env.PORT}`);
+
+  connectDB().then(console.log('Er is een connectie met de Database'));
 });
