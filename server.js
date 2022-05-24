@@ -41,8 +41,8 @@ client.connect((err) => {
 
 const data = [
     {
-        title: 'redemption',
-        story: 'a fantastic movie'
+        stad: 'amsterdam',
+        budget: 1000
         
     }
 ]

@@ -44,27 +44,33 @@ function findLocation() {
      .then (() => {
       const objec = JSON.stringify(obj.data[4].city);
       const kop = document.getElementById('stad5');
-      kop.innerHTML= objec; })
+      kop.innerHTML= objec
+      document.getElementById('stad5').value = objec; })
 
      .then (() => {
       const objec = JSON.stringify(obj.data[3].city);
       const kop = document.getElementById('stad4');
-      kop.innerHTML= objec; })
+      kop.innerHTML= objec
+      document.getElementById('stad4').value = objec; })
 
      .then (() => {
       const objec = JSON.stringify(obj.data[2].city);
       const kop = document.getElementById('stad3');
-      kop.innerHTML= objec; })
+      kop.innerHTML= objec; 
+      document.getElementById('stad3').value = objec;})
 
      .then (() => {
       const objec = JSON.stringify(obj.data[1].city);
       const kop = document.getElementById('stad2');
-      kop.innerHTML= objec; })
+      kop.innerHTML= objec; 
+      document.getElementById('stad2').value = objec;})
 
      .finally (() => {
       const objec = JSON.stringify(obj.data[0].city);
       const kop = document.getElementById('stad1');
-      kop.innerHTML= objec; })
+      kop.innerHTML= objec
+      document.getElementById('stad1').value = objec;})
+      
      .catch((err) => console.error("error:" + err));
  
   }
