@@ -1,6 +1,3 @@
-
-
-
 /* functie voor form visibility */
 window.addEventListener("load", () => {
   document.getElementById("text1").style.display = "none";
@@ -12,17 +9,13 @@ window.addEventListener("load", () => {
   document.getElementById("slider").style.display = "block";
 });
 
-
 function findLocation() {
   const functionStatus = document.querySelector("#status");
- 
 
   function success(position) {
-
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     console.log(latitude, longitude);
-    
 
     const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}+${longitude}/nearbyCities?radius=100&minPopulation=25000`;
 
@@ -34,48 +27,50 @@ function findLocation() {
       },
     };
 
-    
     let obj;
     fetch(url, options)
-     .then(response => response.json())
-     .then(data => obj = data) 
-     .then (() => console.log(obj.data))
+      .then((response) => response.json())
+      .then((data) => (obj = data))
+      .then(() => console.log(obj.data))
 
-     .then (() => {
-      const objec = String(obj.data[4].city);
-      const kop = document.getElementById('stad5');
-      kop.innerHTML= objec
-      document.getElementById('stad5').value = objec; })
+      .then(() => {
+        const objec = String(obj.data[4].city);
+        const kop = document.getElementById("stad5");
+        kop.innerHTML = objec;
+        document.getElementById("stad5").value = objec;
+      })
 
-     .then (() => {
-      const objec = String(obj.data[3].city);
-      const kop = document.getElementById('stad4');
-      kop.innerHTML= objec
-      document.getElementById('stad4').value = objec; })
+      .then(() => {
+        const objec = String(obj.data[3].city);
+        const kop = document.getElementById("stad4");
+        kop.innerHTML = objec;
+        document.getElementById("stad4").value = objec;
+      })
 
-     .then (() => {
-      const objec = String(obj.data[2].city);
-      const kop = document.getElementById('stad3');
-      kop.innerHTML= objec; 
-      document.getElementById('stad3').value = objec;})
+      .then(() => {
+        const objec = String(obj.data[2].city);
+        const kop = document.getElementById("stad3");
+        kop.innerHTML = objec;
+        document.getElementById("stad3").value = objec;
+      })
 
-     .then (() => {
-      const objec = String(obj.data[1].city);
-      const kop = document.getElementById('stad2');
-      kop.innerHTML= objec; 
-      document.getElementById('stad2').value = objec;})
+      .then(() => {
+        const objec = String(obj.data[1].city);
+        const kop = document.getElementById("stad2");
+        kop.innerHTML = objec;
+        document.getElementById("stad2").value = objec;
+      })
 
-     .finally (() => {
-      const objec = String(obj.data[0].city);
-      const kop = document.getElementById('stad1');
-      kop.innerHTML= objec
-      document.getElementById('stad1').value = objec;})
-      
-     .catch((err) => console.error("error:" + err));
- 
+      .finally(() => {
+        const objec = String(obj.data[0].city);
+        const kop = document.getElementById("stad1");
+        kop.innerHTML = objec;
+        document.getElementById("stad1").value = objec;
+      })
+
+      .catch((err) => console.error("error:" + err));
   }
-     
-  
+
   function error() {
     functionStatus.textContent = "Unable to retrieve your location";
   }
@@ -83,7 +78,6 @@ function findLocation() {
   if (!navigator.geolocation) {
     functionStatus.textContent = "Geolocation is not supported by your browser";
   } else {
-    
     navigator.geolocation.getCurrentPosition(success, error);
   }
 }
