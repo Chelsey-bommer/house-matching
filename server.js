@@ -58,26 +58,30 @@ app.get("/filter", (req, res) => {
 });
 
 
+//{kosten: {$lte: budget }}
+//$and: [{stad}, {kosten: {$lte: budget }}] 
+
 /* filter route POST */
 app.post("/resultaten", async (req, res) => {
-    const query = {stad: "Amsterdam"};
-    const dbHouses = await db.collection('huizen').find({query}, {});
-    const houses = await JSON.stringify(dbHouses);
+   var stad = req.body.stad
+   var budget = req.body.budget
+
+  
+
+    const dbHouses = await db.collection('huizen').find({stad}, {}) .toArray();
+    const houses =  JSON.stringify(dbHouses);
     console.log(houses);
+
+    
   
   res.render("pages/results", {
     stad: req.body.stad,
     budget: req.body.budget,
-    houses
+    houses: houses
    
   });
 });
 
-
-/* Resultaten route */
-app.get("/results", (req, res) => {
-  res.render("pages/results");
-});
 
 /* 404 route */
 app.use(function (req, res) {
