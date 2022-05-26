@@ -17,7 +17,7 @@ function findLocation() {
     longitude = position.coords.longitude;
     console.log(latitude, longitude);
 
-    const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}+${longitude}/nearbyCities?radius=100&minPopulation=25000`;
+    const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}+${longitude}/nearbyCities?radius=100&minPopulation=30000`;
 
     const options = {
       method: "GET",

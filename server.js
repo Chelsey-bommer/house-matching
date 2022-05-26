@@ -8,7 +8,6 @@ const { ObjectId } = require("mongodb");
 let db = null;
 
 /*** Middleware ***/
-/*****************/
 app.use("/static", express.static("./static"));
 app.use("/css", express.static("./static/css"));
 app.use("/img", express.static("./static/img"));
@@ -45,31 +44,37 @@ async function connectDB() {
   }
 }
 
+/*** Routes ***/
 app.get("/filter", (req, res) => {
   res.render("pages/filter");
 });
 
-//{kosten: {$lte: budget }}
-//$and: [{stad}, {kosten: {$lte: budget }}]
+//console.log(houses)
+  //   .map( function() { return {stad}, {huizenname} } ).toArray()
 
 /* filter route POST */
 app.post("/resultaten", async (req, res) => {
+  
   const stad = req.body.stad;
   const budget = req.body.budget;
   
+  await db.collection("user").insertOne({stad, budget}, {});
 
   const dbHouses = await db
     .collection("huizen")
-    .find({ $and: [{stad}, {kosten: {$lte: budget }}]  }, {})
-    .toArray();
-  const houses = JSON.stringify(dbHouses);
-  console.log(houses);
+    .findOne({ $and: [{stad}, {kosten: {$lte: budget }}]}, {projection:{ _id: 0, name:1}}) 
+  let houses = JSON.stringify(dbHouses);
+  houses = houses.replace(/[{}]/g, '');
+  houses = houses.replace(/[""]/g, '');
+  houses = houses.slice(5);
 
   res.render("pages/results", {
     stad: req.body.stad,
     budget: req.body.budget,
-    houses: houses,
+    houses: houses
+    
   });
+  
 });
 
 /* 404 route */
@@ -81,5 +86,5 @@ app.use(function (req, res) {
 app.listen(process.env.PORT, () => {
   console.log(`Webserver running on port localhost:${process.env.PORT}`);
 
-  connectDB().then(console.log("Er is een connectie met de Database"));
+  connectDB().then(console.log("Connectie met database succesvol"));
 });
