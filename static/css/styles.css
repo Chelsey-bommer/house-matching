@@ -80,11 +80,18 @@ h3 {
   flex-direction: column;
   justify-content: flex-start;
 
-  margin-left: 5%;
+  margin-left: 33%;
   margin-top: 3em;
   padding: 1em;
 
-  width: 85%;
+  width: 30%;}
+
+.main2 h2{
+  margin-top:.5em;
+}
+
+.main2 h3{
+  margin-top:-1em;
 }
 
 /*************
