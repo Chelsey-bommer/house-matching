@@ -4,9 +4,7 @@ window.addEventListener("load", () => {
 
   document.getElementById("huizen1").style.display = "block";
 
-  document.getElementById("text2").style.display = "none";
-
-  document.getElementById("slider").style.display = "block";
+ 
 });
 
 function findLocation() {

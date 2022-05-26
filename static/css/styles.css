@@ -104,8 +104,9 @@ form {
 }
 
 #slider {
-  display: none;
+  
   -webkit-appearance: none;
+  
 
   margin-bottom: 2.5em;
   margin-left: 1em;

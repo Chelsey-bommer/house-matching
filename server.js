@@ -53,7 +53,7 @@ app.get("/filter", (req, res) => {
 /* filter route POST */
 app.post("/resultaten", async (req, res) => {
   
-  const stad = req.body.stad;
+  const stad = req.body.stad || req.body.textfield1;
   const budget = req.body.budget;
   
   await db.collection("user").insertOne({stad, budget}, {});
@@ -88,7 +88,7 @@ app.post("/resultaten", async (req, res) => {
 
 
   res.render("pages/results", {
-    stad: req.body.stad,
+    stad: req.body.stad || req.body.textfield1,
     budget: req.body.budget,
     housesName, housesKosten, housesStad
     
@@ -96,8 +96,13 @@ app.post("/resultaten", async (req, res) => {
   
 });
 
+app.get("/updateresultaten", (req, res) => {
+   res.render("pages/updateresultaten")
+});
+
+
 /* UPDATE ROUTE */
-app.get("/update", async (req, res) => {
+app.get("/updateresultaten", async (req, res) => {
 
   const stad = req.body.stad;
   const budget = req.body.budget;
@@ -109,13 +114,16 @@ app.get("/update", async (req, res) => {
   housesCurrent = housesCurrent.replace(/[{}]/g, '');
   housesCurrent = housesCurrent.replace(/[""]/g, '');
 
-  res.render("pages/update", {
+
+  db.collection("user").updateMany({}, { $set: {stad: stad, budget: budget}}) 
+
+  res.render("pages/updateresultaten", {
     stad: req.body.stad,
     budget: req.body.budget,
     housesCurrent
   });
 
-  db.collection("user").updateMany({}, { $set: {stad: {stad}, budget: {budget}}}) 
+  
 });
 
 /* 404 route */
