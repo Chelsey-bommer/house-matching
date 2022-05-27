@@ -7,6 +7,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const { ObjectId } = require('mongodb');
 let db = null;
 
+
 /** Middleware **/
 app.use('/static', express.static('./static'));
 app.use('/css', express.static('./static/css'));
@@ -15,6 +16,7 @@ app.use('/js', express.static('./static/js'));
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 /* Connect met database */
 async function connectDB () {
@@ -42,6 +44,7 @@ async function connectDB () {
     throw error;
   }
 }
+
 
 /** ROUTES **/
 

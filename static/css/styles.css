@@ -2,14 +2,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inder&display=swap");
 
 :root {
-  --main-color: white;
-  --secondary-color: #a97373;
-  --bg-color: #f9e7e7;
-  --shadow-color: #674646;
+  --main-color: #FFFBE9;
+  --secondary-color: #AD8B73;
+  --bg-color: #E3CAA5;
+  --shadow-color: #796150;
   --dark-color: black;
   --light-shadow: rgba(0, 0, 0, 0.2);
 }
 
+html{
+  height:100%;
+}
 /*************
 **** BODY ****
 *************/
@@ -17,10 +20,12 @@
 body {
   margin: 0;
   padding: 0;
-
   background-color: var(--bg-color);
+  
   font-family: "Inder", sans-serif;
 }
+
+
 
 /*************
 *** HEADER ***
@@ -32,6 +37,7 @@ header {
 
   width: 100%;
   background-color: var(--secondary-color);
+  background: linear-gradient(0deg, #796150 0%, var(--secondary-color) 57%);
 
   box-shadow: 2px 2px 2px var(--shadow-color);
 }
@@ -104,6 +110,10 @@ form {
   margin-left: 1em;
 }
 
+option, select{
+  font-family: "Inder", sans-serif;
+}
+
 #slider {
   -webkit-appearance: none;
 
@@ -130,10 +140,11 @@ form {
   width: 30%;
   margin-left: 4%;
   margin-bottom: 1em;
+  padding:.5em;
 
   font-family: "Inder", sans-serif;
-  background-color: var(--bg-color);
-  border: solid 1px var(--shadow-color);
+  background-color: var(--secondary-color);
+  border: none;
 }
 
 /* BUTTON STATES */
