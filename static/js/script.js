@@ -1,14 +1,16 @@
-/* functie voor form visibility */
+/** functie voor form visibility **/
 window.addEventListener('load', () => {
   document.getElementById('text1').style.display = 'none';
   document.getElementById('huizen1').style.display = 'block';
 });
 
+
+/** Functie geeft dichtbije stedenlijst bij locatie **/
 function findLocation () {
   function success (position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    console.log(latitude, longitude);
+    let obj;
 
     const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}+${longitude}/nearbyCities?radius=100&minPopulation=30000`;
 
@@ -20,7 +22,6 @@ function findLocation () {
       }
     };
 
-    let obj;
     fetch(url, options)
       .then((response) => response.json())
       .then((data) => (obj = data))

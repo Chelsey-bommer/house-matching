@@ -1,62 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filter</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 
 <body>
-  
+
   <%- include('../partials/header') %>
-   
-   
-   <main>
+
+    <main>
 
       <h2>Stel uw voorkeuren in</h2>
 
       <h3>In welke stad wilt u wonen?</h3>
-      <form name= "data" id="form" action='/resultaten' method="post">
-         <input id="text1" type="text" name="textfield1">
-      
-         
-         <select name= "stad" id="huizen1">
-           <option id="stad1" value= "" >
-           <option id= "stad2" value="">
-           <option id= "stad3" value="">
-           <option id= "stad4" value="">
-           <option id= "stad5" value="">
-          </select>
+      <form name="data" id="form" action='/resultaten' method="post">
+        <input id="text1" type="text" name="textfield1">
 
+        <select name="stad" id="huizen1">
+          <option id="stad1" value="">
+          <option id="stad2" value="">
+          <option id="stad3" value="">
+          <option id="stad4" value="">
+          <option id="stad5" value="">
+        </select>
 
-       <h3>Wat is uw budget?</h3>
-      
-       
-         <input id="slider" name="budget" class="slider" value="400000" type="range" min="200000" max="600000" oninput="this.nextElementSibling.value = this.value"> 
-         <output></output>
-       <input id="submit" type="submit" value="Sla voorkeuren op">
-         
-      </form> 
+        <h3>Wat is uw budget?</h3>
+        <input id="slider" name="budget" class="slider" value="400000" type="range" min="200000" max="600000"
+          oninput="this.nextElementSibling.value = this.value">
+        <output></output>
+        <input id="submit" type="submit" value="Sla voorkeuren op">
 
-  
-      
+      </form>
 
+    </main>
 
-   </main>
-  
+    <%- include('../partials/footer') %>
 
- 
-   <%- include('../partials/footer') %>
-
-
- <!-- Link javascript -->
-  <script src="/static/js/script.js"></script>
-  
-  
-   
+      <!-- Link javascript -->
+      <script src="/static/js/script.js"></script>
 
 </body>
 </html>

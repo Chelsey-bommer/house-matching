@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,58 +11,44 @@
 
 
 <body>
-  
-  <%- include('../partials/header') %>
-   
-   
-   <main>
 
-     <h2> Bestaande voorkeuren:</h2>
-     <p><%= housesCurrent %></p>
-     
-    
+    <%- include('../partials/header') %>
 
-      <h2>Update uw voorkeuren </h2>
+        <main>
+            <h2> Bestaande voorkeuren:</h2>
+            <p>
+                <%= housesCurrent %>
+            </p>
 
-      <h3>In welke stad wilt u wonen?</h3>
-      <form name= "data" id="form" action='/updateresultaten' method="post">
-         <input id="text1" type="text" name="textfield1">
-      
-         
-         <select name= "stad" id="huizen1">
-           <option id="stad1" value= "" >
-           <option id= "stad2" value="">
-           <option id= "stad3" value="">
-           <option id= "stad4" value="">
-           <option id= "stad5" value="">
-          </select>
+            <h2>Update uw voorkeuren </h2>
+
+            <h3>In welke stad wilt u wonen?</h3>
+            <form name="data" id="form" action='/updateresultaten' method="post">
+                <input id="text1" type="text" name="textfield1">
 
 
-       <h3>Wat is uw nieuwe budget?</h3>
-      
-      
-         <input id="slider" name="budget" class="slider" value="" type="range" min="200000" max="600000" oninput="this.nextElementSibling.value = this.value"> 
-         <output></output>
-       <input id="submit" type="submit" value="Update voorkeuren">
-         
-      </form> 
+                <select name="stad" id="huizen1">
+                    <option id="stad1" value="">
+                    <option id="stad2" value="">
+                    <option id="stad3" value="">
+                    <option id="stad4" value="">
+                    <option id="stad5" value="">
+                </select>
 
-  
-      
+                <h3>Wat is uw nieuwe budget?</h3>
+                <input id="slider" name="budget" class="slider" value="" type="range" min="200000" max="600000"
+                    oninput="this.nextElementSibling.value = this.value">
+                <output></output>
+                <input id="submit" type="submit" value="Update voorkeuren">
 
+            </form>
 
-   </main>
-  
+        </main>
 
- 
-   <%- include('../partials/footer') %>
+        <%- include('../partials/footer') %>
 
-
- <!-- Link javascript -->
-  <script src="/static/js/script.js"></script>
-  
-  
-   
+        <!-- Link javascript -->
+        <script src="/static/js/script.js"></script>
 
 </body>
 </html>
