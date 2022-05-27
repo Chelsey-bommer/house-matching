@@ -1,39 +1,38 @@
-/*** variables ***/
-require("dotenv").config();
-const express = require("express");
+/** variables **/
+require('dotenv').config();
+const express = require('express');
 const app = express();
-const fetch = require("node-fetch");
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const { ObjectId } = require("mongodb");
+const fetch = require('node-fetch');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const { ObjectId } = require('mongodb');
 let db = null;
 
-/*** Middleware ***/
-app.use("/static", express.static("./static"));
-app.use("/css", express.static("./static/css"));
-app.use("/img", express.static("./static/img"));
-app.use("/js", express.static("./static/js"));
-app.set("view engine", "ejs");
-
+/** Middleware **/
+app.use('/static', express.static('./static'));
+app.use('/css', express.static('./static/css'));
+app.use('/img', express.static('./static/img'));
+app.use('/js', express.static('./static/js'));
+app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /* Connect met database */
-async function connectDB() {
+async function connectDB () {
   const uri =
-    "mongodb+srv://" +
+    'mongodb+srv://' +
     process.env.DB_USERNAME +
-    ":" +
+    ':' +
     process.env.DB_PASS +
-    "@" +
+    '@' +
     process.env.DB_HOST +
-    "/" +
+    '/' +
     process.env.DB_NAME +
-    "?retryWrites=true&w=majority";
+    '?retryWrites=true&w=majority';
 
   const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverApi: ServerApiVersion.v1,
+    serverApi: ServerApiVersion.v1
   });
 
   try {
@@ -44,96 +43,207 @@ async function connectDB() {
   }
 }
 
-/*** Routes ***/
-app.get("/filter", (req, res) => {
-  res.render("pages/filter");
+/** ROUTES **/
+
+/** Filter pagina **/
+app.get('/filter', (req, res) => {
+  res.render('pages/filter');
 });
 
-
-/* filter route POST */
-app.post("/resultaten", async (req, res) => {
-  
+/** filter route POST **/
+app.post('/resultaten', async (req, res) => {
+  /** Maak variabelen  **/
   const stad = req.body.stad || req.body.textfield1;
   const budget = req.body.budget;
-  
-  await db.collection("user").insertOne({stad, budget}, {});
 
+  /** Stuur userdata naar db  **/
+  await db.collection('user').insertOne({ stad, budget }, {});
+
+  /** Haal huizen op uit db namen**/
   const dbHouses = await db
-    .collection("huizen")
-    .findOne({ $and: [{stad}, {kosten: {$lte: budget }}]}, {projection:{ _id: 0, name:1}})
-     
+    .collection('huizen')
+    .findOne(
+      { $and: [{ stad }, { kosten: { $lte: budget } }] },
+      { projection: { _id: 0, name: 1 } }
+    );
   let housesName = JSON.stringify(dbHouses);
   housesName = housesName.replace(/[{}]/g, '');
   housesName = housesName.replace(/[""]/g, '');
   housesName = housesName.replace(/[":"]/g, ': ');
 
-  
+  /** Haal huizen op uit db kosten **/
   const dbKosten = await db
-    .collection("huizen")
-    .findOne({ $and: [{stad}, {kosten: {$lte: budget }}]}, {projection:{ _id: 0, kosten:1}})
-     
+    .collection('huizen')
+    .findOne(
+      { $and: [{ stad }, { kosten: { $lte: budget } }] },
+      { projection: { _id: 0, kosten: 1 } }
+    );
+  let housesKosten = JSON.stringify(dbKosten);
+  housesKosten = housesKosten.replace(/[{}]/g, '');
+  housesKosten = housesKosten.replace(/[""]/g, '');
+  housesKosten = housesKosten.replace(/[":"]/g, ': €');
+
+  /** Haal huizen op uit db steden**/
+  const dbSteden = await db
+    .collection('huizen')
+    .findOne(
+      { $and: [{ stad }, { kosten: { $lte: budget } }] },
+      { projection: { _id: 0, stad: 1 } }
+    );
+
+  let housesStad = JSON.stringify(dbSteden);
+  housesStad = housesStad.replace(/[{}]/g, '');
+  housesStad = housesStad.replace(/[""]/g, '');
+  housesStad = housesStad.replace(/[":"]/g, ': ');
+
+  /** render pagina **/
+  res.render('pages/results', {
+    stad: req.body.stad || req.body.textfield1,
+    budget: req.body.budget,
+    housesName,
+    housesKosten,
+    housesStad
+  });
+});
+
+/**  Update route GET **/
+app.get('/update', async (req, res) => {
+
+  /** haal user data uit db**/
+  const current = await db
+    .collection('user')
+    .findOne({}, { projection: { _id: 0 } });
+  let housesCurrent = JSON.stringify(current);
+  housesCurrent = housesCurrent.replace(/[{}]/g, '');
+  housesCurrent = housesCurrent.replace(/[""]/g, '');
+
+  /** render pagina **/
+  res.render('pages/update', {
+    stad: req.body.stad || req.body.textfield1,
+    budget: req.body.budget,
+    housesCurrent
+  });
+});
+
+/* Update route POST */
+app.post('/update', async (req, res) => {
+  /** Maak variabelen  **/
+  const stad = req.body.stad;
+  const budget = req.body.budget;
+
+  const current = await db
+    .collection('user')
+    .findOne({}, { projection: { _id: 0 } });
+  let housesCurrent = JSON.stringify(current);
+  housesCurrent = housesCurrent.replace(/[{}]/g, '');
+  housesCurrent = housesCurrent.replace(/[""]/g, '');
+
+  const dbKosten = await db
+    .collection('huizen')
+    .findOne(
+      { $and: [{ stad }, { kosten: { $lte: budget } }] },
+      { projection: { _id: 0, kosten: 1 } }
+    );
+
   let housesKosten = JSON.stringify(dbKosten);
   housesKosten = housesKosten.replace(/[{}]/g, '');
   housesKosten = housesKosten.replace(/[""]/g, '');
   housesKosten = housesKosten.replace(/[":"]/g, ': €');
 
   const dbSteden = await db
-   .collection("huizen")
-   .findOne({ $and: [{stad}, {kosten: {$lte: budget }}]}, {projection:{ _id: 0, stad:1}})
-   
+    .collection('huizen')
+    .findOne(
+      { $and: [{ stad }, { kosten: { $lte: budget } }] },
+      { projection: { _id: 0, stad: 1 } }
+    );
+
   let housesStad = JSON.stringify(dbSteden);
   housesStad = housesStad.replace(/[{}]/g, '');
   housesStad = housesStad.replace(/[""]/g, '');
   housesStad = housesStad.replace(/[":"]/g, ': ');
 
+  /** Update user data in db**/
+  db.collection('user').updateMany(
+    {},
+    { $set: { stad, budget } }
+  );
 
-  res.render("pages/results", {
+  /** Render pagina **/
+  res.render('pages/update', {
     stad: req.body.stad || req.body.textfield1,
     budget: req.body.budget,
-    housesName, housesKosten, housesStad
-    
+    housesCurrent,
+    housesKosten,
+    housesStad
   });
-  
 });
 
-app.get("/updateresultaten", (req, res) => {
-   res.render("pages/updateresultaten")
+app.get('/updateresultaten', (req, res) => {
+  res.render('pages/updateresultaten');
 });
 
-
-/* UPDATE ROUTE */
-app.get("/updateresultaten", async (req, res) => {
-
-  const stad = req.body.stad;
+app.post('/updateresultaten', async (req, res) => {
+  const stad = req.body.stad || req.body.textfield1;
   const budget = req.body.budget;
 
-  const current = await db
-   .collection("user")
-   .findOne({}, {projection:{ _id: 0}})
-  let housesCurrent = JSON.stringify(current);
-  housesCurrent = housesCurrent.replace(/[{}]/g, '');
-  housesCurrent = housesCurrent.replace(/[""]/g, '');
+  db.collection('user').updateMany(
+    {},
+    { $set: { stad, budget } }
+  );
 
+  const dbHouses = await db
+    .collection('huizen')
+    .findOne(
+      { $and: [{ stad }, { kosten: { $lte: budget } }] },
+      { projection: { _id: 0, name: 1 } }
+    );
 
-  db.collection("user").updateMany({}, { $set: {stad: stad, budget: budget}}) 
+  let housesName = JSON.stringify(dbHouses);
+  housesName = housesName.replace(/[{}]/g, '');
+  housesName = housesName.replace(/[""]/g, '');
+  housesName = housesName.replace(/[":"]/g, ': ');
 
-  res.render("pages/updateresultaten", {
-    stad: req.body.stad,
+  const dbKosten = await db
+    .collection('huizen')
+    .findOne(
+      { $and: [{ stad }, { kosten: { $lte: budget } }] },
+      { projection: { _id: 0, kosten: 1 } }
+    );
+
+  let housesKosten = JSON.stringify(dbKosten);
+  housesKosten = housesKosten.replace(/[{}]/g, '');
+  housesKosten = housesKosten.replace(/[""]/g, '');
+  housesKosten = housesKosten.replace(/[":"]/g, ': €');
+
+  const dbSteden = await db
+    .collection('huizen')
+    .findOne(
+      { $and: [{ stad }, { kosten: { $lte: budget } }] },
+      { projection: { _id: 0, stad: 1 } }
+    );
+
+  let housesStad = JSON.stringify(dbSteden);
+  housesStad = housesStad.replace(/[{}]/g, '');
+  housesStad = housesStad.replace(/[""]/g, '');
+  housesStad = housesStad.replace(/[":"]/g, ': ');
+
+  res.render('pages/updateresultaten', {
+    stad: req.body.stad || req.body.textfield1,
     budget: req.body.budget,
-    housesCurrent
+    housesName,
+    housesKosten,
+    housesStad
   });
-
-  
 });
 
 /* 404 route */
 app.use(function (req, res) {
-  res.status(404).render("pages/error");
+  res.status(404).render('pages/error');
 });
 
 /* Hier console log je met de variable port van hierboven */
 app.listen(process.env.PORT, () => {
   console.log(`Webserver running on port localhost:${process.env.PORT}`);
 
-  connectDB().then(console.log("Connectie met database succesvol"));
+  connectDB().then(console.log('Connectie met database succesvol'));
 });

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "pre-start": "npx prettier --write . && standard"
+    "pre-start": "standard"
   },
   "author": "Chelsey Bommer",
   "license": "MIT",
