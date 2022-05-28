@@ -67,8 +67,8 @@ app.post('/resultaten', async (req, res) => {
   const dbHouses = await db
     .collection('huizen')
     .findOne(
-      { $and: [{ stad }, { kosten: { $lte: budget } }] },
-      { projection: { _id: 0, name: 1 } }
+      { $and: [{ stad }, { prijs: { $lte: budget } }] },
+      { projection: { _id: 0, naam: 1 } }
     );
   let housesName = JSON.stringify(dbHouses);
   housesName = housesName.replace(/[{}]/g, '');
@@ -79,8 +79,8 @@ app.post('/resultaten', async (req, res) => {
   const dbKosten = await db
     .collection('huizen')
     .findOne(
-      { $and: [{ stad }, { kosten: { $lte: budget } }] },
-      { projection: { _id: 0, kosten: 1 } }
+      { $and: [{ stad }, { prijs: { $lte: budget } }] },
+      { projection: { _id: 0, prijs: 1 } }
     );
   let housesKosten = JSON.stringify(dbKosten);
   housesKosten = housesKosten.replace(/[{}]/g, '');
@@ -91,7 +91,7 @@ app.post('/resultaten', async (req, res) => {
   const dbSteden = await db
     .collection('huizen')
     .findOne(
-      { $and: [{ stad }, { kosten: { $lte: budget } }] },
+      { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, stad: 1 } }
     );
 
@@ -177,8 +177,8 @@ app.post('/updateresultaten', async (req, res) => {
   const dbHouses = await db
     .collection('huizen')
     .findOne(
-      { $and: [{ stad }, { kosten: { $lte: budget } }] },
-      { projection: { _id: 0, name: 1 } }
+      { $and: [{ stad }, { prijs: { $lte: budget } }] },
+      { projection: { _id: 0, naam: 1 } }
     );
   let housesName = JSON.stringify(dbHouses);
   housesName = housesName.replace(/[{}]/g, '');
@@ -189,8 +189,8 @@ app.post('/updateresultaten', async (req, res) => {
   const dbKosten = await db
     .collection('huizen')
     .findOne(
-      { $and: [{ stad }, { kosten: { $lte: budget } }] },
-      { projection: { _id: 0, kosten: 1 } }
+      { $and: [{ stad }, { prijs: { $lte: budget } }] },
+      { projection: { _id: 0, prijs: 1 } }
     );
   let housesKosten = JSON.stringify(dbKosten);
   housesKosten = housesKosten.replace(/[{}]/g, '');
@@ -201,7 +201,7 @@ app.post('/updateresultaten', async (req, res) => {
   const dbSteden = await db
     .collection('huizen')
     .findOne(
-      { $and: [{ stad }, { kosten: { $lte: budget } }] },
+      { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, stad: 1 } }
     );
   let housesStad = JSON.stringify(dbSteden);

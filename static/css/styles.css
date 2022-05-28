@@ -13,6 +13,7 @@
 html{
   height:100%;
 }
+
 /*************
 **** BODY ****
 *************/
@@ -120,6 +121,7 @@ p{
 
 .main2 h4{
   margin-top:2em;
+  margin-left:0.6em;
 }
 
 .main2 p{
@@ -130,6 +132,7 @@ p{
   width: 30%;
   height:100%;
   margin-bottom: 3em;
+  margin-left:.6em;
   padding:.5em;
 
   text-decoration: none;
@@ -154,7 +157,7 @@ option, select{
   font-family: "Inder", sans-serif;
 }
 
-#slider {
+#slider  {
   -webkit-appearance: none;
 
   margin-bottom: 2.5em;
@@ -164,6 +167,14 @@ option, select{
   box-shadow: 0px 6px 16px 0px var(--light-shadow);
   border: solid 1px var(--secondary-color);
   border-radius: 5px;
+}
+
+#slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  height: 1.2em;
+  width: 1.2em;
+  background-color: var(--secondary-color);
+  border-radius: 1em;
 }
 
 #huizen1 {
@@ -184,23 +195,30 @@ option, select{
 
   font-family: "Inder", sans-serif;
   background-color: var(--bg-color);
-  background: linear-gradient(0deg, var(--secondary-color) 0%, var(--bg-color) 57%);
   border: none;
 }
 
 /* BUTTON STATES */
 #submit:hover {
-  background-color: var(--bg-color);
-  background: linear-gradient(180deg, var(--secondary-color) 0%, var(--bg-color) 57%);
+  background-color: var(--secondary-color);
+  transition: .7s;
  
 }
 
 #submit:focus {
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-color)
 }
 
 #submit:active {
   background-color: var(--shadow-color);
+}
+
+#slider:hover{
+  background-color: rgb(247, 247, 247);
+}
+
+#huizen1:hover{
+  background-color: rgb(247, 247, 247);
 }
 
 /*************
