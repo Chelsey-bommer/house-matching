@@ -37,7 +37,7 @@ header {
 
   width: 100%;
   background-color: var(--secondary-color);
-  background: linear-gradient(0deg, #796150 0%, var(--secondary-color) 57%);
+  background: linear-gradient(0deg, var(--shadow-color) 0%, var(--secondary-color) 57%);
 
   box-shadow: 2px 2px 2px var(--shadow-color);
 }
@@ -58,13 +58,17 @@ main {
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
 
   margin-left: 33%;
   margin-top: 3em;
   padding: 1em;
 
   width: 30%;
+}
+
+img{
+  width:100%;
 }
 
 h2 {
@@ -75,6 +79,11 @@ h2 {
 h3 {
   margin-left: 1em;
 }
+
+h4{
+  margin-top:1em;
+}
+
 
 /* main 2*/
 
@@ -87,7 +96,7 @@ h3 {
   justify-content: flex-start;
 
   margin-left: 33%;
-  margin-top: 3em;
+  margin-top: 1em;
   padding: 1em;
 
   width: 30%;
@@ -95,10 +104,25 @@ h3 {
 
 .main2 h2 {
   margin-top: 0.5em;
+  margin-bottom:1em;
 }
 
-.main2 h3 {
-  margin-top: -1em;
+.main2 h3{
+  margin-top:-1em;
+}
+
+.main2 a{
+  width: 30%;
+  margin-bottom: 20em;
+  padding:.5em;
+
+  text-decoration: none;
+
+  font-family: "Inder", sans-serif;
+  color: var(--dark-color);
+  background-color: var(--bg-color);
+  background: linear-gradient(0deg, var(--secondary-color) 0%, var(--bg-color) 57%);
+  
 }
 
 /*************
@@ -143,14 +167,16 @@ option, select{
   padding:.5em;
 
   font-family: "Inder", sans-serif;
-  background-color: var(--secondary-color);
+  background-color: var(--bg-color);
+  background: linear-gradient(0deg, var(--secondary-color) 0%, var(--bg-color) 57%);
   border: none;
 }
 
 /* BUTTON STATES */
 #submit:hover {
-  background-color: var(--secondary-color);
-  transition-duration: 0.2s;
+  background-color: var(--bg-color);
+  background: linear-gradient(180deg, var(--secondary-color) 0%, var(--bg-color) 57%);
+ 
 }
 
 #submit:focus {
