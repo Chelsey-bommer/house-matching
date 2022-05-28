@@ -121,6 +121,8 @@ app.get('/update', async (req, res) => {
   let housesCurrent = JSON.stringify(current);
   housesCurrent = housesCurrent.replace(/[{}]/g, '');
   housesCurrent = housesCurrent.replace(/[""]/g, '');
+  housesCurrent = housesCurrent.replace(/[":"]/g, ': ');
+  housesCurrent = housesCurrent.replace(/[","]/g, ', ');
 
   /** render pagina **/
   res.render('pages/update', {
