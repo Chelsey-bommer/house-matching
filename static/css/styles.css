@@ -140,8 +140,12 @@ p{
   font-family: "Inder", sans-serif;
   color: var(--dark-color);
   background-color: var(--bg-color);
-  background: linear-gradient(0deg, var(--secondary-color) 0%, var(--bg-color) 57%);
   
+}
+
+.main2 a:hover{
+  background-color: var(--secondary-color);
+  transition: .7s;
 }
 
 /*************
@@ -198,7 +202,7 @@ option, select{
   border: none;
 }
 
-/* BUTTON STATES */
+/* STATES */
 #submit:hover {
   background-color: var(--secondary-color);
   transition: .7s;
@@ -220,6 +224,12 @@ option, select{
 #huizen1:hover{
   background-color: rgb(247, 247, 247);
 }
+
+#slider::-webkit-slider-thumb:hover{
+  background-color: var(--shadow-color);
+}
+
+
 
 /*************
 *** FOOTER ***

@@ -6,7 +6,7 @@ const fetch = require('node-fetch');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const { ObjectId } = require('mongodb');
 let db = null;
-
+const port = process.env.PORT || 3000;
 
 /** Middleware **/
 app.use('/static', express.static('./static'));

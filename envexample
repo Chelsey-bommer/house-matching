@@ -1,0 +1,5 @@
+PORT=3000
+DB_HOST= hostexample
+DB_NAME= name-example
+DB_USERNAME= username-example
+DB_PASS= password-example
