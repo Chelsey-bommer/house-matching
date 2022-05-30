@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
 
 
 /** Functie geeft dichtbije stedenlijst bij locatie **/
-function findLocation () {
+function findLocation ()  {
   function success (position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;

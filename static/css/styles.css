@@ -2,10 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inder&display=swap");
 
 :root {
-  --main-color: #FFFBE9;
-  --secondary-color: #AD8B73;
-  --bg-color: #E3CAA5;
-  --shadow-color: #796150;
+  --main-color: #EED6C4;
+  --secondary-color: #6B4F4F;
+  --bg-color: #FFF3E4;
+  --shadow-color: #483434;
   --dark-color: black;
   --light-shadow: rgba(0, 0, 0, 0.2);
 }
@@ -58,6 +58,7 @@ header h1 {
 main {
   background-color: var(--main-color);
   box-shadow: 2px 2px 6px var(--shadow-color);
+  border-radius: 1em;
 
   display: flex;
   flex-direction: column;
@@ -70,9 +71,6 @@ main {
   width: 30%;
 }
 
-img{
-  width:100%;
-}
 
 h2 {
   margin-top: 0.5em;
@@ -97,6 +95,7 @@ p{
 .main2 {
   background-color: var(--main-color);
   box-shadow: 2px 2px 6px var(--shadow-color);
+  border-radius: 1em;
 
   display: flex;
   flex-direction: column;
@@ -108,6 +107,10 @@ p{
 
   width: 30%;
   height:100%;
+}
+.main2 img{
+  width:100%;
+  border-radius: 1em;
 }
 
 .main2 h2 {
@@ -136,6 +139,8 @@ p{
   padding:.5em;
 
   text-decoration: none;
+  border-radius: .5em;
+  border: solid 1px var(--secondary-color);
 
   font-family: "Inder", sans-serif;
   color: var(--dark-color);
@@ -199,7 +204,8 @@ option, select{
 
   font-family: "Inder", sans-serif;
   background-color: var(--bg-color);
-  border: none;
+  border: solid 1px var(--secondary-color);
+  border-radius: .5em;
 }
 
 /* STATES */
@@ -234,6 +240,7 @@ option, select{
 /*************
 *** FOOTER ***
 *************/
+
 
 footer {
   text-align: center;

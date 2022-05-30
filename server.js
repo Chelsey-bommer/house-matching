@@ -6,7 +6,6 @@ const fetch = require('node-fetch');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const { ObjectId } = require('mongodb');
 let db = null;
-const port = process.env.PORT || 3000;
 
 /** Middleware **/
 app.use('/static', express.static('./static'));
@@ -75,7 +74,7 @@ app.post('/resultaten', async (req, res) => {
   housesName = housesName.replace(/[""]/g, '');
   housesName = housesName.replace(/[":"]/g, ': ');
 
-  /** Haal huizen op uit db: kosten **/
+  /** Haal huizen op uit db: prijs **/
   const dbKosten = await db
     .collection('huizen')
     .findOne(
@@ -144,20 +143,8 @@ app.post('/update', async (req, res) => {
   housesCurrent = housesCurrent.replace(/[{}]/g, '');
   housesCurrent = housesCurrent.replace(/[""]/g, '');
 
-  /** Update user data in db**/
-  db.collection('user').updateMany(
-    {},
-    { $set: { stad, budget } }
-  );
-
   /** Render pagina **/
   res.render('pages/update', {housesCurrent});
-});
-
-
-/** Resultaten update route **/
-app.get('/updateresultaten', (req, res) => {
-  res.render('pages/updateresultaten');
 });
 
 
@@ -185,7 +172,7 @@ app.post('/updateresultaten', async (req, res) => {
   housesName = housesName.replace(/[""]/g, '');
   housesName = housesName.replace(/[":"]/g, ': ');
 
-  /** Haal huizen op uit db: kosten **/
+  /** Haal huizen op uit db: prijs **/
   const dbKosten = await db
     .collection('huizen')
     .findOne(
