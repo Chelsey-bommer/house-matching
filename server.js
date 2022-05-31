@@ -47,6 +47,12 @@ async function connectDB () {
 
 /** ROUTES **/
 
+/** home route **/
+app.get('/', (req, res) => {
+  res.render('pages/index');
+});
+
+
 /** Filter route **/
 app.get('/filter', (req, res) => {
   res.render('pages/filter');

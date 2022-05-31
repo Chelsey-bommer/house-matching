@@ -153,6 +153,37 @@ p{
   transition: .7s;
 }
 
+
+/* main 3 */
+
+#main3{
+  text-align: center;
+
+}
+
+#main3 img{
+  width:70%;
+  margin-left:4em;
+  border-radius: 1em;
+}
+
+#main3 a{
+  width: 30%;
+  height:100%;
+  margin-bottom: 1em;
+  margin-left:9em;
+  padding:.5em;
+
+  text-decoration: none;
+  border-radius: .5em;
+  border: solid 1px var(--secondary-color);
+
+  font-family: "Inder", sans-serif;
+  color: var(--dark-color);
+  background-color: var(--bg-color);
+  
+}
+
 /*************
 **** FORM ****
 *************/
