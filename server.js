@@ -47,7 +47,7 @@ async function connectDB () {
 
 /** ROUTES **/
 
-/** home route **/
+/** Home route **/
 app.get('/', (req, res) => {
   res.render('pages/index');
 });
@@ -63,7 +63,8 @@ app.get('/filter', (req, res) => {
 app.post('/resultaten', async (req, res) => {
   /** Maak variabelen  **/
   const stad = req.body.stad || req.body.textfield1;
-  const budget = req.body.budget;
+  const budgetString = req.body.budget;
+  const budget = Number(budgetString);
 
   /** Stuur userdata naar db  **/
   await db.collection('user').insertOne({ stad, budget }, {});
@@ -158,7 +159,8 @@ app.post('/update', async (req, res) => {
 app.post('/updateresultaten', async (req, res) => {
   /** Maak variabelen  **/
   const stad = req.body.stad || req.body.textfield1;
-  const budget = req.body.budget;
+  const budgetString = req.body.budget;
+  const budget = Number(budgetString);
 
   /** Update user data in db  **/
   db.collection('user').updateMany(
