@@ -1,26 +1,27 @@
 # Rooms
 
-Rooms is een matching app die jou matcht aan je perfecte huis of kamer. Door het invoeren van jouw voorkeuren over budget en waar je wilt wonen, krijg je de meest relevante huizen te zien. Hiervan kun je alle informatie bekijken en zo beslissen of het een match is!
+Rooms is a matching app, that matches you to your perfect house or room. By giving your preferences in your budget and where you want to live, you get the most fitting result. After reviewing the house and information about the house, you can decide if this is the match for you!
 
-De voornaamste reden dat deze app over een huis/kamer zoeken gemaakt wordt, is om het zoekproces naar een nieuw huis makkelijker te maken. Door de API's en het zelf invullen van voorkeuren krijg je de meest relevante huizen om een match mee te maken!
+The most important reason that Rooms is being made, is to make the process of looking for a new house easier. Because of the API's Rooms uses, and giving your own preferences, you get the most relevant searches to match with!
+
 
 ## Table of contents
 
-- [Installing the (web)app](#Installeren)
+- [Installing the app](#Installeren)
 - [Makers](#Makers)
 - [Contact](#Contact)
 - [License](#License)
 
 ## Installeren
 
-Voor deze applicatie is _node.js_ nodig. Als je dit nog niet hebt zie https://nodejs.dev/learn/how-to-install-nodejs
-Om de rooms matching app zelf te installeren en aan te passen, volg de volgende stappen:
+For this application you will need _node.js_ . If you don't have Nodejs, see: https://nodejs.dev/learn/how-to-install-nodejs
+To install the Rooms app locally:
 
-1. Clone de repository naar je eigen computer
+1. Clone the repository to your own computer
 
    `git clone https://github.com/Chelsey-bommer/Matching-app`
 
-2. Installeer de benodigde packages.
+2. Install the packages
 
    `npm install `
 
@@ -28,30 +29,30 @@ Om de rooms matching app zelf te installeren en aan te passen, volg de volgende 
  
 **Environment variables**
 
-1.  Download [dotenv](https://www.npmjs.com/package/dotenv) om zelf environment variables te kunnen toevoegen.
+1.  Download [dotenv](https://www.npmjs.com/package/dotenv) to be able to add your own environment variables.
 
     `# install locally (recommended) npm install dotenv --save`
 
-2.  In de repository zit een envexample file. Maak hier een .env file van en voeg je eigen environment variables van je database toe zoals in de voorbeeld file. Check of deze kloppen met de env variables in de database link.
+2.  In the repository, is an envexample file. Make this into an .env file van and add your own environment variables from your databse, like in the example file. Check if these work with the env variables in your database link.
 
 <br>
 
-**Optionele packages**
+**Optional packages**
 
-Packages die niet per sé nodig zijn, maar wel handig zijn voor matching-app:
+Packages that aren't necessary, but nice to use for this repo:
 
-1. [Nodemon](https://www.npmjs.com/package/nodemon). Nodemon restart de server automatisch, nadat er aanpassingen worden gemaakt. Na de installatie, run `npm run dev` om gebruik te maken van Nodemon.
-2. [Prettier](https://prettier.io/) & [Standardjs](https://standardjs.com/). Dit zijn linters en formatters, lees meer in de wiki hierover.
+1. [Nodemon](https://www.npmjs.com/package/nodemon). Nodemon restarts the server automatically, after making any changes. After installation, run `npm run dev` to use Nodemon.
+2. [Prettier](https://prettier.io/) & [Standardjs](https://standardjs.com/). These are linters and formatters, read more about these in my wiki.
 
 <br>
 
 ## Makers
 
-De maker van deze app is Chelsey Bommer. Een 2e jaars student Communication & Multimedia Design aan de Hogeschool van Amsterdam.
+The maker of this app is Chelsey Bommer. A second year student Communication & Multimedia Design at the Hogeschool van Amsterdam.
 
 ## Contact
 
-Chelsey Bommer kan bereikt worden op:
+Chelsey Bommer can be contacted on:
 
 LinkedIn: Chelsey Bommer  
 E-mail: chelsey.bommer@hva.nl
