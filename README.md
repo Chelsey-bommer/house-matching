@@ -12,7 +12,7 @@ The most important reason that Rooms is being made, is to make the process of lo
 - [Contact](#Contact)
 - [License](#License)
 
-## Installeren
+## Installing
 
 For this application you will need _node.js_ . If you don't have Nodejs, see: https://nodejs.dev/learn/how-to-install-nodejs
 To install the Rooms app locally:
