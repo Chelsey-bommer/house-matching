@@ -54,7 +54,7 @@ function findLocation () {
         document.getElementById('stad2').value = objec
       })
 
-      .finally(() => {
+      .then(() => {
         const objec = String(obj.data[0].city)
         const kop = document.getElementById('stad1')
         kop.innerHTML = objec
