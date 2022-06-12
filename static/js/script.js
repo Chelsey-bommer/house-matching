@@ -27,38 +27,37 @@ function findLocation () {
       .then(() => console.log(obj.data))
 
       .then(() => {
-        const objec = String(obj.data[4].city)
+        const objectData = String(obj.data[4].city)
         const kop = document.getElementById('stad5')
-        kop.innerHTML = objec
-        document.getElementById('stad5').value = objec
+        kop.innerHTML = objectData
       })
 
       .then(() => {
-        const objec = String(obj.data[3].city)
+        const objectData = String(obj.data[3].city)
         const kop = document.getElementById('stad4')
-        kop.innerHTML = objec
-        document.getElementById('stad4').value = objec
+        kop.innerHTML = objectData
       })
 
       .then(() => {
-        const objec = String(obj.data[2].city)
+        const objectData = String(obj.data[2].city)
         const kop = document.getElementById('stad3')
-        kop.innerHTML = objec
-        document.getElementById('stad3').value = objec
+        kop.innerHTML = objectData
       })
 
       .then(() => {
-        const objec = String(obj.data[1].city)
+        const objectData = String(obj.data[1].city)
         const kop = document.getElementById('stad2')
-        kop.innerHTML = objec
-        document.getElementById('stad2').value = objec
+        kop.innerHTML = objectData
       })
 
       .then(() => {
-        const objec = String(obj.data[0].city)
+        const objectData = String(obj.data[0].city)
         const kop = document.getElementById('stad1')
-        kop.innerHTML = objec
-        document.getElementById('stad1').value = objec
+        kop.innerHTML = objectData
+      })
+
+      .finally(() => {
+        document.querySelector('option').value= objectData
       })
 
       .catch((err) => console.error('error:' + err))
