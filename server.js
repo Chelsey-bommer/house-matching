@@ -55,6 +55,8 @@ app.get('/filter', (req, res) => {
   res.render('pages/filter')
 })
 
+
+
 /** Filter route POST **/
 app.post('/resultaten', async (req, res) => {
   /** Maak variabelen  **/
@@ -69,13 +71,19 @@ app.post('/resultaten', async (req, res) => {
   const dbHouses = await db
     .collection('huizen')
     .findOne(
-      { $and: [{ stad }, { prijs: { $lte: budget } }] },
+      {$and: [{ stad}, { prijs: { $lte: budget} }]},
       { projection: { _id: 0, naam: 1 } }
     )
   let housesName = JSON.stringify(dbHouses)
   housesName = housesName.replace(/[{}]/g, '')
   housesName = housesName.replace(/[""]/g, '')
   housesName = housesName.replace(/[':']/g, ': ')
+
+  if (dbHouses == null) {
+    console.log('nope')
+  } else {
+    console.log('yep')
+  }
 
   /** Haal huizen op uit db: prijs **/
   const dbKosten = await db
@@ -93,9 +101,10 @@ app.post('/resultaten', async (req, res) => {
   const dbSteden = await db
     .collection('huizen')
     .findOne(
-      { $and: [{ stad }, { prijs: { $lte: budget } }] },
+      { $and: [{ stad }, { prijs: { $lte: budget}} ] },
       { projection: { _id: 0, stad: 1 } }
-    )
+    ) 
+   
 
   let housesStad = JSON.stringify(dbSteden)
   housesStad = housesStad.replace(/[{}]/g, '')
@@ -111,6 +120,8 @@ app.post('/resultaten', async (req, res) => {
     housesStad
   })
 })
+
+
 
 /**  Update route GET **/
 app.get('/update', async (req, res) => {

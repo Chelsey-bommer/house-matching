@@ -5,8 +5,8 @@ window.addEventListener('load', () => {
 })
 
 /** Functie geeft dichtbije stedenlijst bij locatie **/
-function findLocation () {
-  function success (position) {
+function findLocation() {
+  function success(position) {
     latitude = position.coords.latitude
     longitude = position.coords.longitude
     let obj
@@ -27,43 +27,22 @@ function findLocation () {
       .then(() => console.log(obj.data))
 
       .then(() => {
-        const objectData = String(obj.data[4].city)
-        const kop = document.getElementById('stad5')
-        kop.innerHTML = objectData
-      })
+        const objectData = obj.data
 
-      .then(() => {
-        const objectData = String(obj.data[3].city)
-        const kop = document.getElementById('stad4')
-        kop.innerHTML = objectData
-      })
-
-      .then(() => {
-        const objectData = String(obj.data[2].city)
-        const kop = document.getElementById('stad3')
-        kop.innerHTML = objectData
-      })
-
-      .then(() => {
-        const objectData = String(obj.data[1].city)
-        const kop = document.getElementById('stad2')
-        kop.innerHTML = objectData
-      })
-
-      .then(() => {
-        const objectData = String(obj.data[0].city)
-        const kop = document.getElementById('stad1')
-        kop.innerHTML = objectData
-      })
-
-      .finally(() => {
-        document.querySelector('option').value= objectData
+        objectData.forEach(element => {
+          function addElement() {
+            const option = document.createElement('option');
+            option.innerHTML = String(element.city)
+            document.getElementById('huizen1').appendChild(option);
+          }
+          addElement()
+        });
       })
 
       .catch((err) => console.error('error:' + err))
   }
 
-  function error () {
+  function error() {
     console.log('Unable to retrieve your location')
   }
 
