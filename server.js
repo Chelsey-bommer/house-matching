@@ -5,7 +5,7 @@ const app = express()
 const fetch = require('node-fetch')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const { ObjectId } = require('mongodb')
-let db = null
+let db 
 
 /** Middleware **/
 app.use('/static', express.static('./static'))
@@ -57,8 +57,9 @@ app.get('/filter', (req, res) => {
 
 
 
-/** Filter route POST **/
+/*** Filter route POST **/
 app.post('/resultaten', async (req, res) => {
+  
   /** Maak variabelen  **/
   const stad = req.body.stad || req.body.textfield1
   const budgetString = req.body.budget
@@ -69,44 +70,42 @@ app.post('/resultaten', async (req, res) => {
 
   /** Haal huizen op uit db: namen**/
   const dbHouses = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
-      {$and: [{ stad}, { prijs: { $lte: budget} }]},
+      { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, naam: 1 } }
     )
   let housesName = JSON.stringify(dbHouses)
-  housesName = housesName.replace(/[{}]|[""]/g, '')
+  housesName = housesName.replace(/[{}]/g, '')
+  housesName = housesName.replace(/[""]/g, '')
   housesName = housesName.replace(/[':']/g, ': ')
-
-  if (dbHouses == null) {
-    console.log('nope')
-  } else {
-    console.log('yep')
-  }
 
   /** Haal huizen op uit db: prijs **/
   const dbKosten = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
       { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, prijs: 1 } }
     )
   let housesKosten = JSON.stringify(dbKosten)
-  housesKosten = housesKosten.replace(/[{}]|[""]/g, '')
+  housesKosten = housesKosten.replace(/[{}]/g, '')
+  housesKosten = housesKosten.replace(/[""]/g, '')
   housesKosten = housesKosten.replace(/[':']/g, ': €')
 
   /** Haal huizen op uit db: steden**/
   const dbSteden = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
-      { $and: [{ stad }, { prijs: { $lte: budget}} ] },
+      { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, stad: 1 } }
-    ) 
-   
+    )
 
   let housesStad = JSON.stringify(dbSteden)
-  housesStad = housesStad.replace(/[{}]|[""]/g, '')
+  housesStad = housesStad.replace(/[{}]/g, '')
+  housesStad = housesStad.replace(/[""]/g, '')
   housesStad = housesStad.replace(/[':']/g, ': ')
+ 
+
 
   /** render pagina **/
   res.render('pages/results', {
@@ -118,8 +117,6 @@ app.post('/resultaten', async (req, res) => {
   })
 })
 
-
-
 /**  Update route GET **/
 app.get('/update', async (req, res) => {
   /** Haal user data uit db**/
@@ -127,7 +124,8 @@ app.get('/update', async (req, res) => {
     .collection('user')
     .findOne({}, { projection: { _id: 0 } })
   let housesCurrent = JSON.stringify(current)
-  housesCurrent = housesCurrent.replace(/[{}]|[""]/g, '')
+  housesCurrent = housesCurrent.replace(/[{}]/g, '')
+  housesCurrent = housesCurrent.replace(/[""]/g, '')
   housesCurrent = housesCurrent.replace(/[':']/g, ': ')
   housesCurrent = housesCurrent.replace(/[',']/g, ', ')
 
@@ -146,7 +144,7 @@ app.post('/update', async (req, res) => {
     .collection('user')
     .findOne({}, { projection: { _id: 0 } })
   let housesCurrent = JSON.stringify(current)
-  housesCurrent = housesCurrent.replace(/[{}]|[""]/g, '')
+  housesCurrent = housesCurrent.replace(/[""]/g, '')
 
   /** Render pagina **/
   res.render('pages/update', { housesCurrent })
@@ -164,35 +162,38 @@ app.post('/updateresultaten', async (req, res) => {
 
   /** Haal huizen op uit db: naam **/
   const dbHouses = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
       { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, naam: 1 } }
     )
   let housesName = JSON.stringify(dbHouses)
-  housesName = housesName.replace(/[{}]|[""]/g, '')
+  housesName = housesName.replace(/[{}]/g, '')
+  housesName = housesName.replace(/[""]/g, '')
   housesName = housesName.replace(/[':']/g, ': ')
 
   /** Haal huizen op uit db: prijs **/
   const dbKosten = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
       { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, prijs: 1 } }
     )
   let housesKosten = JSON.stringify(dbKosten)
-  housesKosten = housesKosten.replace(/[{}]|[""]/g, '')
+  housesKosten = housesKosten.replace(/[{}]/g, '')
+  housesKosten = housesKosten.replace(/[""]/g, '')
   housesKosten = housesKosten.replace(/[':']/g, ': €')
 
   /** Haal huizen op uit db: steden **/
   const dbSteden = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
       { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, stad: 1 } }
     )
   let housesStad = JSON.stringify(dbSteden)
-  housesStad = housesStad.replace(/[{}]|[""]/g, '')
+  housesStad = housesStad.replace(/[{}]/g, '')
+  housesStad = housesStad.replace(/[""]/g, '')
   housesStad = housesStad.replace(/[':']/g, ': ')
 
   /** Render pagina **/

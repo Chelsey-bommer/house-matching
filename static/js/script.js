@@ -26,7 +26,7 @@ function findLocation() {
       .then((data) => (obj = data))
       .then(() => console.log(obj.data))
 
-      .then(() => {
+      .then(  ()  => {
         const objectData = obj.data
 
         /* Loop data in options in form */
@@ -34,14 +34,18 @@ function findLocation() {
           function addCities() {
             const option = document.createElement('option');
             option.innerHTML = String(element.city)
+            option.value = String(element.city)
             document.getElementById('huizen1').appendChild(option);
+
           }
           addCities()
-        });
+        })
       })
 
       .catch((err) => console.error('error:' + err))
   }
+  
+  
 
   function error() {
     console.log('Unable to retrieve your location')
