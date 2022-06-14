@@ -29,13 +29,14 @@ function findLocation() {
       .then(() => {
         const objectData = obj.data
 
+        /* Loop data in options in form */
         objectData.forEach(element => {
-          function addElement() {
+          function addCities() {
             const option = document.createElement('option');
             option.innerHTML = String(element.city)
             document.getElementById('huizen1').appendChild(option);
           }
-          addElement()
+          addCities()
         });
       })
 
