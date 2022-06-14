@@ -55,6 +55,8 @@ app.get('/filter', (req, res) => {
   res.render('pages/filter')
 })
 
+
+
 /** Filter route POST **/
 app.post('/resultaten', async (req, res) => {
   /** Maak variabelen  **/
@@ -69,13 +71,18 @@ app.post('/resultaten', async (req, res) => {
   const dbHouses = await db
     .collection('huizen')
     .findOne(
-      { $and: [{ stad }, { prijs: { $lte: budget } }] },
+      {$and: [{ stad}, { prijs: { $lte: budget} }]},
       { projection: { _id: 0, naam: 1 } }
     )
   let housesName = JSON.stringify(dbHouses)
-  housesName = housesName.replace(/[{}]/g, '')
-  housesName = housesName.replace(/[""]/g, '')
+  housesName = housesName.replace(/[{}]|[""]/g, '')
   housesName = housesName.replace(/[':']/g, ': ')
+
+  if (dbHouses == null) {
+    console.log('nope')
+  } else {
+    console.log('yep')
+  }
 
   /** Haal huizen op uit db: prijs **/
   const dbKosten = await db
@@ -85,21 +92,20 @@ app.post('/resultaten', async (req, res) => {
       { projection: { _id: 0, prijs: 1 } }
     )
   let housesKosten = JSON.stringify(dbKosten)
-  housesKosten = housesKosten.replace(/[{}]/g, '')
-  housesKosten = housesKosten.replace(/[""]/g, '')
+  housesKosten = housesKosten.replace(/[{}]|[""]/g, '')
   housesKosten = housesKosten.replace(/[':']/g, ': €')
 
   /** Haal huizen op uit db: steden**/
   const dbSteden = await db
     .collection('huizen')
     .findOne(
-      { $and: [{ stad }, { prijs: { $lte: budget } }] },
+      { $and: [{ stad }, { prijs: { $lte: budget}} ] },
       { projection: { _id: 0, stad: 1 } }
-    )
+    ) 
+   
 
   let housesStad = JSON.stringify(dbSteden)
-  housesStad = housesStad.replace(/[{}]/g, '')
-  housesStad = housesStad.replace(/[""]/g, '')
+  housesStad = housesStad.replace(/[{}]|[""]/g, '')
   housesStad = housesStad.replace(/[':']/g, ': ')
 
   /** render pagina **/
@@ -112,6 +118,8 @@ app.post('/resultaten', async (req, res) => {
   })
 })
 
+
+
 /**  Update route GET **/
 app.get('/update', async (req, res) => {
   /** Haal user data uit db**/
@@ -119,8 +127,7 @@ app.get('/update', async (req, res) => {
     .collection('user')
     .findOne({}, { projection: { _id: 0 } })
   let housesCurrent = JSON.stringify(current)
-  housesCurrent = housesCurrent.replace(/[{}]/g, '')
-  housesCurrent = housesCurrent.replace(/[""]/g, '')
+  housesCurrent = housesCurrent.replace(/[{}]|[""]/g, '')
   housesCurrent = housesCurrent.replace(/[':']/g, ': ')
   housesCurrent = housesCurrent.replace(/[',']/g, ', ')
 
@@ -139,8 +146,7 @@ app.post('/update', async (req, res) => {
     .collection('user')
     .findOne({}, { projection: { _id: 0 } })
   let housesCurrent = JSON.stringify(current)
-  housesCurrent = housesCurrent.replace(/[{}]/g, '')
-  housesCurrent = housesCurrent.replace(/[""]/g, '')
+  housesCurrent = housesCurrent.replace(/[{}]|[""]/g, '')
 
   /** Render pagina **/
   res.render('pages/update', { housesCurrent })
@@ -164,8 +170,7 @@ app.post('/updateresultaten', async (req, res) => {
       { projection: { _id: 0, naam: 1 } }
     )
   let housesName = JSON.stringify(dbHouses)
-  housesName = housesName.replace(/[{}]/g, '')
-  housesName = housesName.replace(/[""]/g, '')
+  housesName = housesName.replace(/[{}]|[""]/g, '')
   housesName = housesName.replace(/[':']/g, ': ')
 
   /** Haal huizen op uit db: prijs **/
@@ -176,8 +181,7 @@ app.post('/updateresultaten', async (req, res) => {
       { projection: { _id: 0, prijs: 1 } }
     )
   let housesKosten = JSON.stringify(dbKosten)
-  housesKosten = housesKosten.replace(/[{}]/g, '')
-  housesKosten = housesKosten.replace(/[""]/g, '')
+  housesKosten = housesKosten.replace(/[{}]|[""]/g, '')
   housesKosten = housesKosten.replace(/[':']/g, ': €')
 
   /** Haal huizen op uit db: steden **/
@@ -188,8 +192,7 @@ app.post('/updateresultaten', async (req, res) => {
       { projection: { _id: 0, stad: 1 } }
     )
   let housesStad = JSON.stringify(dbSteden)
-  housesStad = housesStad.replace(/[{}]/g, '')
-  housesStad = housesStad.replace(/[""]/g, '')
+  housesStad = housesStad.replace(/[{}]|[""]/g, '')
   housesStad = housesStad.replace(/[':']/g, ': ')
 
   /** Render pagina **/
