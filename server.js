@@ -5,7 +5,11 @@ const app = express()
 const fetch = require('node-fetch')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const { ObjectId } = require('mongodb')
+const mongoose = require('mongoose')
+
 let db 
+
+const userRouter = require('./routes/users');
 
 /** Middleware **/
 app.use('/static', express.static('./static'))
@@ -15,6 +19,7 @@ app.use('/js', express.static('./static/js'))
 app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use('/', userRouter);
 
 /* Connect met database */
 async function connectDB () {
@@ -37,6 +42,7 @@ async function connectDB () {
 
   try {
     await client.connect()
+    mongoose.connect(uri);
     db = client.db(process.env.DB_NAME)
   } catch (error) {
     throw error
