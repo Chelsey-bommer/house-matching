@@ -4,11 +4,11 @@
   "description": "This is an app to find your perfect room!",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "pre-start": "standard"
+    "dev": "nodemon server.js"
   },
-  "author": "Chelsey Bommer",
+  "author": "Team housing",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.0",
@@ -16,11 +16,12 @@
     "ejs": "^3.1.7",
     "express": "^4.18.0",
     "mongodb": "^4.6.0",
+    "mongoose": "^6.3.8",
     "node-fetch": "^2.6.7"
   },
   "devDependencies": {
+    "eslint": "^8.17.0",
     "nodemon": "^2.0.16",
-    "prettier": "2.6.2",
-    "standard": "^17.0.0"
+    "prettier": "2.6.2"
   }
 }

@@ -19,7 +19,7 @@ To install the Rooms app locally:
 
 1. Clone the repository to your own computer
 
-   `git clone https://github.com/Chelsey-bommer/Matching-app`
+   `git clone https://github.com/Michelwas97/Housing-match`
 
 2. Install the packages
 

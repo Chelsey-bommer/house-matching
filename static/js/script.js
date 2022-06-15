@@ -5,8 +5,8 @@ window.addEventListener('load', () => {
 })
 
 /** Functie geeft dichtbije stedenlijst bij locatie **/
-function findLocation () {
-  function success (position) {
+function findLocation() {
+  function success(position) {
     latitude = position.coords.latitude
     longitude = position.coords.longitude
     let obj
@@ -26,45 +26,28 @@ function findLocation () {
       .then((data) => (obj = data))
       .then(() => console.log(obj.data))
 
-      .then(() => {
-        const objec = String(obj.data[4].city)
-        const kop = document.getElementById('stad5')
-        kop.innerHTML = objec
-        document.getElementById('stad5').value = objec
-      })
+      .then(  ()  => {
+        const objectData = obj.data
 
-      .then(() => {
-        const objec = String(obj.data[3].city)
-        const kop = document.getElementById('stad4')
-        kop.innerHTML = objec
-        document.getElementById('stad4').value = objec
-      })
+        /* Loop data in options in form */
+        objectData.forEach(element => {
+          function addCities() {
+            const option = document.createElement('option');
+            option.innerHTML = String(element.city)
+            option.value = String(element.city)
+            document.getElementById('huizen1').appendChild(option);
 
-      .then(() => {
-        const objec = String(obj.data[2].city)
-        const kop = document.getElementById('stad3')
-        kop.innerHTML = objec
-        document.getElementById('stad3').value = objec
-      })
-
-      .then(() => {
-        const objec = String(obj.data[1].city)
-        const kop = document.getElementById('stad2')
-        kop.innerHTML = objec
-        document.getElementById('stad2').value = objec
-      })
-
-      .finally(() => {
-        const objec = String(obj.data[0].city)
-        const kop = document.getElementById('stad1')
-        kop.innerHTML = objec
-        document.getElementById('stad1').value = objec
+          }
+          addCities()
+        })
       })
 
       .catch((err) => console.error('error:' + err))
   }
+  
+  
 
-  function error () {
+  function error() {
     console.log('Unable to retrieve your location')
   }
 

@@ -5,7 +5,11 @@ const app = express()
 const fetch = require('node-fetch')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const { ObjectId } = require('mongodb')
-let db = null
+const mongoose = require('mongoose')
+
+let db 
+
+const userRouter = require('./routes/users');
 
 /** Middleware **/
 app.use('/static', express.static('./static'))
@@ -15,6 +19,7 @@ app.use('/js', express.static('./static/js'))
 app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use('/', userRouter);
 
 /* Connect met database */
 async function connectDB () {
@@ -37,6 +42,7 @@ async function connectDB () {
 
   try {
     await client.connect()
+    mongoose.connect(uri);
     db = client.db(process.env.DB_NAME)
   } catch (error) {
     throw error
@@ -55,8 +61,11 @@ app.get('/filter', (req, res) => {
   res.render('pages/filter')
 })
 
-/** Filter route POST **/
+
+
+/*** Filter route POST **/
 app.post('/resultaten', async (req, res) => {
+  
   /** Maak variabelen  **/
   const stad = req.body.stad || req.body.textfield1
   const budgetString = req.body.budget
@@ -67,7 +76,7 @@ app.post('/resultaten', async (req, res) => {
 
   /** Haal huizen op uit db: namen**/
   const dbHouses = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
       { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, naam: 1 } }
@@ -79,7 +88,7 @@ app.post('/resultaten', async (req, res) => {
 
   /** Haal huizen op uit db: prijs **/
   const dbKosten = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
       { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, prijs: 1 } }
@@ -91,7 +100,7 @@ app.post('/resultaten', async (req, res) => {
 
   /** Haal huizen op uit db: steden**/
   const dbSteden = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
       { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, stad: 1 } }
@@ -101,6 +110,8 @@ app.post('/resultaten', async (req, res) => {
   housesStad = housesStad.replace(/[{}]/g, '')
   housesStad = housesStad.replace(/[""]/g, '')
   housesStad = housesStad.replace(/[':']/g, ': ')
+ 
+
 
   /** render pagina **/
   res.render('pages/results', {
@@ -139,7 +150,6 @@ app.post('/update', async (req, res) => {
     .collection('user')
     .findOne({}, { projection: { _id: 0 } })
   let housesCurrent = JSON.stringify(current)
-  housesCurrent = housesCurrent.replace(/[{}]/g, '')
   housesCurrent = housesCurrent.replace(/[""]/g, '')
 
   /** Render pagina **/
@@ -158,7 +168,7 @@ app.post('/updateresultaten', async (req, res) => {
 
   /** Haal huizen op uit db: naam **/
   const dbHouses = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
       { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, naam: 1 } }
@@ -170,7 +180,7 @@ app.post('/updateresultaten', async (req, res) => {
 
   /** Haal huizen op uit db: prijs **/
   const dbKosten = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
       { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, prijs: 1 } }
@@ -182,7 +192,7 @@ app.post('/updateresultaten', async (req, res) => {
 
   /** Haal huizen op uit db: steden **/
   const dbSteden = await db
-    .collection('huizen')
+    .collection('houses')
     .findOne(
       { $and: [{ stad }, { prijs: { $lte: budget } }] },
       { projection: { _id: 0, stad: 1 } }
