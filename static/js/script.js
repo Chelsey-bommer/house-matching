@@ -26,7 +26,7 @@ function findLocation() {
       .then((data) => (obj = data))
       .then(() => console.log(obj.data))
 
-      .then(  ()  => {
+      .then( ()  => {
         const objectData = obj.data
 
         /* Loop data in options in form */
@@ -39,10 +39,11 @@ function findLocation() {
 
           }
           addCities()
+          
         })
       })
 
-      .catch((err) => console.error('error:' + err))
+      .catch((err) => console.error('error:' ))
   }
   
   
