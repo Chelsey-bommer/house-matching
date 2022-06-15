@@ -3,5 +3,23 @@
   <input type="email" id="email" name="email" />
   <label for="password">Password</label>
   <input type="password" id="password" name="password" />
+
+  <input id="text1" type="text" name="city" />
+
+  <select name="city" id="huizen1"></select>
+
+  <h3>Wat is uw budget?</h3>
+  <input
+    id="slider"
+    name="budget"
+    class="slider"
+    value="400000"
+    type="range"
+    min="200000"
+    max="600000"
+    oninput="this.nextElementSibling.value = this.value"
+  />
+  <output></output>
+
   <button type="submit">Register</button>
 </form>

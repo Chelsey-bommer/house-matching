@@ -4,6 +4,7 @@ const router = express.Router();
 
 const CRUD = require(`../controllers/crud-controller`);
 
+const { Preference } = require('../models/schemas');
 const { User } = require('../models/schemas');
 const { House } = require('../models/schemas');
 
@@ -18,7 +19,9 @@ router.get('/register', (req, res) => {
 
 /** Register user POST **/
 router.post("/register", async (req, res) => {
-  let { email, password } = req.body;
+  let { email, password, city } = req.body;
+  const budgetString = req.body.budget
+  const budget = Number(budgetString)
     
   /** Check if all fields are filled in **/
   if (!email || !password) {
@@ -31,11 +34,22 @@ router.post("/register", async (req, res) => {
   try {
     // const hasedPwd = await bcrypt.hash(password, 10); use this const on the create line after bcrypt is installed
 
+    //create preferences and store into user
+    const preferences = await Preference.create ({
+        'city': city,
+        'budget': budget
+    });
+    
+    console.log(preferences);
+
     //create user and store
     const result = await User.create ({
         'email': email,
-        'password': password
+        'password': password,
+        'preferences': {preferences}
     });
+
+    console.log(result);
 
     res.redirect('/login');
   } catch (err) {
