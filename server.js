@@ -1,3 +1,5 @@
+
+
 /** Variabelen **/
 require('dotenv').config()
 const express = require('express')
@@ -23,7 +25,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/', userRouter);
 
 /* Connect met database */
-async function connectDB () {
+async function connectDB() {
   const uri =
     'mongodb+srv://' +
     process.env.DB_USERNAME +
@@ -63,6 +65,7 @@ app.get('/filter', (req, res) => {
   res.render('pages/filter')
 })
 
+
 /*** Filter route POST **/
 app.post('/resultaten', async (req, res) => {
 
@@ -87,7 +90,7 @@ app.post('/resultaten', async (req, res) => {
   houses = houses.replace(/[',']/g, ', ')
 
   if (dbHouses == null) {
-    console.log('Dit bestaat niet')
+  
     res.render('pages/filter', {
       
     })
@@ -114,8 +117,6 @@ app.post('/resultaten', async (req, res) => {
     })
   }
 })
- 
-
 
 /**  Update route GET **/
 app.get('/update', async (req, res) => {
@@ -123,7 +124,7 @@ app.get('/update', async (req, res) => {
   /** Haal user data uit db**/
   const current = await db
     .collection('user')
-    .findOne({}, { projection: { _id: 0} })
+    .findOne({}, { projection: { _id: 0 } })
   let housesCurrent = JSON.stringify(current)
   housesCurrent = housesCurrent.replace(/[{}]|[""]/g, '')
   housesCurrent = housesCurrent.replace(/[':']/g, ': ')
@@ -143,13 +144,14 @@ app.post('/update', async (req, res) => {
   /** Haal user data op uit db **/
   const current = await db
     .collection('user')
-    .findOne({}, { projection: { _id: 0} })
+    .findOne({}, { projection: { _id: 0 } })
   let housesCurrent = JSON.stringify(current)
   housesCurrent = housesCurrent.replace(/[""]/g, '')
 
   /** Render pagina **/
   res.render('pages/update', {
-    housesCurrent })
+    housesCurrent
+  })
 })
 
 /** Resultaten update route POST **/
@@ -160,27 +162,55 @@ app.post('/updateresultaten', async (req, res) => {
   const budgetString = req.body.budget
   const budget = Number(budgetString)
 
+
   /** Update user data in db  **/
   db.collection('user').updateMany({}, { $set: { stad, budget } })
 
-  /** Haal huizen op uit db**/
-  const dbHouses = await db
-    .collection('houses')
-    .findOne(
-      { $and: [{ stad }, { prijs: { $lte: budget } }] },
-      { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
-    )
-  let houses = JSON.stringify(dbHouses)
-  houses = houses.replace(/[{}]|[""]/g, '')
-  houses = houses.replace(/[':']/g, ': ')
-  houses = houses.replace(/[',']/g, ', ')
+   /** Haal huizen op uit db**/
+   const dbHouses = await db
+   .collection('houses')
+   .findOne(
+     { $and: [{ stad }, { prijs: { $lte: budget } }] },
+     { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
+   )
 
-  /** Render pagina **/
-  res.render('pages/updateresultaten', {
-    stad: req.body.stad || req.body.textfield1,
-    budget: req.body.budget,
-    houses
-  })
+
+ if (dbHouses == null) {
+  /* Wanneer het huis niet bestaat */
+  const current = await db
+    .collection('user')
+    .findOne({}, { projection: { _id: 0 } })
+  let housesCurrent = JSON.stringify(current)
+  housesCurrent = housesCurrent.replace(/[""]|[{}]/g, '')
+  housesCurrent = housesCurrent.replace(/[':']/g, ': ')
+  housesCurrent = housesCurrent.replace(/[',']/g, ', ')
+
+   res.render('pages/update', {
+     housesCurrent,
+     current
+   })
+
+ }
+ else {
+   /** Haal huizen op uit db**/
+   const dbHouses = await db
+     .collection('houses')
+     .findOne(
+       { $and: [{ stad }, { prijs: { $lte: budget } }] },
+       { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
+     )
+   let houses = JSON.stringify(dbHouses)
+   houses = houses.replace(/[{}]|[""]/g, '')
+   houses = houses.replace(/[':']/g, ': ')
+   houses = houses.replace(/[',']/g, ', ')
+
+   /** render pagina **/
+   res.render('pages/results', {
+     stad: req.body.stad || req.body.textfield1,
+     budget: req.body.budget,
+     houses
+   })
+ }
 })
 
 /* 404 route */
