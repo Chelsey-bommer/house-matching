@@ -152,6 +152,7 @@ label[for="steden"]::after {
 
 button,
 input[type="button"],
+input[type="submit"],
 .link-button {
   text-decoration: none;
   border: none;
