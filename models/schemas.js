@@ -2,6 +2,21 @@
 const mongoose = require(`mongoose`);
 const Schema = mongoose.Schema;
 
+const preferenceSchema = new Schema({
+    city: {
+        type: String,
+        default: null
+    },
+    budget: {
+        type: Number,
+        default: null
+    }
+}, {
+    toJSON: {
+        virtuals: true
+    }
+});
+
 const userSchema = new Schema({
     email: {
         type: String,
@@ -11,6 +26,11 @@ const userSchema = new Schema({
         type: String,
         required: [true, `Vergeet niet uw gewenste wachtwoord in te voeren.`]
     },
+    preferences: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: `Preference`,
+        default: null
+    },
     refreshToken: String
 }, {
     toJSON: {
@@ -19,15 +39,15 @@ const userSchema = new Schema({
 });
 
 const houseSchema = new Schema({
-    prijs: {
+    price: {
         type: Number,
         required: [true, `Vul asltublieft de prijs in.`]
     },
-    adres: {
+    adress: {
         type: String,
         required: [true, `Vul asltublieft het adres in.`]
     },
-    stad: {
+    city: {
         type: String,
         required: [true, `Vul asltublieft de stadsnaam in.`]
     }
@@ -37,10 +57,12 @@ const houseSchema = new Schema({
     }
 });
 
+const Preference = mongoose.model(`Preference`, preferenceSchema);
 const User = mongoose.model(`User`, userSchema);
 const House = mongoose.model(`House`, houseSchema);
 
 module.exports = {
+    Preference,
     User,
     House
 };
