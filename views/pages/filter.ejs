@@ -12,9 +12,8 @@
 
 <body>
 
-  <%- include('../partials/header') %>
 
-    <main>
+    <!-- <main>
 
       <h2>Stel uw voorkeuren in</h2>
 
@@ -34,9 +33,35 @@
       </form>
 
     </main>
-  
+     -->
 
-    <%- include('../partials/footer') %>
+
+  <figure>
+    <img src="https://images.unsplash.com/photo-1488707872600-5507977fe355?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt="">
+  </figure>
+
+  <section>
+    <form action="" id="voorkeuren" name="data" id="form" action='/resultaten' method="post">
+        <legend>Vul je voorkeur in</legend>
+        <div>
+          <label for="stad">Stad</label>
+          <select required name="stad" id="huizen1">
+            <option value="" disabled selected>Kies een stad</option>
+          </select>
+        </div>
+        <div>
+          <div>
+            <label for="budget">Budget</label>
+            <output name="budget"></output>
+          </div>
+          <input type="range" name="budget" id="budget-slider" step="50000" min="150000" max="850000" value="350000">
+          <div>
+            <span>€150.000</span>
+            <span>€850.000</span>
+          </div>
+        </div>
+        <input type="button" value="Zoeken">
+    </form>
 
       <!-- Link javascript -->
       <script src="/static/js/script.js"></script>
