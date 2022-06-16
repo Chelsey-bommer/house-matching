@@ -19,9 +19,7 @@ router.get('/register', (req, res) => {
 
 /** Register user POST **/
 router.post("/register", async (req, res) => {
-  let { email, password, city } = req.body;
-  const budgetString = req.body.budget
-  const budget = Number(budgetString)
+  let { email, password } = req.body;
     
   /** Check if all fields are filled in **/
   if (!email || !password) {
@@ -36,20 +34,16 @@ router.post("/register", async (req, res) => {
 
     //create preferences and store into user
     const preferences = await Preference.create ({
-        'city': city,
-        'budget': budget
     });
     
-    console.log(preferences);
 
     //create user and store
     const result = await User.create ({
         'email': email,
         'password': password,
-        'preferences': {preferences}
+        preferences: preferences
     });
 
-    console.log(result);
 
     res.redirect('/login');
   } catch (err) {

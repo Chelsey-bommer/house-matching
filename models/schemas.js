@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 
 const preferenceSchema = new Schema({
     city: {
-        type: String
+        type: String,
+        default: null
     },
     budget: {
-        type: Number
+        type: Number,
+        default: null
     }
 }, {
     toJSON: {
@@ -25,7 +27,8 @@ const userSchema = new Schema({
         required: [true, `Vergeet niet uw gewenste wachtwoord in te voeren.`]
     },
     preferences: {
-        type: [preferenceSchema],
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: `Preference`,
         default: null
     },
     refreshToken: String
@@ -54,7 +57,7 @@ const houseSchema = new Schema({
     }
 });
 
-const Preference = mongoose.model(`preference`, preferenceSchema);
+const Preference = mongoose.model(`Preference`, preferenceSchema);
 const User = mongoose.model(`User`, userSchema);
 const House = mongoose.model(`House`, houseSchema);
 
