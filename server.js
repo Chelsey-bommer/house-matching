@@ -10,6 +10,7 @@ const { ObjectId } = require('mongodb')
 
 let db = null
 
+
 const mongoose = require('mongoose')
 
 const userRouter = require('./routes/users');
@@ -23,6 +24,10 @@ app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/', userRouter);
+
+var alertHouses =  require('alert')
+const alert = require('alert')
+
 
 /* Connect met database */
 async function connectDB() {
@@ -90,12 +95,18 @@ app.post('/resultaten', async (req, res) => {
   houses = houses.replace(/[',']/g, ', ')
 
   if (dbHouses == null) {
+    alert('Dit huis bestaat niet, probeer andere voorkeuren')
+    alertHouses
   
-    res.render('pages/filter', {
-      
+     /** render pagina **/
+     res.render('pages/filter', {
+      stad: req.body.stad || req.body.textfield1,
+      budget: req.body.budget,
+      houses
     })
 
   }
+
   else {
     /** Haal huizen op uit db**/
     const dbHouses = await db
@@ -177,6 +188,8 @@ app.post('/updateresultaten', async (req, res) => {
 
  if (dbHouses == null) {
   /* Wanneer het huis niet bestaat */
+  const noHouses = 'Dit huis bestaat niet'
+
   const current = await db
     .collection('user')
     .findOne({}, { projection: { _id: 0 } })
