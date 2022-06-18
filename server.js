@@ -15,6 +15,7 @@ const mongoose = require('mongoose')
 
 const userRouter = require('./routes/users');
 const homeRouter = require('./routes/home')
+const filterRouter = require('./routes/filter')
 
 /** Middleware **/
 app.use('/static', express.static('./static'))
@@ -65,9 +66,7 @@ app.use(homeRouter)
 
 
 /** Filter route **/
-app.get('/filter', (req, res) => {
-  res.render('pages/filter')
-})
+app.use(filterRouter)
 
 
 /*** Filter route POST **/
