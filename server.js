@@ -14,6 +14,7 @@ let db = null
 const mongoose = require('mongoose')
 
 const userRouter = require('./routes/users');
+const homeRouter = require('./routes/home')
 
 /** Middleware **/
 app.use('/static', express.static('./static'))
@@ -23,9 +24,10 @@ app.use('/js', express.static('./static/js'))
 app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
 app.use('/', userRouter);
 
-var alertHouses = require('alert')
+const alertHouses = require('alert')
 const alert = require('alert')
 
 
@@ -59,11 +61,8 @@ async function connectDB() {
 
 
 /** ROUTES **/
+app.use(homeRouter)
 
-/** Home route **/
-app.get('/', (req, res) => {
-  res.render('pages/index')
-})
 
 /** Filter route **/
 app.get('/filter', (req, res) => {
