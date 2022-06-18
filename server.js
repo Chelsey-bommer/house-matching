@@ -25,7 +25,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/', userRouter);
 
-var alertHouses =  require('alert')
+var alertHouses = require('alert')
 const alert = require('alert')
 
 
@@ -94,19 +94,18 @@ app.post('/resultaten', async (req, res) => {
   houses = houses.replace(/[':']/g, ': ')
   houses = houses.replace(/[',']/g, ', ')
 
+
   if (dbHouses == null) {
     alert('Dit huis bestaat niet, probeer andere voorkeuren')
     alertHouses
-  
-     /** render pagina **/
-     res.render('pages/filter', {
+
+    /** render pagina **/
+    res.render('pages/filter', {
       stad: req.body.stad || req.body.textfield1,
       budget: req.body.budget,
       houses
     })
-
   }
-
   else {
     /** Haal huizen op uit db**/
     const dbHouses = await db
@@ -177,54 +176,60 @@ app.post('/updateresultaten', async (req, res) => {
   /** Update user data in db  **/
   db.collection('user').updateMany({}, { $set: { stad, budget } })
 
-   /** Haal huizen op uit db**/
-   const dbHouses = await db
-   .collection('houses')
-   .findOne(
-     { $and: [{ stad }, { prijs: { $lte: budget } }] },
-     { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
-   )
+  /** Haal huizen op uit db**/
+  const dbHouses = await db
+    .collection('houses')
+    .findOne(
+      { $and: [{ stad }, { prijs: { $lte: budget } }] },
+      { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
+    )
 
+  try {
+    if (dbHouses != null) {
+      /** Haal huizen op uit db**/
+      const dbHouses = await db
+        .collection('houses')
+        .findOne(
+          { $and: [{ stad }, { prijs: { $lte: budget } }] },
+          { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
+        )
+      let houses = JSON.stringify(dbHouses)
+      houses = houses.replace(/[{}]|[""]/g, '')
+      houses = houses.replace(/[':']/g, ': ')
+      houses = houses.replace(/[',']/g, ', ')
 
- if (dbHouses == null) {
-  /* Wanneer het huis niet bestaat */
-  const noHouses = 'Dit huis bestaat niet'
+      /** render pagina **/
+      res.render('pages/results', {
+        stad: req.body.stad || req.body.textfield1,
+        budget: req.body.budget,
+        houses
+      })
+    }
 
-  const current = await db
-    .collection('user')
-    .findOne({}, { projection: { _id: 0 } })
-  let housesCurrent = JSON.stringify(current)
-  housesCurrent = housesCurrent.replace(/[""]|[{}]/g, '')
-  housesCurrent = housesCurrent.replace(/[':']/g, ': ')
-  housesCurrent = housesCurrent.replace(/[',']/g, ', ')
+    else {
+      /* Wanneer het huis niet bestaat */
+      alert('Dit huis bestaat niet, probeer andere voorkeuren')
+      alertHouses
 
-   res.render('pages/update', {
-     housesCurrent,
-     current
-   })
+      const current = await db
+        .collection('user')
+        .findOne({}, { projection: { _id: 0 } })
+      let housesCurrent = JSON.stringify(current)
+      housesCurrent = housesCurrent.replace(/[""]|[{}]/g, '')
+      housesCurrent = housesCurrent.replace(/[':']/g, ': ')
+      housesCurrent = housesCurrent.replace(/[',']/g, ', ')
 
- }
- else {
-   /** Haal huizen op uit db**/
-   const dbHouses = await db
-     .collection('houses')
-     .findOne(
-       { $and: [{ stad }, { prijs: { $lte: budget } }] },
-       { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
-     )
-   let houses = JSON.stringify(dbHouses)
-   houses = houses.replace(/[{}]|[""]/g, '')
-   houses = houses.replace(/[':']/g, ': ')
-   houses = houses.replace(/[',']/g, ', ')
+      res.render('pages/update', {
+        housesCurrent,
+        current
+      })
+    }}
 
-   /** render pagina **/
-   res.render('pages/results', {
-     stad: req.body.stad || req.body.textfield1,
-     budget: req.body.budget,
-     houses
-   })
- }
-})
+    catch {
+      console.log('Voer de goede waarden in')
+    }
+  })
+
 
 /* 404 route */
 app.use(function (req, res) {
