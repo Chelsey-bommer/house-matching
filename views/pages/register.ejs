@@ -14,11 +14,19 @@
 
   <%- include('../partials/header') %>
 
+  <aside>
+    <img src="/img/before1.png" alt="">
+  </aside>
+
     <main id="main3">
-
-      <h2> Registreer</h2>
-      <%- include('../partials/register-form') %>   
-
+      <h2>Registreer</h2>
+      <form action="/register" method="post">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" />
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" />
+        <button type="submit">Register</button>
+      </form>
     </main>
 
     <%- include('../partials/footer') %>
@@ -27,4 +35,5 @@
       <script src="/static/js/script.js"></script>
 
 </body>
+
 </html>
