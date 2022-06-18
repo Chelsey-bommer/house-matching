@@ -1,14 +1,3 @@
-:root {
-  /* colors */
-  --base_clr: #ffffff;
-  --primary_clr: #f45b03;
-  --primary_clr--hover: #c94a00;
-  --third_clr: #ffefe6;
-  --third_clr--hover: #f3e0d6;
-  /* specifics */
-  --select_padding: 12px;
-}
-
 html {
   font-family: sans-serif;
 }
@@ -65,14 +54,14 @@ section {
 }
 section > * {
   width: 100%;
-  max-width: 480px;
+  max-width: 30rem;
 }
 
 #index section > * {
-  max-width: 600px;
+  max-width: 37.5rem;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 2rem;
 }
 #index section > * p {
   font-size: 32px;
@@ -92,9 +81,12 @@ form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 1.5rem;
 }
 form select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   border-radius: 0.5rem;
   border: none;
   border: 0.1rem solid hsla(0deg, 0%, 0%, 0.15);
@@ -104,7 +96,7 @@ form select {
   outline: none;
 }
 form legend {
-  font-size: 150%;
+  font-size: 200%;
 }
 form div {
   position: relative;
@@ -112,14 +104,7 @@ form div {
   flex-direction: column;
 }
 form label {
-  margin-bottom: 8px;
-}
-form select {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  padding: 12px;
-  overflow: visible;
+  margin-bottom: 0.5rem;
 }
 form *::-moz-placeholder {
   opacity: 0.4;
@@ -131,120 +116,92 @@ form *::placeholder {
   opacity: 0.4;
 }
 
-input:not(input[type=range]) {
-  border-radius: 0.5rem;
-  border: none;
+input:not(input[type=range], input[type=submit], input[type=button]) {
   border: 0.1rem solid hsla(0deg, 0%, 0%, 0.15);
+  border-radius: 0.5rem;
   height: 3.5rem;
   padding: 12px;
-  border: 0.1rem solid hsl(0deg, 0%, 0%);
-  outline: none;
+  will-change: border;
+  transition: 0.3s;
 }
-
-input[type=button] {
-  border-radius: 0.5rem;
-  border: none;
-  border: 0.1rem solid hsla(0deg, 0%, 0%, 0.15);
-  height: 3.5rem;
-  padding: 12px;
-}
-input[type=button]:focus {
+input:not(input[type=range]):hover {
   border: 0.1rem solid hsl(0deg, 0%, 0%);
-  outline: none;
+}
+input:not(input[type=range]):focus {
+  border: 0.1rem solid hsl(0deg, 0%, 0%);
+  outline-color: black;
 }
 
 label[for=stad]::after {
-  content: "ol";
+  content: url("data:image/svg+xml,%3Csvg width='14' height='9' viewBox='0 0 14 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L7 7.5L13 1.5' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
   position: absolute;
   right: 12px;
-  bottom: 20px;
+  bottom: 1.25rem;
 }
 
+#voorkeuren div:last-of-type {
+  display: flex;
+  flex-direction: column;
+}
 #voorkeuren div:last-of-type div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 #voorkeuren div:last-of-type div:last-of-type {
-  font-size: 12px;
   opacity: 0.4;
+  font-size: 12px;
 }
 
 #login div:last-of-type {
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
-button {
-  text-decoration: none;
-  border: none;
-  font-weight: 400;
-  font-size: 90%;
-  display: grid;
-  align-items: center;
-  text-align: center;
-  border-radius: 8px;
-  height: 56px;
-  cursor: pointer;
-  background-color: #f45b03;
-  color: #ffffff;
-}
-
-input[type=button] {
-  text-decoration: none;
-  border: none;
-  font-weight: 400;
-  font-size: 90%;
-  display: grid;
-  align-items: center;
-  text-align: center;
-  border-radius: 8px;
-  height: 56px;
-  cursor: pointer;
-  background-color: #f45b03;
-  color: #ffffff;
-}
-
-input[type=submit] {
-  text-decoration: none;
-  border: none;
-  font-weight: 400;
-  font-size: 90%;
-  display: grid;
-  align-items: center;
-  text-align: center;
-  border-radius: 8px;
-  height: 56px;
-  cursor: pointer;
-  background-color: #f45b03;
-  color: #ffffff;
-}
-
+button,
+input[type=submit],
+input[type=button],
 .link-button {
-  text-decoration: none;
-  border: none;
+  will-change: auto;
+  all: initial;
+  cursor: pointer;
+  font-family: sans-serif;
   font-weight: 400;
   font-size: 90%;
   display: grid;
   align-items: center;
   text-align: center;
-  border-radius: 8px;
-  height: 56px;
-  cursor: pointer;
-  background-color: #f45b03;
+  border-radius: 0.5rem;
+  background-color: hsl(22deg, 98%, 50%);
   color: #ffffff;
+  height: 3.5rem;
+  transition: 0.3s;
+  border: 0.075rem solid transparent;
+}
+button *:not(.secondary),
+input[type=submit] *:not(.secondary),
+input[type=button] *:not(.secondary),
+.link-button *:not(.secondary) {
+  background-color: #ffefe6;
+  color: hsl(22deg, 98%, 50%);
+}
+button:hover:not(.secondary),
+input[type=submit]:hover:not(.secondary),
+input[type=button]:hover:not(.secondary),
+.link-button:hover:not(.secondary) {
+  background-color: hsl(22deg, 100%, 45%);
 }
 
 .secondary {
   background-color: #ffefe6;
-  color: #f45b03;
+  color: hsl(22deg, 98%, 50%);
 }
 .secondary:hover {
-  background-color: #f3e0d6;
+  border: 0.075rem solid hsl(22deg, 98%, 50%);
 }
 
 input[type=range] {
-  height: 56px;
+  height: 3.5rem;
   -webkit-appearance: none;
   margin: 0;
   width: 100%;
@@ -254,13 +211,13 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 4px;
   cursor: pointer;
   box-shadow: 0px 0px 0px #000000;
-  background: #f45b03;
+  background: hsl(22deg, 98%, 50%);
   border-radius: 50px;
   border: 0px solid #000000;
 }
 input[type=range]::-webkit-slider-thumb {
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
-  border: 4px solid #f45b03;
+  border: 4px solid hsl(22deg, 98%, 50%);
   height: 24px;
   width: 24px;
   border-radius: 50px;
@@ -270,26 +227,26 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -12px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #f45b03;
+  background: hsl(22deg, 98%, 50%);
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #f45b03;
+  background: hsl(22deg, 98%, 50%);
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: #f45b03;
+  background: hsl(22deg, 98%, 50%);
 }
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 4px;
   cursor: pointer;
   box-shadow: 0px 0px 0px #000000;
-  background: #f45b03;
+  background: hsl(22deg, 98%, 50%);
   border-radius: 50px;
   border: 0px solid #000000;
 }
 input[type=range]::-moz-range-thumb {
   box-shadow: 0px 0px 0px #000000;
-  border: 4px solid #f45b03;
+  border: 4px solid hsl(22deg, 98%, 50%);
   height: 24px;
   width: 24px;
   border-radius: 50px;
@@ -305,13 +262,13 @@ input[type=range]::-ms-track {
   color: transparent;
 }
 input[type=range]::-ms-fill-lower {
-  background: #f45b03;
+  background: hsl(22deg, 98%, 50%);
   border: 0px solid #000000;
   border-radius: 100px;
   box-shadow: 0px 0px 0px #000000;
 }
 input[type=range]::-ms-fill-upper {
-  background: #f45b03;
+  background: hsl(22deg, 98%, 50%);
   border: 0px solid #000000;
   border-radius: 100px;
   box-shadow: 0px 0px 0px #000000;
@@ -319,7 +276,7 @@ input[type=range]::-ms-fill-upper {
 input[type=range]::-ms-thumb {
   margin-top: 1px;
   box-shadow: 0px 0px 0px #000000;
-  border: 4px solid #f45b03;
+  border: 4px solid hsl(22deg, 98%, 50%);
   height: 24px;
   width: 24px;
   border-radius: 50px;
@@ -327,19 +284,19 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 50rem) {
   body {
     display: flex;
     flex-direction: column;
   }
-  body > * {
+  body * {
     width: 100%;
   }
-  body > figure {
+  body figure {
     height: 35vh;
     margin: auto;
   }
-  body figure > img {
+  body figure img {
     max-width: 480px;
     margin: auto;
   }

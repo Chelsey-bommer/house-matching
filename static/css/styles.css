@@ -173,11 +173,6 @@ input[type="submit"],
   color: var(--primary_clr, #f45b03);
 }
 
-.secondary {
-  background-color: #ffefe6;
-  color: var(--primary_clr, #f45b03);
-}
-
 /* Sliders */
 
 input[type="range"] {

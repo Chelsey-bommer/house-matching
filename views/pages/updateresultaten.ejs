@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,27 +14,30 @@
 <body>
 
     <%- include('../partials/header') %>
-   
-   <main method = "/resultaten" class="main2">
-     <h2>De perfecte match voor:</h2>
 
-     <!-- Hier komen de opgehaalde resultaten-->
-     <section>
-        <img src="" alt="">
-        <h3>Huizen in <%= stad %></h3>
-        <h3>Budget: €<%= budget %> </h3>
-       
-        <img src="../../static/img/house1.jpg" alt="Picture of a house">
-        <%- houses %>
-                     
-        <h4>Niet de perfecte match? Probeer het opnieuw:</h4>      
-        <a href="update">Pas voorkeuren aan</a>   
-        
-     </section>
+        <main method="/resultaten" class="main2">
+            <h2>De perfecte match voor:</h2>
 
-    </main>
+            <!-- Hier komen de opgehaalde resultaten-->
+            <section>
+                <img src="" alt="">
+                <h3>Huizen in <%= stad %>
+                </h3>
+                <h3>Budget: €<%= budget %>
+                </h3>
 
-    <%- include('../partials/footer') %>
-   
+                <img src="../../static/img/house1.jpg" alt="Picture of a house">
+                <%- houses %>
+
+                    <h4>Niet de perfecte match? Probeer het opnieuw:</h4>
+                    <a href="update">Pas voorkeuren aan</a>
+
+            </section>
+
+        </main>
+
+        <%- include('../partials/footer') %>
+
 </body>
+
 </html>
