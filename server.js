@@ -16,6 +16,7 @@ const mongoose = require('mongoose')
 const userRouter = require('./routes/users');
 const homeRouter = require('./routes/home')
 const filterRouter = require('./routes/filter')
+const errorRouter = require('./routes/error')
 
 /** Middleware **/
 app.use('/static', express.static('./static'))
@@ -63,7 +64,6 @@ async function connectDB() {
 
 /** ROUTES **/
 app.use(homeRouter)
-
 
 /** Filter route **/
 app.use(filterRouter)
@@ -235,9 +235,7 @@ app.post('/updateresultaten', async (req, res) => {
 
 
 /* 404 route */
-app.use(function (req, res) {
-  res.status(404).render('pages/error')
-})
+app.use(errorRouter)
 
 /* Hier console log je met de variable port van hierboven */
 app.listen(process.env.PORT, () => {
