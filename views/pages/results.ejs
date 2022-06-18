@@ -7,35 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultaten</title>
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/superstyle.css">
 </head>
 
 
 <body>
+    <main method="/resultaten" class="main2">
 
-    <%- include('../partials/header') %>
+        <h2>De perfecte match voor:</h2>
 
-        <main method="/resultaten" class="main2">
+        <!-- Hier komen de opgehaalde resultaten-->
+        <section>
+            <h3>Huizen in <%= stad %>
+            </h3>
+            <h3>Budget: €<%= budget %>
+            </h3>
 
-            <h2>De perfecte match voor:</h2>
+            <img src="../../static/img/house1.jpg" alt="Picture of a house">
+            <%- houses %>
 
-            <!-- Hier komen de opgehaalde resultaten-->
-            <section>
-                <h3>Huizen in <%= stad %>
-                </h3>
-                <h3>Budget: €<%= budget %>
-                </h3>
+                <h4>Niet de perfecte match? Probeer het opnieuw:</h4>
+                <a href="update" class="link-button secondary">Pas voorkeuren aan</a>
+        </section>
 
-                <img src="../../static/img/house1.jpg" alt="Picture of a house">
-                <%- houses %>
+    </main>
 
-                    <h4>Niet de perfecte match? Probeer het opnieuw:</h4>
-                    <a href="update">Pas voorkeuren aan</a>
-            </section>
-
-        </main>
-
-        <%- include('../partials/footer') %>
 
 </body>
 

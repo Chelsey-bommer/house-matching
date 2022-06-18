@@ -52,15 +52,16 @@ section > * {
 }
 
 #index section > * {
-  max-width: 30rem;
+  max-width: 35rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 #index section > * p {
-  font-size: px;
+  font-size: 24px;
   font-weight: 300;
+  line-height: 125%;
 }
 #index section > * div {
   display: flex;
@@ -161,6 +162,7 @@ input[type=button],
   font-weight: 400;
   font-size: 90%;
   display: grid;
+  padding: 0 32px;
   align-items: center;
   text-align: center;
   border-radius: 0.5rem;
