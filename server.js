@@ -94,37 +94,41 @@ app.post('/resultaten', async (req, res) => {
   houses = houses.replace(/[':']/g, ': ')
   houses = houses.replace(/[',']/g, ', ')
 
+  try {
+    if (dbHouses == null) {
+      alert('Dit huis bestaat niet, probeer andere voorkeuren')
+      alertHouses
 
-  if (dbHouses == null) {
-    alert('Dit huis bestaat niet, probeer andere voorkeuren')
-    alertHouses
+      /** render pagina **/
+      res.render('pages/filter', {
+        stad: req.body.stad || req.body.textfield1,
+        budget: req.body.budget,
+        houses
+      })
+    }
+    else {
+      /** Haal huizen op uit db**/
+      const dbHouses = await db
+        .collection('houses')
+        .findOne(
+          { $and: [{ stad }, { prijs: { $lte: budget } }] },
+          { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
+        )
+      let houses = JSON.stringify(dbHouses)
+      houses = houses.replace(/[{}]|[""]/g, '')
+      houses = houses.replace(/[':']/g, ': ')
+      houses = houses.replace(/[',']/g, ', ')
 
-    /** render pagina **/
-    res.render('pages/filter', {
-      stad: req.body.stad || req.body.textfield1,
-      budget: req.body.budget,
-      houses
-    })
+      /** render pagina **/
+      res.render('pages/results', {
+        stad: req.body.stad || req.body.textfield1,
+        budget: req.body.budget,
+        houses
+      })
+    }
   }
-  else {
-    /** Haal huizen op uit db**/
-    const dbHouses = await db
-      .collection('houses')
-      .findOne(
-        { $and: [{ stad }, { prijs: { $lte: budget } }] },
-        { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
-      )
-    let houses = JSON.stringify(dbHouses)
-    houses = houses.replace(/[{}]|[""]/g, '')
-    houses = houses.replace(/[':']/g, ': ')
-    houses = houses.replace(/[',']/g, ', ')
-
-    /** render pagina **/
-    res.render('pages/results', {
-      stad: req.body.stad || req.body.textfield1,
-      budget: req.body.budget,
-      houses
-    })
+  catch {
+    console.log('Voer de goede waarden in')
   }
 })
 
@@ -223,12 +227,13 @@ app.post('/updateresultaten', async (req, res) => {
         housesCurrent,
         current
       })
-    }}
-
-    catch {
-      console.log('Voer de goede waarden in')
     }
-  })
+  }
+
+  catch {
+    console.log('Voer de goede waarden in')
+  }
+})
 
 
 /* 404 route */
