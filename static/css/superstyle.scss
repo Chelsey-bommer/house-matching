@@ -7,6 +7,8 @@ $third_clr--hover: #f3e0d6;
 $radius_sm: 0.25rem;
 $radius_md: 0.5rem;
 $radius_lr: 1rem;
+$heading1-fs: 32px;
+$heading1-lh: 100%;
 
 @mixin input-default {
   border: 0.1rem solid hsla(0, 0%, 0%, 0.15);
@@ -20,26 +22,19 @@ $radius_lr: 1rem;
   justify-content: space-between;
 }
 
-html {
-  font-family: sans-serif;
+@font-face {
+  font-family: "inter";
+  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 }
 
-* {
+html {
+  font-family: inter, Helvetica, Arial, sans-serif;
+}
+
+:is(*, *::before, *::after) {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-  &::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  &::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
 }
 
 body {
@@ -82,13 +77,14 @@ section {
 }
 
 #index section > * {
-  max-width: 37.5rem;
+  max-width: 30rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
   & p {
-    font-size: 32px;
+    font-size: px;
     font-weight: 300;
   }
 
@@ -122,7 +118,7 @@ form {
   }
 
   legend {
-    font-size: 200%;
+    font-size: $heading1-fs;
   }
 
   div {
@@ -150,15 +146,10 @@ input {
     padding: $select_padding;
     will-change: border;
     transition: 0.3s;
-  }
-
-  &:not(input[type="range"]):hover {
-    @include input-hover();
-  }
-
-  &:not(input[type="range"]):focus {
-    @include input-hover();
-    outline-color: black;
+    &:hover,
+    :focus {
+      @include input-hover();
+    }
   }
 }
 
@@ -341,8 +332,11 @@ input[type="range"] {
     }
 
     figure {
-      height: 35vh;
+      height: 40vh;
+      min-height: 14rem;
       margin: auto;
+      background-image: linear-gradient(to bottom, white 0% 30%, transparent 100%);
+      position: static;
     }
 
     figure {
@@ -355,5 +349,10 @@ input[type="range"] {
 }
 
 @media (prefers-color-scheme: dark) {
-  $base_clr: #212121;
+  $base_clr: #ffffff;
+  $primary_clr: hsl(22, 98%, 50%);
+  $primary_clr--hover: hsl(22, 100%, 45%);
+  $select_padding: 12px;
+  $third_clr: #ffefe6;
+  $third_clr--hover: #f3e0d6;
 }

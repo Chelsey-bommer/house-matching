@@ -1,18 +1,12 @@
+@font-face {
+  font-family: "inter";
+  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+}
 html {
-  font-family: sans-serif;
+  font-family: inter, Helvetica, Arial, sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-*::after {
+:is(*, *::before, *::after) {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -58,13 +52,14 @@ section > * {
 }
 
 #index section > * {
-  max-width: 37.5rem;
+  max-width: 30rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 #index section > * p {
-  font-size: 32px;
+  font-size: px;
   font-weight: 300;
 }
 #index section > * div {
@@ -96,7 +91,7 @@ form select {
   outline: none;
 }
 form legend {
-  font-size: 200%;
+  font-size: 32px;
 }
 form div {
   position: relative;
@@ -124,12 +119,9 @@ input:not(input[type=range], input[type=submit], input[type=button]) {
   will-change: border;
   transition: 0.3s;
 }
-input:not(input[type=range]):hover {
+input:not(input[type=range], input[type=submit], input[type=button]):hover,
+input:not(input[type=range], input[type=submit], input[type=button]) :focus {
   border: 0.1rem solid hsl(0deg, 0%, 0%);
-}
-input:not(input[type=range]):focus {
-  border: 0.1rem solid hsl(0deg, 0%, 0%);
-  outline-color: black;
 }
 
 label[for=stad]::after {
@@ -293,8 +285,11 @@ input[type=range]::-ms-thumb {
     width: 100%;
   }
   body figure {
-    height: 35vh;
+    height: 40vh;
+    min-height: 14rem;
     margin: auto;
+    background-image: linear-gradient(to bottom, white 0% 30%, transparent 100%);
+    position: static;
   }
   body figure img {
     max-width: 480px;
