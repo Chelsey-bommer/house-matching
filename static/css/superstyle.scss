@@ -69,6 +69,8 @@ img {
 section {
   display: grid;
   place-items: center;
+  align-content: center;
+  gap: 1rem;
   padding: 1rem 1rem 1rem 1rem;
   background-color: $base_clr;
 
@@ -347,6 +349,24 @@ input[type="range"] {
       img {
         max-width: 480px;
         margin: auto;
+      }
+    }
+  }
+}
+
+#error {
+  section {
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      h1 {
+        font-size: 3rem;
+        font-weight: 300;
+        line-height: 120%;
+      }
+      div {
+        gap: 8px;
       }
     }
   }

@@ -43,6 +43,8 @@ img {
 section {
   display: grid;
   place-items: center;
+  align-content: center;
+  gap: 1rem;
   padding: 1rem 1rem 1rem 1rem;
   background-color: #ffffff;
 }
@@ -297,4 +299,17 @@ input[type=range]::-ms-thumb {
     max-width: 480px;
     margin: auto;
   }
+}
+#error section div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+#error section div h1 {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 120%;
+}
+#error section div div {
+  gap: 8px;
 }/*# sourceMappingURL=superstyle.css.map */
