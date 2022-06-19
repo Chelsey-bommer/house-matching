@@ -3,7 +3,7 @@ const mongoose = require(`mongoose`);
 const Schema = mongoose.Schema;
 
 const preferenceSchema = new Schema({
-    city: {
+    stad: {
         type: String,
         default: null
     },
@@ -11,6 +11,8 @@ const preferenceSchema = new Schema({
         type: Number,
         default: null
     }
+},{
+    collection: 'preferences'
 }, {
     toJSON: {
         virtuals: true
@@ -22,16 +24,18 @@ const userSchema = new Schema({
         type: String,
         required: [true, `Vul asltublieft een email in.`]
     },
-    password: {
+    wachtwoord: {
         type: String,
         required: [true, `Vergeet niet uw gewenste wachtwoord in te voeren.`]
     },
-    preferences: {
+    voorkeuren: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: `Preference`,
         default: null
     },
     refreshToken: String
+},{
+    collection: 'users'
 }, {
     toJSON: {
         virtuals: true
@@ -39,18 +43,24 @@ const userSchema = new Schema({
 });
 
 const houseSchema = new Schema({
-    price: {
+    prijs: {
         type: Number,
         required: [true, `Vul asltublieft de prijs in.`]
     },
-    adress: {
+    naam: {
         type: String,
         required: [true, `Vul asltublieft het adres in.`]
     },
-    city: {
+    stad: {
         type: String,
         required: [true, `Vul asltublieft de stadsnaam in.`]
+    },
+    favorited: {
+        type: Boolean,
+        default: false
     }
+},{
+    collection: 'houses'
 }, {
     toJSON: {
         virtuals: true

@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
@@ -7,7 +6,6 @@ const CRUD = require(`../controllers/crud-controller`);
 
 const { Preference } = require('../models/schemas');
 const { User } = require('../models/schemas');
-const { House } = require('../models/schemas');
 
 /** Render pages **/
 router.get('/login', (req, res) => {
