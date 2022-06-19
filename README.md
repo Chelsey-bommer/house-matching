@@ -48,14 +48,11 @@ Packages that aren't necessary, but nice to use for this repo:
 
 ## Makers
 
-The maker of this app is Chelsey Bommer. A second year student Communication & Multimedia Design at the Hogeschool van Amsterdam.
+The makers of this app are Michel Wassing, Zaid El Boustani and  Chelsey Bommer. They are second year students at the Amsterdam University of Applied Sciences.
 
 ## Contact
 
-Chelsey Bommer can be contacted on:
-
-LinkedIn: Chelsey Bommer  
-E-mail: chelsey.bommer@hva.nl
+The makers can be contacted on:
 
 ## License
 
