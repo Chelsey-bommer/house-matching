@@ -49,7 +49,7 @@ body {
 }
 
 figure {
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem;
   position: sticky;
   top: 0;
   left: 0;
@@ -71,13 +71,18 @@ section {
   place-items: center;
   align-content: center;
   gap: 1rem;
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem;
   background-color: $base_clr;
 
   & > * {
     width: 100%;
     max-width: 30rem;
   }
+}
+
+#update > section {
+  color: red;
+  font-size: 400%;
 }
 
 #index section > * {
@@ -89,7 +94,7 @@ section {
 
   & p {
     font-size: 24px;
-    font-weight: 300; 
+    font-weight: 300;
     line-height: $heading1-lh;
   }
 
@@ -171,10 +176,8 @@ label[for="stad"] {
   div:last-of-type {
     display: flex;
     flex-direction: column;
-
     & div {
       @include space-between();
-
       &:last-of-type {
         opacity: 0.4;
         font-size: 12px;
@@ -203,7 +206,6 @@ input[type="button"],
   font-weight: 400;
   font-size: 90%;
   display: grid;
-  padding: 0 32px;
   align-items: center;
   text-align: center;
   border-radius: $radius_md;
@@ -328,32 +330,6 @@ input[type="range"] {
   }
 }
 
-@media (max-width: 50rem) {
-  body {
-    display: flex;
-    flex-direction: column;
-
-    * {
-      width: 100%;
-    }
-
-    figure {
-      height: 40vh;
-      min-height: 14rem;
-      margin: auto;
-      background-image: linear-gradient(to bottom, white 0% 30%, transparent 100%);
-      position: static;
-    }
-
-    figure {
-      img {
-        max-width: 480px;
-        margin: auto;
-      }
-    }
-  }
-}
-
 #error {
   section {
     div {
@@ -368,6 +344,39 @@ input[type="range"] {
       div {
         gap: 8px;
       }
+    }
+  }
+}
+
+@media (max-width: 50rem) {
+  body {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+    }
+
+    figure {
+      height: 40vh;
+      min-height: 14rem;
+      margin: auto;
+      background-image: linear-gradient(
+        to bottom,
+        white 0% 30%,
+        transparent 100%
+      );
+      position: static;
+      img {
+        max-width: 480px;
+        margin: auto;
+      }
+    }
+  }
+
+  #index {
+    figure img {
+      max-width: 35rem;
     }
   }
 }
