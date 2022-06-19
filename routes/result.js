@@ -4,4 +4,5 @@ const results = require('../controllers/result-controller')
 
 router.post('/resultaten', results) 
 
+
 module.exports = router;

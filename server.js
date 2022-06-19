@@ -6,6 +6,8 @@ const { MongoClient, ServerApiVersion } = require('mongodb')
 const { ObjectId } = require('mongodb')
 const connectDB = require('./config/db')
 const mongoose = require('mongoose')
+const alertHouses = require('alert')
+const alert = require('alert')
 
 require('dotenv').config();
 connectDB().then(console.log(`Connectie met database succesvol op`))
@@ -31,8 +33,6 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/', userRouter);
 
-const alertHouses = require('alert')
-const alert = require('alert')
 
 /** ROUTES **/
 app.use(homeRouter)

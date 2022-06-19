@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const database = require('../config/db')
+const alertHouses = require('alert')
+const alert = require('alert')
 
-/** Filter route **/
-router.get('/resultaten', (req, res) => {
-    res.render('pages/results')
-})
 
 /*** Filter route POST **/
-router.post('/resultaten', async (req, res) => {
+ router.post('/resultaten', async (req, res) => {
 
     /** Maak variabelen  **/
     const stad = req.body.stad || req.body.textfield1
@@ -31,18 +29,7 @@ router.post('/resultaten', async (req, res) => {
     houses = houses.replace(/[',']/g, ', ')
 
     try {
-        if (dbHouses == null) {
-            alert('Dit huis bestaat niet, probeer andere voorkeuren')
-            alertHouses
-
-            /** render pagina **/
-            res.render('pages/filter', {
-                stad: req.body.stad || req.body.textfield1,
-                budget: req.body.budget,
-                houses
-            })
-        }
-        else {
+        if (dbHouses != null) {
             /** Haal huizen op uit db**/
             const dbHouses = await db
                 .collection('houses')
@@ -61,11 +48,23 @@ router.post('/resultaten', async (req, res) => {
                 budget: req.body.budget,
                 houses
             })
+          
+        }
+        else {
+            alert('Dit huis bestaat niet, probeer andere voorkeuren')
+            alertHouses
+
+            /** render pagina **/
+            res.render('pages/filter', {
+                stad: req.body.stad || req.body.textfield1,
+                budget: req.body.budget,
+                houses
+            })
         }
     }
     catch {
-        console.log('Voer de goede waarden in')
-    }
+    
+    console.log("try something else")}
 })
 
-module.exports = router, database
+module.exports = router
