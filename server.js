@@ -5,17 +5,18 @@ const fetch = require('node-fetch')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const { ObjectId } = require('mongodb')
 const connectDB = require('./config/db')
+const mongoose = require('mongoose')
 
 require('dotenv').config();
 connectDB().then(console.log(`Connectie met database succesvol op`))
 
 
-const mongoose = require('mongoose')
 
-const userRouter = require('./routes/users');
+
+const userRouter = require('./routes/users')
 const homeRouter = require('./routes/home')
 const filterRouter = require('./routes/filter')
-//const resultsRouter = require('./routes/results')
+const resultsRouter = require('./routes/result')
 const errorRouter = require('./routes/error')
 
 /** Middleware **/
@@ -39,69 +40,8 @@ app.use(homeRouter)
 /** Filter route **/
 app.use(filterRouter)
 
-
-
 /*** Filter route POST **/
-app.post('/resultaten', async (req, res) => {
-
-  /** Maak variabelen  **/
-  const stad = req.body.stad || req.body.textfield1
-  const budgetString = req.body.budget
-  const budget = Number(budgetString)
-
-  /** Stuur userdata naar db  **/
-  await db.collection('user').insertOne({ stad, budget }, {})
-
-  /** Haal huizen op uit db**/
-  const dbHouses = await db
-      .collection('houses')
-      .findOne(
-          { $and: [{ stad }, { prijs: { $lte: budget } }] },
-          { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
-      )
-  let houses = JSON.stringify(dbHouses)
-  houses = houses.replace(/[{}]|[""]/g, '')
-  houses = houses.replace(/[':']/g, ': ')
-  houses = houses.replace(/[',']/g, ', ')
-
-  try {
-      if (dbHouses == null) {
-          alert('Dit huis bestaat niet, probeer andere voorkeuren')
-          alertHouses
-
-          /** render pagina **/
-          res.render('pages/filter', {
-              stad: req.body.stad || req.body.textfield1,
-              budget: req.body.budget,
-              houses
-          })
-      }
-      else {
-          /** Haal huizen op uit db**/
-          const dbHouses = await db
-              .collection('houses')
-              .findOne(
-                  { $and: [{ stad }, { prijs: { $lte: budget } }] },
-                  { projection: { _id: 0, naam: 1, prijs: 1, stad: 1 } }
-              )
-          let houses = JSON.stringify(dbHouses)
-          houses = houses.replace(/[{}]|[""]/g, '')
-          houses = houses.replace(/[':']/g, ': ')
-          houses = houses.replace(/[',']/g, ', ')
-
-          /** render pagina **/
-          res.render('pages/results', {
-              stad: req.body.stad || req.body.textfield1,
-              budget: req.body.budget,
-              houses
-          })
-      }
-  }
-  catch {
-      console.log('Voer de goede waarden in')
-  }
-})
-
+app.use(resultsRouter)
 
 /**  Update route GET **/
 app.get('/update', async (req, res) => {

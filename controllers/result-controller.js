@@ -1,48 +1,11 @@
-/** Variabelen **/
-require('dotenv').config()
-const express = require('express')
-const app = express()
-const { MongoClient, ServerApiVersion } = require('mongodb')
-const { ObjectId } = require('mongodb')
-
-const mongoose = require('mongoose')
-
+const express = require('express');
 const router = express.Router();
-let db
+const database = require('../config/db')
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-const alertHouses = require('alert')
-const alert = require('alert')
-
-/* Connect met database */
-async function connectDB() {
-    const uri =
-        'mongodb+srv://' +
-        process.env.DB_USERNAME +
-        ':' +
-        process.env.DB_PASS +
-        '@' +
-        process.env.DB_HOST +
-        '/' +
-        process.env.DB_NAME +
-        '?retryWrites=true&w=majority'
-
-    const client = new MongoClient(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        serverApi: ServerApiVersion.v1
-    })
-
-    try {
-        await client.connect()
-        mongoose.connect(uri);
-        db = client.db(process.env.DB_NAME)
-    } catch (error) {
-        throw error
-    }
-}
-
+/** Filter route **/
+router.get('/resultaten', (req, res) => {
+    res.render('pages/results')
+})
 
 /*** Filter route POST **/
 router.post('/resultaten', async (req, res) => {
@@ -105,6 +68,4 @@ router.post('/resultaten', async (req, res) => {
     }
 })
 
-
-
-module.exports = router;
+module.exports = router, database
