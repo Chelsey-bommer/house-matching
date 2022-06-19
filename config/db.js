@@ -1,8 +1,5 @@
-require('dotenv').config()
 const { MongoClient, ServerApiVersion } = require('mongodb')
-const { ObjectId } = require('mongodb')
 const mongoose = require('mongoose')
-
 
 /* Connect met database */
 async function connectDB() {
@@ -24,7 +21,7 @@ async function connectDB() {
     })
 
     try {
-        await client.connect()
+        await client.connect();
         mongoose.connect(uri);
         db = client.db(process.env.DB_NAME)
     } catch (error) {

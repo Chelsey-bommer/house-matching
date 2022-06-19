@@ -1,14 +1,13 @@
-
-
 /** Variabelen **/
-require('dotenv').config()
 const express = require('express')
 const app = express()
 const fetch = require('node-fetch')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const { ObjectId } = require('mongodb')
+const connectDB = require('./config/db')
 
-let db = null
+require('dotenv').config();
+connectDB().then(console.log(`Connectie met database succesvol op`))
 
 
 const mongoose = require('mongoose')
@@ -18,7 +17,6 @@ const homeRouter = require('./routes/home')
 const filterRouter = require('./routes/filter')
 //const resultsRouter = require('./routes/results')
 const errorRouter = require('./routes/error')
-const connectDB = require('./config/db')
 
 /** Middleware **/
 app.use('/static', express.static('./static'))
@@ -26,6 +24,7 @@ app.use('/css', express.static('./static/css'))
 app.use('/img', express.static('./static/img'))
 app.use('/js', express.static('./static/js'))
 app.set('view engine', 'ejs')
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -33,10 +32,6 @@ app.use('/', userRouter);
 
 const alertHouses = require('alert')
 const alert = require('alert')
-
-
-connectDB().then(console.log('Connectie met database succesvol'))
-
 
 /** ROUTES **/
 app.use(homeRouter)
