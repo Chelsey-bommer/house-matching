@@ -116,6 +116,7 @@ form *::placeholder {
 
 input:not(input[type=range], input[type=submit], input[type=button]) {
   border: 0.1rem solid hsla(0deg, 0%, 0%, 0.15);
+  border-width: 0.1rem;
   border-radius: 0.5rem;
   height: 3.5rem;
   padding: 12px;
@@ -125,6 +126,21 @@ input:not(input[type=range], input[type=submit], input[type=button]) {
 input:not(input[type=range], input[type=submit], input[type=button]):hover,
 input:not(input[type=range], input[type=submit], input[type=button]) :focus {
   border: 0.1rem solid hsl(0deg, 0%, 0%);
+}
+input:not(input[type=range], input[type=submit], input[type=button]):hover::-moz-placeholder, input:not(input[type=range], input[type=submit], input[type=button]) :focus::-moz-placeholder {
+  opacity: 0.1;
+  -moz-transition: 1s;
+  transition: 1s;
+}
+input:not(input[type=range], input[type=submit], input[type=button]):hover:-ms-input-placeholder, input:not(input[type=range], input[type=submit], input[type=button]) :focus:-ms-input-placeholder {
+  opacity: 0.1;
+  -ms-transition: 1s;
+  transition: 1s;
+}
+input:not(input[type=range], input[type=submit], input[type=button]):hover::placeholder,
+input:not(input[type=range], input[type=submit], input[type=button]) :focus::placeholder {
+  opacity: 0.1;
+  transition: 1s;
 }
 
 label[for=stad]::after {
@@ -160,7 +176,7 @@ input[type=button],
   will-change: auto;
   all: initial;
   cursor: pointer;
-  font-family: sans-serif;
+  font-family: inter, Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 90%;
   display: grid;
