@@ -1,9 +1,8 @@
 const express = require('express')
 const router = express.Router();
+const filter = require('../controllers/filter-controller')
 
-/** Filter route **/
-router.get('/filter', (req, res) => {
-    res.render('pages/filter')
-})
+/** Home route **/
+router.get('/filter', filter) 
 
 module.exports = router;
