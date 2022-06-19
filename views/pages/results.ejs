@@ -23,18 +23,14 @@
         <h3>Huizen in <%= stad %></h3>
         <h3>Budget: €<%= budget %> </h3> 
        
-
-        
-
         <img src="../../static/img/house1.jpg" alt="Picture of a house">
-        <p><%= housesName %></p>
-      
-        <p><%= housesStad %></p>
+        <%- houses %>
+        
                 
         <h4>Niet de perfecte match? Probeer het opnieuw:</h4>      
         <a href="update">Pas voorkeuren aan</a>   
      </section>
-
+     
     </main>
 
     <%- include('../partials/footer') %>
