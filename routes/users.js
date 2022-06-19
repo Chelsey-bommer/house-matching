@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
-const router = express.Router();
+const router = express.Router()
+const bcrypt = require('bcrypt')
 
 const CRUD = require(`../controllers/crud-controller`);
 
@@ -30,7 +31,7 @@ router.post("/register", async (req, res) => {
   if (duplicate) return res.status(409); //Conflict
 
   try {
-    // const hasedPwd = await bcrypt.hash(password, 10); use this const on the create line after bcrypt is installed
+     const hasedPwd = await bcrypt.hash(password, 10);
 
     //create preferences and store into user
     const preferences = await Preference.create ({
@@ -40,7 +41,7 @@ router.post("/register", async (req, res) => {
     //create user and store
     const result = await User.create ({
         'email': email,
-        'password': password,
+        'password': hasedPwd,
         preferences: preferences
     });
 
