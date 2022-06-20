@@ -20,7 +20,7 @@ html {
 body {
   display: flex;
   flex-direction: row;
-
+  
   > * {
     width: 50%;
   }
@@ -298,13 +298,4 @@ input[type="button"],
   to {
     transform: translateY(50%);
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  $base_clr: #ffffff;
-  $primary_clr: hsl(22, 98%, 50%);
-  $primary_clr--hover: hsl(22, 100%, 45%);
-  $select_padding: 12px;
-  $third_clr: #ffefe6;
-  $third_clr--hover: #f3e0d6;
 }

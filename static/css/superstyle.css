@@ -16,6 +16,7 @@ body {
   display: flex;
   flex-direction: row;
 }
+
 body > * {
   width: 50%;
 }
@@ -46,7 +47,6 @@ section {
   align-content: center;
   gap: 1rem;
   padding: 1rem;
-  background-color: #ffffff;
 }
 section > * {
   width: 100%;
@@ -321,7 +321,6 @@ input[type=range]::-ms-thumb {
     height: 40vh;
     min-height: 14rem;
     margin: auto;
-    background-image: linear-gradient(to bottom, white 0% 30%, transparent 100%);
     position: static;
   }
   body figure img {
