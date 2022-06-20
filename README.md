@@ -7,8 +7,8 @@ The most important reason that House-matching is being made, is to make the proc
 
 ## Table of contents
 
+- [Installing Nodejs](#nodejs)
 - [Installing the app](#Installeren)
-- [Installing Nodejs] (#Nodejs)
 - [Makers](#Makers)
 - [License](#License)
 
