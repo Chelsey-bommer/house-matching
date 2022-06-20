@@ -11,30 +11,38 @@
 </head>
 
 
-<body>
+<body id="results">
     <figure>
-
         <img src="../../static/img/house1.jpg" alt="Picture of a house">
     </figure>
+
     <section method="/resultaten" class="main2">
-        
-        <h2>De perfecte match voor:</h2>
-        <span> <%- houses.prijs %></span>
+        <article>
+            <h2>De perfecte match voor:</h2>
+            <span>
+                <%- houses.naam %>
+            </span>
+            <span>
+                <%- houses.prijs %>
+            </span>
+            <span>
+                <%- houses.stad %>
+            </span>
+        </article>
 
         <!-- Hier komen de opgehaalde resultaten-->
-        <section>
+        <article>
             <h3>Huizen in <%= stad %>
             </h3>
             <h3>Budget: €<%= budget %>
             </h3>
 
-            <img src="../../static/img/house1.jpg" alt="Picture of a house">
+            <!-- <img src="../../static/img/house1.jpg" alt="Picture of a house"> -->
             <%- include('../partials/house-profile'); %>
 
                 <h4>Niet de perfecte match? Probeer het opnieuw:</h4>
                 <a href="update" class="link-button secondary">Pas voorkeuren aan</a>
-        </section>
-
+        </article>
     </section>
 
 
