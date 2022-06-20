@@ -1,33 +1,6 @@
-$base_clr: #ffffff;
-$primary_clr: hsl(22, 98%, 50%);
-$primary_clr--hover: hsl(22, 100%, 45%);
-$select_padding: 12px;
-$third_clr: #ffefe6;
-$third_clr--hover: #f3e0d6;
-$radius_sm: 0.25rem;
-$radius_md: 0.5rem;
-$radius_lr: 1rem;
-$heading1-fs: 32px;
-$heading1-lh: 125%;
-$body-fs: 16px;
-$body-lh: 150%;
-
-@mixin input-default {
-  border: 0.1rem solid hsla(0, 0%, 0%, 0.15);
-  border-width: 0.1rem;
-}
-@mixin input-hover {
-  border: 0.1rem solid hsla(0, 0%, 0%, 1);
-  &::placeholder {
-    opacity: 0.1;
-    transition: 1s;
-  }
-}
-@mixin space-between {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+@import "slider";
+@import "variables";
+@import "mixins";
 
 @font-face {
   font-family: "inter";
@@ -82,30 +55,6 @@ section {
   & > * {
     width: 100%;
     max-width: 30rem;
-  }
-}
-
-#index section > * {
-  max-width: 35rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-
-  & p {
-    font-size: 24px;
-    font-weight: 300;
-    line-height: $heading1-lh;
-  }
-
-  & div {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-
-    & * {
-      width: 100%;
-    }
   }
 }
 
@@ -172,29 +121,6 @@ label[for="stad"] {
   }
 }
 
-#voorkeuren {
-  div:last-of-type {
-    display: flex;
-    flex-direction: column;
-    & div {
-      @include space-between();
-      &:last-of-type {
-        opacity: 0.4;
-        font-size: 12px;
-      }
-    }
-  }
-}
-
-#login {
-  div {
-    &:last-of-type {
-      display: flex;
-      gap: 0.5rem;
-    }
-  }
-}
-
 button,
 input[type="submit"],
 input[type="button"],
@@ -230,103 +156,6 @@ input[type="button"],
 
   &:hover {
     border: 0.075rem solid $primary_clr;
-  }
-}
-
-input[type="range"] {
-  height: 3.5rem;
-  -webkit-appearance: none;
-  margin: 0;
-  width: 100%;
-
-  &::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-    box-shadow: 0px 0px 0px #000000;
-    background: $primary_clr;
-    border-radius: 50px;
-    border: 0px solid #000000;
-  }
-
-  &::-webkit-slider-thumb {
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
-    border: 4px solid $primary_clr;
-    height: 24px;
-    width: 24px;
-    border-radius: 50px;
-    background: $base_clr;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -12px;
-  }
-
-  &:focus {
-    &::-webkit-slider-runnable-track {
-      background: $primary_clr;
-    }
-
-    &::-ms-fill-lower {
-      background: $primary_clr;
-    }
-
-    &::-ms-fill-upper {
-      background: $primary_clr;
-    }
-  }
-
-  &::-moz-range-track {
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-    box-shadow: 0px 0px 0px #000000;
-    background: $primary_clr;
-    border-radius: 50px;
-    border: 0px solid #000000;
-  }
-
-  &::-moz-range-thumb {
-    box-shadow: 0px 0px 0px #000000;
-    border: 4px solid $primary_clr;
-    height: 24px;
-    width: 24px;
-    border-radius: 50px;
-    background: #ffffff;
-    cursor: pointer;
-  }
-
-  &::-ms-track {
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
-  }
-
-  &::-ms-fill-lower {
-    background: $primary_clr;
-    border: 0px solid #000000;
-    border-radius: 100px;
-    box-shadow: 0px 0px 0px #000000;
-  }
-
-  &::-ms-fill-upper {
-    background: $primary_clr;
-    border: 0px solid #000000;
-    border-radius: 100px;
-    box-shadow: 0px 0px 0px #000000;
-  }
-
-  &::-ms-thumb {
-    margin-top: 1px;
-    box-shadow: 0px 0px 0px #000000;
-    border: 4px solid $primary_clr;
-    height: 24px;
-    width: 24px;
-    border-radius: 50px;
-    background: #ffffff;
-    cursor: pointer;
   }
 }
 
@@ -381,6 +210,53 @@ input[type="range"] {
   }
 }
 
+#index section > * {
+  max-width: 35rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  & p {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: $heading1-lh;
+  }
+
+  & div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    & * {
+      width: 100%;
+    }
+  }
+}
+
+#voorkeuren {
+  div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    & div {
+      @include space-between();
+      &:last-of-type {
+        opacity: 0.4;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+#login {
+  div {
+    &:last-of-type {
+      display: flex;
+      gap: 0.5rem;
+    }
+  }
+}
+
 .loader {
   width: 100%;
   height: 100%;
@@ -393,7 +269,7 @@ input[type="range"] {
   gap: 1.5rem;
   justify-content: center;
   color: white;
-  
+
   & svg {
     width: 1.5rem;
     height: 1.5rem;
