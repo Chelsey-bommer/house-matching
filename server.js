@@ -2,6 +2,7 @@
 const express = require('express')
 const session = require('express-session')
 const app = express()
+const compression = require('compression')
 const fetch = require('node-fetch')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const { ObjectId } = require('mongodb')
@@ -22,6 +23,16 @@ const resultsRouter = require('./routes/result')
 const errorRouter = require('./routes/error')
 
 /** Middleware **/
+app.use(compression({ 
+  level: 6, 
+  threshold: 0,
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']){
+      return false
+    }
+    return compression.filter(req, res)
+  }
+}))
 app.use('/static', express.static('./static'))
 app.use('/css', express.static('./static/css'))
 app.use('/img', express.static('./static/img'))
