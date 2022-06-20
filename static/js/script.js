@@ -1,15 +1,10 @@
-/** functie voor form visibility **/
-window.addEventListener('load', () => {
-  document.getElementById('text1').style.display = 'none'
-  document.getElementById('huizen1').style.display = 'block'
-})
-
 /** Functie geeft dichtbije stedenlijst bij locatie **/
+const loader = document.querySelector('div.loader')
+
 function findLocation() {
   function success(position) {
     latitude = position.coords.latitude
     longitude = position.coords.longitude
-    let obj
 
     const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}+${longitude}/nearbyCities?radius=100&minPopulation=30000`
 
@@ -22,15 +17,16 @@ function findLocation() {
     }
 
     fetch(url, options)
-      .then((response) => response.json())
-      .then((data) => (obj = data))
-      .then(() => console.log(obj.data))
-
-      .then( ()  => {
-        const objectData = obj.data
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw 'failed to fetch data'
+      })
+      .then((objectData) => {
 
         /* Loop data in options in form */
-        objectData.forEach(element => {
+        objectData.data.forEach(element => {
           function addCities() {
             const option = document.createElement('option');
             option.innerHTML = String(element.city)
@@ -39,14 +35,19 @@ function findLocation() {
 
           }
           addCities()
-          
+
         })
       })
 
-      .catch((err) => console.error('error:' ))
+      .catch((err) => console.error('Error:', err))
+      .finally(() => {
+        if (loader) {
+          loader.classList.add('loading-animation')
+        }
+      })
   }
-  
-  
+
+
 
   function error() {
     console.log('Unable to retrieve your location')
