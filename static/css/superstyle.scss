@@ -14,12 +14,12 @@ $body-lh: 150%;
 
 @mixin input-default {
   border: 0.1rem solid hsla(0, 0%, 0%, 0.15);
-  border-width: .1rem;
+  border-width: 0.1rem;
 }
 @mixin input-hover {
   border: 0.1rem solid hsla(0, 0%, 0%, 1);
   &::placeholder {
-    opacity: .1;
+    opacity: 0.1;
     transition: 1s;
   }
 }
@@ -59,7 +59,7 @@ figure {
   top: 0;
   left: 0;
   height: 100vh;
-  z-index: 999;
+  z-index: 990;
 }
 
 img {
@@ -378,6 +378,42 @@ input[type="range"] {
     figure img {
       max-width: 35rem;
     }
+  }
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  background-color: $primary_clr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: center;
+  color: white;
+  & svg {
+    stroke: white;
+    animation: jump-around 0.8s ease-in 0s infinite alternate both running;
+  }
+
+  & span {
+    font-weight: 600;
+    font-size: 110%;
+  }
+}
+
+.loading-animation {
+  display: none;
+}
+
+@keyframes jump-around {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(50%);
   }
 }
 

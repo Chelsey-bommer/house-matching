@@ -27,7 +27,7 @@ figure {
   top: 0;
   left: 0;
   height: 100vh;
-  z-index: 999;
+  z-index: 990;
 }
 
 img {
@@ -331,5 +331,49 @@ input[type=range]::-ms-thumb {
 
   #index figure img {
     max-width: 35rem;
+  }
+}
+.loader {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  background-color: hsl(22deg, 98%, 50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: center;
+  color: white;
+}
+.loader svg {
+  stroke: white;
+  -webkit-animation: jump-around 0.8s ease-in 0s infinite alternate both running;
+          animation: jump-around 0.8s ease-in 0s infinite alternate both running;
+}
+.loader span {
+  font-weight: 600;
+  font-size: 110%;
+}
+
+.loading-animation {
+  display: none;
+}
+
+@-webkit-keyframes jump-around {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(50%);
+  }
+}
+
+@keyframes jump-around {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(50%);
   }
 }/*# sourceMappingURL=superstyle.css.map */
