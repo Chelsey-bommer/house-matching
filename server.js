@@ -21,6 +21,7 @@ const favoriteRouter = require('./routes/favorites')
 const resultsRouter = require('./routes/result')
 const errorRouter = require('./routes/error')
 
+
 /** Middleware **/
 app.use('/static', express.static('./static'))
 app.use('/css', express.static('./static/css'))

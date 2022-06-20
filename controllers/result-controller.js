@@ -27,6 +27,7 @@ const searchHouses = async (req, res) => {
     const currentUser = await User.findOne({username: user.username},{}).exec();
     const updatedStad = currentUser.preferences.stad;
     const updatedbudget = currentUser.preferences.budget
+  
    
     /** Haal huizen op uit db**/
     const houses = await House.findOne({ stad: updatedStad,  prijs: { $lte: updatedbudget }}, {})
@@ -35,9 +36,10 @@ const searchHouses = async (req, res) => {
       if (houses == null) {
         alert('Dit huis bestaat niet, probeer andere voorkeuren')
         alertHouses
-   
+      
         /** render pagina **/
-        res.render('pages/filter')
+        res.render('pages/filter' )
+          
       }
       else {
         /** render pagina **/
