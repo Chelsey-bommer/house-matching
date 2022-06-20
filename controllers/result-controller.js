@@ -4,26 +4,32 @@ const database = require('../config/db')
 const alertHouses = require('alert')
 const alert = require('alert')
 
+const { House } = require('../models/schemas');
+const { User } = require('../models/schemas');
 
 /*** Filter route POST **/
-router.post('/resultaten', async (req, res) => {
+const searchHouses = async (req, res) => {
  
     /** Maak variabelen  **/
     const stad = req.body.stad || req.body.textfield1
     const budgetString = req.body.budget
     const budget = Number(budgetString)
-   
-    /** Stuur userdata naar db  **/
-    await db.collection('user').insertOne({ stad, budget }, {})
+    const user = req.user;
+
+    /** Stuur voorkeuren naar ingelogde user  **/
+    await User.updateOne({username: user.username},{
+      $set: { preferences: {
+        stad: stad,
+        budget: budget
+      }} 
+    }).exec();
+
+    const currentUser = await User.findOne({username: user.username},{}).exec();
+    const updatedStad = currentUser.preferences.stad;
+    const updatedbudget = currentUser.preferences.budget
    
     /** Haal huizen op uit db**/
-    const houses = await db
-      .collection('houses')
-      .findOne(
-        { $and: [{ stad }, { prijs: { $lte: budget } }]}
-      )
-   
-      console.log(houses);
+    const houses = await House.findOne({ stad: updatedStad,  prijs: { $lte: updatedbudget }}, {})
    
     try {
       if (houses == null) {
@@ -34,11 +40,10 @@ router.post('/resultaten', async (req, res) => {
         res.render('pages/filter')
       }
       else {
-   
         /** render pagina **/
         res.render('pages/results', { 
-          stad: req.body.stad || req.body.textfield1,
-          budget: req.body.budget,
+          stad,
+          budget,
           houses 
         })
       }
@@ -46,6 +51,23 @@ router.post('/resultaten', async (req, res) => {
     catch (err) {
       console.log(err)
     }
-  })
+  }
 
-module.exports = router
+  const getPreferences = async (req, res) => {
+ 
+    /** Get session user variable  **/
+    const user = req.user;
+
+    /** Find database user matching to session user  **/
+    const currentUser = await User.findOne({username: user.username},{}).exec();
+   
+    /** Render database data  **/
+    res.render('pages/update', { 
+          currentUser 
+    })
+  }
+
+  module.exports = {
+    searchHouses,
+    getPreferences
+}

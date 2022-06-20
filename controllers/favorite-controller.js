@@ -1,3 +1,4 @@
+const { application } = require('express');
 const express = require('express')
 const router = express.Router()
 const { ObjectId } = require("mongodb");
@@ -9,6 +10,8 @@ const likeHouse = async (req, res) => {
     { _id: ObjectId(req.body.favorite) },
     { $set: { favorited: true } }
   );
+
+  res.redirect('/filter');
 };
 
 const unlikeHouse = async (req, res) => {
@@ -16,6 +19,8 @@ const unlikeHouse = async (req, res) => {
     { _id: ObjectId(req.body.favorite) },
     { $set: { favorited: false } }
   );
+
+  res.redirect('/filter');
 };
 
 module.exports = {
