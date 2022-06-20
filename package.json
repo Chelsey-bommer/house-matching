@@ -23,7 +23,8 @@
     "mongoose": "^6.3.8",
     "node-fetch": "^2.6.7",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "sass": "^1.52.3"
   },
   "devDependencies": {
     "eslint": "^8.17.0",
