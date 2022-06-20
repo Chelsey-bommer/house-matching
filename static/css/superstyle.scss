@@ -393,14 +393,21 @@ input[type="range"] {
   gap: 1.5rem;
   justify-content: center;
   color: white;
+  
   & svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: none;
     stroke: white;
+    stroke-width: 0.125rem;
+    stroke-linecap: round;
+    stroke-linejoin: round;
     animation: jump-around 0.8s ease-in 0s infinite alternate both running;
   }
 
   & span {
     font-weight: 600;
-    font-size: 110%;
+    font-size: 105%;
   }
 }
 
