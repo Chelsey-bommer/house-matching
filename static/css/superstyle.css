@@ -189,10 +189,10 @@ input[type=button],
   transition: 0.3s;
   border: 0.075rem solid transparent;
 }
-button *:not(.secondary),
-input[type=submit] *:not(.secondary),
-input[type=button] *:not(.secondary),
-.link-button *:not(.secondary) {
+button :not(.secondary),
+input[type=submit] :not(.secondary),
+input[type=button] :not(.secondary),
+.link-button :not(.secondary) {
   background-color: #ffefe6;
   color: hsl(22deg, 98%, 50%);
 }

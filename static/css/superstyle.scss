@@ -215,7 +215,7 @@ input[type="button"],
   transition: 0.3s;
   border: 0.075rem solid transparent;
 
-  &:not(.secondary) {
+  :not(.secondary) {
     background-color: $third_clr;
     color: $primary_clr;
   }
