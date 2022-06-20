@@ -16,12 +16,12 @@
         <div>
             <h2> Bestaande voorkeuren:</h2>
             <p>
-                <%= housesCurrent %>
+                <%- include('../partials/current-house-profile'); %>
             </p>
             <h2>Update uw voorkeuren </h2>
             <h3>In welke stad wilt u wonen?</h3>
         </div>
-        <form name="data" id="form" action='/updateresultaten' method="post">
+        <form name="data" id="form" action='/resultaten' method="post">
             <input id="text1" type="text" name="textfield1">
 
             <div>
