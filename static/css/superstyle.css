@@ -427,6 +427,26 @@ h3 {
   font-weight: bold;
 }
 
+#update section > div:first-of-type {
+  background-color: #ffefe6;
+  padding: 16px;
+  border: 1.2 solid hsl(22deg, 98%, 50%);
+  margin-bottom: 24px;
+  border-radius: 0.5rem;
+}
+#update section > div:first-of-type h2:first-child {
+  padding-bottom: 8px;
+  color: hsl(22deg, 98%, 50%);
+}
+#update section > div:first-of-type ul {
+  list-style: none;
+}
+#update section form > div:last-of-type {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 @-webkit-keyframes jump-around {
   from {
     transform: translateY(0%);
