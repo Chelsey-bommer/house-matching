@@ -368,6 +368,65 @@ input[type=button]:hover:not(.secondary),
   display: none;
 }
 
+h1 {
+  font-size: 200%;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 160%;
+  font-weight: 200;
+}
+
+h3 {
+  font-size: 120%;
+  font-weight: 400;
+}
+
+#results section {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+#results section > article {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#results section > article:first-of-type {
+  background-color: #ffefe6;
+  margin-bottom: 48px;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 1.2px solid hsl(22deg, 98%, 50%);
+  gap: 20px;
+}
+#results section > article:first-of-type > :first-child {
+  color: hsl(22deg, 98%, 50%);
+}
+#results section > article:first-of-type ul {
+  list-style: none;
+  border-bottom: 1.2px solid;
+  padding-bottom: 16px;
+  border-color: hsl(22deg, 98%, 50%);
+}
+#results section > article:last-of-type {
+  gap: 24px;
+}
+#results section > article:last-of-type div {
+  display: flex;
+  flex-direction: column;
+  opacity: 0.8;
+  gap: 4px;
+}
+#results section > article:last-of-type div p {
+  line-height: 150%;
+  font-size: 90%;
+}
+#results section > article:last-of-type div p span {
+  font-weight: bold;
+}
+
 @-webkit-keyframes jump-around {
   from {
     transform: translateY(0%);

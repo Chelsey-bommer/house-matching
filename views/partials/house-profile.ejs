@@ -1,13 +1,17 @@
-   <img src='../../static/img/<%= houses.foto %>' load= "lazy" alt="">
-    <ul>
-        <li>Straat + huisnummer: <%= houses.naam %></li>
-        <li>Prijs: <%= houses.prijs %></li>
-        <li>Plaats: <%= houses.stad %></li>
-    </ul>
-
-    <form action="/favorite" method="POST">
-        <button name="favorite" type="submit" id="favoriteHouse" value="<%= houses._id %>">
-            Voeg toe aan favorieten
-        </button>
-    </form> 
-    
+<form action="/favorite" method="POST">
+    <button name="favorite" type="submit" id="favoriteHouse" value="<%= houses._id %>">
+        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_2_5)">
+            <path d="M14.8373 3.88143C14.4877 3.53169 14.0726 3.25426 13.6158 3.06498C13.159 2.8757 12.6694 2.77827 12.1749 2.77827C11.6804 2.77827 11.1908 2.8757 10.7339 3.06498C10.2771 3.25426 9.86208 3.53169 9.51251 3.88143L8.78703 4.60691L8.06155 3.88143C7.35545 3.17532 6.39777 2.77864 5.39918 2.77864C4.4006 2.77864 3.44292 3.17532 2.73681 3.88143C2.03071 4.58753 1.63402 5.54521 1.63402 6.5438C1.63402 7.54238 2.03071 8.50006 2.73681 9.20617L3.46229 9.93165L8.78703 15.2564L14.1118 9.93165L14.8373 9.20617C15.187 8.8566 15.4644 8.44155 15.6537 7.98473C15.843 7.52791 15.9404 7.03828 15.9404 6.5438C15.9404 6.04932 15.843 5.55968 15.6537 5.10286C15.4644 4.64604 15.187 4.231 14.8373 3.88143V3.88143Z" stroke="white" stroke-width="1.36883" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_2_5">
+            <rect width="16.4259" height="16.4259" fill="white" transform="translate(0.574066 0.726276)"/>
+            </clipPath>
+            </defs>
+            </svg>
+            
+            
+        Voeg toe aan favorieten
+    </button>
+  </form>
