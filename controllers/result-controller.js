@@ -38,7 +38,7 @@ const searchHouses = async (req, res) => {
         alertHouses
       
         /** render pagina **/
-        res.render('pages/filter' )
+        res.render('pages/login' )
           
       }
       else {

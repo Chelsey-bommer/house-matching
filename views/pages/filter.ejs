@@ -28,6 +28,9 @@
   </figure>
 
   <section>
+    <% if (user) { %>
+      <h1>Welkom: <%- user.username %></h1>
+      <% } %>
     <form id="voorkeuren" name="data" id="form" action='/resultaten' method="post">
       <legend>Vul je voorkeur in</legend>
       <div>
@@ -50,6 +53,12 @@
       </div>
       <input id="submit" type="submit" value="Zoeken">
     </form>
+
+    <% if (user) { %>
+    <form action="/logout" method="post">
+      <button type="submit">Logout</button>
+    </form>
+    <% } %>
 
     <!-- Link javascript -->
     <script src="/static/js/slider.js"></script>
