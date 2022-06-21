@@ -2,49 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/head') %>
     <title>Resultaten</title>
-
     <link rel="stylesheet" href="css/superstyle.css">
 </head>
 
 
 <body id="results">
     <figure>
-        <img src="../../static/img/house1.jpg" alt="Picture of a house">
+        <img src="../../static/img/<%- houses.foto %>" alt="Picture of a house">
     </figure>
 
     <section method="/resultaten" class="main2">
         <article>
-            <h2>De perfecte match voor:</h2>
-            <span>
-                <%- houses.naam %>
-            </span>
-            <span>
-                <%- houses.prijs %>
-            </span>
-            <span>
-                <%- houses.stad %>
-            </span>
+            <h2>Jouw perfecte match!</h2>
+            <ul>
+                <li> Straat: <%- houses.naam %>
+                </li>
+                <li> Stad: <%- houses.stad %>
+                </li>
+                <li> Prijs: € <%- houses.prijs %>
+                </li>
+            </ul>
+            <%- include('../partials/house-profile'); %>
         </article>
 
         <!-- Hier komen de opgehaalde resultaten-->
         <article>
-            <h3>Huizen in <%= stad %>
-            </h3>
-            <h3>Budget: €<%= budget %>
-            </h3>
-
-
-            <!-- <img src="../../static/img/house1.jpg" alt="Picture of a house"> -->
-
-            <%- include('../partials/house-profile'); %>
-
+            <div>
                 <h4>Niet de perfecte match? Probeer het opnieuw:</h4>
-                <a href="update" class="link-button secondary">Pas voorkeuren aan</a>
+                <p>
+                    Je hebt gezocht naar huizen in <span><%= stad %></span> met een budget vanaf <span>€ <%= budget %></span>
+                </p>
+            </div>
+            <a href="update" class="link-button secondary">Pas voorkeuren aan</a>
         </article>
     </section>
+
+
 </body>
+
 </html>
