@@ -28,15 +28,7 @@ const addHouse = async (req, res) => {
     } catch (err) {
         res.status(500).json({'Message': err.message});
     }
-
-const unlikeHouse = async (req, res) => {
-    await House.updateOne(
-        { _id: ObjectId(req.body.favorite) },
-        { $set: { favorited: false } }
-    );
-
-    res.redirect('/filter');
-}}
+}
 
 module.exports = {
     addHouse
