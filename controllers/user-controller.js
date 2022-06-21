@@ -47,20 +47,33 @@ const authenticateUser = async (req, res, next) => {
   })(req, res, next);
 };
 
-const isAuthenticated = (req,res,next) => {
-  if(req.user)
-    res.status(200).json({
-      status: 'Login successful!'
+const logoutUser = (req, res, next) => {
+  req.logout((err) => {
+    if (err) { return next(err); }
+    res.redirect('/');
   });
-  else
-     return res.status(401).json({
-       error: 'User not authenticated'
-     })
+}
 
+const isNotAuthenticated = (req,res,next) => {
+  if(!req.user) {
+    res.redirect('/login');
+  } else {
+    next();
+  }
+}
+
+const isAuthenticated = (req,res,next) => {
+  if(req.user) {
+    res.redirect('/filter');
+  } else {
+    next();
+  }
 }
 
 module.exports = {
     registerUser,
     authenticateUser,
-    isAuthenticated
+    logoutUser,
+    isAuthenticated,
+    isNotAuthenticated
 };
