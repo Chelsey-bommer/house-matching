@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <%- include('../partials/head') %>
+        <title>Error</title>
 </head>
 
-<body>
-    <header>
-        <%- include('../partials/header') %>
-    </header>
+<body id="error">
+    <figure>
+        <img src="https://images.unsplash.com/photo-1526991264492-46764d2d26e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+            alt="" load= "lazy" style="background-position: bottom;">
+    </figure>
 
-   <main>
-    <img src="/img/cat.jpg" alt="A sad cat">
+    <section>
+        <div>
+            <div>
+                <h1>Page not found</h1>
+                <p>Oeps, something went wrong. It seems that you've reached a dead end. Please return to the homepage.
+                </p>
+            </div>
+            <a href="/filter" class="link-button">Return to home</a>
+        </div>
+    </section>
 
-    <h2>
-        There has been an error
-    </h2>
-   </main>
-    
 </body>
+
 </html>

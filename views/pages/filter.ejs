@@ -2,44 +2,48 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filter</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <%- include('../partials/head') %>
+    <title>Filter</title>
 </head>
 
 
 <body>
 
-  <%- include('../partials/header') %>
+  <figure>
+    <img
+      src="https://images.unsplash.com/photo-1488707872600-5507977fe355?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+      load= "lazy" alt="">
+  </figure>
 
-    <main>
-
-      <h2>Stel uw voorkeuren in</h2>
-
-      <h3>In welke stad wilt u wonen?</h3>
-      <form name="data" id="form" action='/resultaten' method="post">
-        <input id="text1" type="text" name="textfield1">
-
-        <select name="stad" id="huizen1">
+  <section>
+    <form id="voorkeuren" name="data" id="form" action='/resultaten' method="post">
+      <legend>Vul je voorkeur in</legend>
+      <div>
+        <label for="stad">Stad</label>
+        <select required name="stad" id="huizen1">
+          <option value="" disabled selected>Kies een stad</option>
         </select>
+      </div>
+      <div>
+        <div>
+          <label for="budget">Budget</label>
+          <output name="budget"></output>
+        </div>
+        <input type="range" name="budget" id="budget-slider" id="budget" step="50000" min="150000" max="850000"
+          value="350000">
+        <div>
+          <span>€150.000</span>
+          <span>€850.000</span>
+        </div>
+      </div>
+      <input id="submit" type="submit" value="Zoeken">
+    </form>
 
-        <h3>Wat is uw budget?</h3>
-        <input id="slider" name="budget" class="slider" value=400000 type="range" min=200000 max=600000
-          oninput="this.nextElementSibling.value = this.value">
-        <output></output>
-        <input id="submit" type="submit" value="Sla voorkeuren op">
+    <!-- Link javascript -->
+    <script src="/static/js/script.js"></script>
+    <script src="/static/js/slider.js"></script>
 
-      </form>
-
-    </main>
-  
-
-    <%- include('../partials/footer') %>
-
-      <!-- Link javascript -->
-      <script src="/static/js/script.js"></script>
 
 </body>
+
 </html>

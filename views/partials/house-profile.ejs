@@ -1,0 +1,13 @@
+   <img src='../../static/img/<%= houses.foto %>' load= "lazy" alt="">
+    <ul>
+        <li>Straat + huisnummer: <%= houses.naam %></li>
+        <li>Prijs: <%= houses.prijs %></li>
+        <li>Plaats: <%= houses.stad %></li>
+    </ul>
+
+    <form action="/favorite" method="POST">
+        <button name="favorite" type="submit" id="favoriteHouse" value="<%= houses._id %>">
+            Voeg toe aan favorieten
+        </button>
+    </form> 
+    

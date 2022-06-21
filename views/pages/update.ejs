@@ -2,48 +2,46 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filter</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <%- include('../partials/head') %>
+    <title>Update</title>
 </head>
 
 
-<body>
-
-    <%- include('../partials/header') %>
-
-        <main>
+<body id="update">
+    <figure>
+        <img src="https://images.unsplash.com/photo-1488707872600-5507977fe355?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+        load= "lazy" alt="">
+    </figure>
+    <section> 
+        <div>
             <h2> Bestaande voorkeuren:</h2>
             <p>
-                <%= housesCurrent %> 
+                <%- include('../partials/current-house-profile'); %>
             </p>
-
             <h2>Update uw voorkeuren </h2>
-
             <h3>In welke stad wilt u wonen?</h3>
-            <form name="data" id="form" action='/updateresultaten' method="post">
-                <input id="text1" type="text" name="textfield1">
+        </div>
+        <form name="data" id="form" action='/resultaten' method="post">
+            <input id="text1" type="text" name="textfield1">
 
-
-                <select name="stad" id="huizen1">  
+            <div>
+                <label for="stad">Stad</label>
+                <select name="stad" id="huizen1">
                 </select>
+            </div>
 
-                <h3>Wat is uw nieuwe budget?</h3>
-                <input id="slider" name="budget" class="slider" value="" type="range" min="200000" max="600000"
-                    oninput="this.nextElementSibling.value = this.value">
-                <output></output>
-                <input id="submit" type="submit" value="Update voorkeuren">
+            <h3>Wat is uw nieuwe budget?</h3>
+            <input id="slider" name="budget" class="slider" value="" type="range" min="200000" max="600000" step="50000"
+                oninput="this.nextElementSibling.value = this.value">
+            <output></output>
+            <input id="submit" type="submit" value="Update voorkeuren">
+        </form>
+    </section>
 
-            </form>
-
-        </main>
-
-        <%- include('../partials/footer') %>
-
-        <!-- Link javascript -->
-        <script src="/static/js/script.js"></script>
+    <!-- Link javascript -->
+    <script src="/static/js/slider.js"></script>
+    <script src="/static/js/script.js"></script>
 
 </body>
+
 </html>
