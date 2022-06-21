@@ -40,6 +40,10 @@ const houseSchema = new Schema({
     favorited: {
         type: Boolean,
         default: false
+    },
+    foto: {
+        type: String,
+        default: true
     }
 },{
     collection: 'houses'

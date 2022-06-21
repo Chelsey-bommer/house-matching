@@ -64,7 +64,7 @@ app.use(homeRouter)
 /** Filter route **/
 app.use(filterRouter)
 
-/*** Filter route POST **/
+/*** Result route POST **/
 app.use(resultsRouter)
 
 /*** Favorite route POST **/
@@ -81,5 +81,3 @@ app.listen(process.env.PORT, () => {
   console.log(`Webserver running on port localhost:${process.env.PORT}`)
 
 })
-
-
