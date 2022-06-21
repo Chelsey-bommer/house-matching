@@ -1,200 +1,3 @@
-@font-face {
-  font-family: "inter";
-  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-}
-html {
-  font-family: inter, Helvetica, Arial, sans-serif;
-}
-
-:is(*, *::before, *::after) {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  display: flex;
-  flex-direction: row;
-}
-body > * {
-  width: 50%;
-}
-
-figure {
-  padding: 1rem;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  z-index: 999;
-}
-
-img {
-  display: block;
-  position: relative;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 0.5rem;
-  width: 100%;
-  height: 100%;
-}
-
-section {
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 1rem;
-  padding: 1rem;
-  background-color: #ffffff;
-}
-section > * {
-  width: 100%;
-  max-width: 30rem;
-}
-
-#index section > * {
-  max-width: 35rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-#index section > * p {
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 125%;
-}
-#index section > * div {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-#index section > * div * {
-  width: 100%;
-}
-
-form {
-  max-width: 30rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-form select {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border-radius: 0.5rem;
-  border: none;
-  border: 0.1rem solid hsla(0deg, 0%, 0%, 0.15);
-  height: 3.5rem;
-  padding: 12px;
-  border: 0.1rem solid hsl(0deg, 0%, 0%);
-  outline: none;
-}
-form legend {
-  font-size: 32px;
-}
-form div {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-form label {
-  margin-bottom: 0.5rem;
-}
-form *::-moz-placeholder {
-  opacity: 0.4;
-}
-form *:-ms-input-placeholder {
-  opacity: 0.4;
-}
-form *::placeholder {
-  opacity: 0.4;
-}
-
-input:not(input[type=range], input[type=submit], input[type=button]) {
-  border: 0.1rem solid hsla(0deg, 0%, 0%, 0.15);
-  border-radius: 0.5rem;
-  height: 3.5rem;
-  padding: 12px;
-  will-change: border;
-  transition: 0.3s;
-}
-input:not(input[type=range], input[type=submit], input[type=button]):hover,
-input:not(input[type=range], input[type=submit], input[type=button]) :focus {
-  border: 0.1rem solid hsl(0deg, 0%, 0%);
-}
-
-label[for=stad]::after {
-  content: url("data:image/svg+xml,%3Csvg width='14' height='9' viewBox='0 0 14 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L7 7.5L13 1.5' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
-  position: absolute;
-  right: 12px;
-  bottom: 1.25rem;
-}
-
-#voorkeuren div:last-of-type {
-  display: flex;
-  flex-direction: column;
-}
-#voorkeuren div:last-of-type div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-#voorkeuren div:last-of-type div:last-of-type {
-  opacity: 0.4;
-  font-size: 12px;
-}
-
-#login div:last-of-type {
-  display: flex;
-  gap: 0.5rem;
-}
-
-button,
-input[type=submit],
-input[type=button],
-.link-button {
-  will-change: auto;
-  all: initial;
-  cursor: pointer;
-  font-family: sans-serif;
-  font-weight: 400;
-  font-size: 90%;
-  display: grid;
-  align-items: center;
-  text-align: center;
-  border-radius: 0.5rem;
-  background-color: hsl(22deg, 98%, 50%);
-  color: #ffffff;
-  height: 3.5rem;
-  transition: 0.3s;
-  border: 0.075rem solid transparent;
-}
-button *:not(.secondary),
-input[type=submit] *:not(.secondary),
-input[type=button] *:not(.secondary),
-.link-button *:not(.secondary) {
-  background-color: #ffefe6;
-  color: hsl(22deg, 98%, 50%);
-}
-button:hover:not(.secondary),
-input[type=submit]:hover:not(.secondary),
-input[type=button]:hover:not(.secondary),
-.link-button:hover:not(.secondary) {
-  background-color: hsl(22deg, 100%, 45%);
-}
-
-.secondary {
-  background-color: #ffefe6;
-  color: hsl(22deg, 98%, 50%);
-}
-.secondary:hover {
-  border: 0.075rem solid hsl(22deg, 98%, 50%);
-}
-
 input[type=range] {
   height: 3.5rem;
   -webkit-appearance: none;
@@ -279,6 +82,181 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
 }
 
+@font-face {
+  font-family: "inter";
+  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+}
+html {
+  font-family: inter, Helvetica, Arial, sans-serif;
+}
+
+:is(*, *::before, *::after) {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+}
+body > * {
+  width: 50%;
+}
+
+figure {
+  padding: 1rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 990;
+}
+
+img {
+  display: block;
+  position: relative;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 100%;
+}
+
+section {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #ffffff;
+}
+section > * {
+  width: 100%;
+  max-width: 30rem;
+}
+
+form {
+  max-width: 30rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+form select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0.5rem;
+  border: none;
+  border: 0.1rem solid hsla(0deg, 0%, 0%, 0.15);
+  height: 3.5rem;
+  padding: 12px;
+  border: 0.1rem solid hsl(0deg, 0%, 0%);
+  outline: none;
+}
+form legend {
+  font-size: 32px;
+}
+form div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+form label {
+  margin-bottom: 0.5rem;
+}
+form *::-moz-placeholder {
+  opacity: 0.4;
+}
+form *:-ms-input-placeholder {
+  opacity: 0.4;
+}
+form *::placeholder {
+  opacity: 0.4;
+}
+
+input:not(input[type=range], input[type=submit], input[type=button]) {
+  border: 0.1rem solid hsla(0deg, 0%, 0%, 0.15);
+  border-width: 0.1rem;
+  border-radius: 0.5rem;
+  height: 3.5rem;
+  padding: 12px;
+  will-change: border;
+  transition: 0.3s;
+}
+input:not(input[type=range], input[type=submit], input[type=button]):hover,
+input:not(input[type=range], input[type=submit], input[type=button]) :focus {
+  border: 0.1rem solid hsl(0deg, 0%, 0%);
+}
+input:not(input[type=range], input[type=submit], input[type=button]):hover::-moz-placeholder, input:not(input[type=range], input[type=submit], input[type=button]) :focus::-moz-placeholder {
+  opacity: 0.1;
+  -moz-transition: 1s;
+  transition: 1s;
+}
+input:not(input[type=range], input[type=submit], input[type=button]):hover:-ms-input-placeholder, input:not(input[type=range], input[type=submit], input[type=button]) :focus:-ms-input-placeholder {
+  opacity: 0.1;
+  -ms-transition: 1s;
+  transition: 1s;
+}
+input:not(input[type=range], input[type=submit], input[type=button]):hover::placeholder,
+input:not(input[type=range], input[type=submit], input[type=button]) :focus::placeholder {
+  opacity: 0.1;
+  transition: 1s;
+}
+
+label[for=stad]::after {
+  content: url("data:image/svg+xml,%3Csvg width='14' height='9' viewBox='0 0 14 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L7 7.5L13 1.5' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  position: absolute;
+  right: 12px;
+  bottom: 1.25rem;
+}
+
+button,
+input[type=submit],
+input[type=button],
+.link-button {
+  will-change: auto;
+  all: initial;
+  cursor: pointer;
+  font-family: inter, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  border-radius: 0.5rem;
+  background-color: hsl(22deg, 98%, 50%);
+  color: #ffffff;
+  height: 3.5rem;
+  transition: 0.3s;
+  border: 0.075rem solid transparent;
+}
+button :not(.secondary, svg),
+input[type=submit] :not(.secondary, svg),
+input[type=button] :not(.secondary, svg),
+.link-button :not(.secondary, svg) {
+  background-color: #ffefe6;
+  color: hsl(22deg, 98%, 50%);
+}
+button:hover:not(.secondary),
+input[type=submit]:hover:not(.secondary),
+input[type=button]:hover:not(.secondary),
+.link-button:hover:not(.secondary) {
+  background-color: hsl(22deg, 100%, 45%);
+}
+
+.secondary {
+  background-color: #ffefe6;
+  color: hsl(22deg, 98%, 50%);
+}
+.secondary:hover {
+  border: 0.075rem solid hsl(22deg, 98%, 50%);
+}
+
 #error section div {
   display: flex;
   flex-direction: column;
@@ -315,5 +293,95 @@ input[type=range]::-ms-thumb {
 
   #index figure img {
     max-width: 35rem;
+  }
+}
+#index section > * {
+  max-width: 35rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#index section > * p {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 125%;
+}
+#index section > * div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+#index section > * div * {
+  width: 100%;
+}
+
+#voorkeuren div:last-of-type {
+  display: flex;
+  flex-direction: column;
+}
+#voorkeuren div:last-of-type div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#voorkeuren div:last-of-type div:last-of-type {
+  opacity: 0.4;
+  font-size: 12px;
+}
+
+#login div:last-of-type {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  background-color: hsl(22deg, 98%, 50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: center;
+  color: white;
+}
+.loader svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: white;
+  stroke-width: 0.125rem;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  -webkit-animation: jump-around 0.8s ease-in 0s infinite alternate both running;
+          animation: jump-around 0.8s ease-in 0s infinite alternate both running;
+}
+.loader span {
+  font-weight: 600;
+  font-size: 105%;
+}
+
+.loading-animation {
+  display: none;
+}
+
+@-webkit-keyframes jump-around {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(50%);
+  }
+}
+
+@keyframes jump-around {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(50%);
   }
 }/*# sourceMappingURL=superstyle.css.map */

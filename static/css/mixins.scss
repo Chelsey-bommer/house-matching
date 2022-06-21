@@ -1,0 +1,16 @@
+@mixin input-default {
+  border: 0.1rem solid hsla(0, 0%, 0%, 0.15);
+  border-width: 0.1rem;
+}
+@mixin input-hover {
+  border: 0.1rem solid hsla(0, 0%, 0%, 1);
+  &::placeholder {
+    opacity: 0.1;
+    transition: 1s;
+  }
+}
+@mixin space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
