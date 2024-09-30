@@ -32,11 +32,11 @@ const searchHouses = async (req, res) => {
     const updatedbudget = currentUser.preferences.budget
     const Allhouses = await House.find();
     
-    console.log(updatedStad);
+    
    
     /** Haal huizen op uit db**/
     const houses = await House.findOne({ stad: updatedStad,  prijs: { $lte: updatedbudget }}, {})
-    console.log(Allhouses);
+    
    
     try {
       

@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 /* Connect met database */
 async function connectDB() {
     const uri =
-    'mongodb+srv://Chelsey-bommer:Winchester67Chevy@clustermatching.ilzs2.mongodb.net/rooms?retryWrites=true&w=majority'
+    'mongodb+srv://Chelsey-bommer:' +   process.env.DB_PASS + '@clustermatching.ilzs2.mongodb.net/rooms?retryWrites=true&w=majority'
      
 
 
