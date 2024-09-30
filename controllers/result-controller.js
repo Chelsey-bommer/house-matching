@@ -7,6 +7,9 @@ const alert = require('alert')
 const { House } = require('../models/schemas');
 const { User } = require('../models/schemas');
 
+
+
+
 /*** Filter route POST **/
 const searchHouses = async (req, res) => {
  
@@ -27,12 +30,16 @@ const searchHouses = async (req, res) => {
     const currentUser = await User.findOne({username: user.username},{}).exec();
     const updatedStad = currentUser.preferences.stad;
     const updatedbudget = currentUser.preferences.budget
-  
+    const Allhouses = await House.find();
+    
+    console.log(updatedStad);
    
     /** Haal huizen op uit db**/
     const houses = await House.findOne({ stad: updatedStad,  prijs: { $lte: updatedbudget }}, {})
+    console.log(Allhouses);
    
     try {
+      
       if (houses == null) {
         alert('Dit huis bestaat niet, probeer andere voorkeuren')
         alertHouses
@@ -70,6 +77,7 @@ const searchHouses = async (req, res) => {
   }
 
   module.exports = {
-    searchHouses,
-    getPreferences
+    searchHouses, 
+    getPreferences,
+    
 }

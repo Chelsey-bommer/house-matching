@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username: {
         type: String,
-        required: [true, `Vul asltublieft een username in.`]
+        required: [true, `Vul alstublieft een username in.`]
     },
     password: {
         type: String,
@@ -27,15 +27,15 @@ const userSchema = new Schema({
 const houseSchema = new Schema({
     prijs: {
         type: Number,
-        required: [true, `Vul asltublieft de prijs in.`]
+        required: [true, `Vul alstublieft de prijs in.`]
     },
     naam: {
         type: String,
-        required: [true, `Vul asltublieft het adres in.`]
+        required: [true, `Vul alstublieft het adres in.`]
     },
     stad: {
         type: String,
-        required: [true, `Vul asltublieft de stadsnaam in.`]
+        required: [true, `Vul alstublieft de stadsnaam in.`]
     },
     favorited: {
         type: Boolean,
@@ -53,8 +53,8 @@ const houseSchema = new Schema({
     }
 });
 
-const User = mongoose.model(`User`, userSchema);
-const House = mongoose.model(`House`, houseSchema);
+const User = mongoose.model(`User`, userSchema, 'users');
+const House = mongoose.model(`House`, houseSchema, 'houses');
 
 module.exports = {
     User,
